@@ -1,0 +1,16 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 10,
+    "alliance": "Runner",
+    "faction": "Criminal"
+  },
+  "type": "Identity",
+  "subtypes": ["Cyborg"],
+  "title": "Zahya Sadeghi",
+  "subtitle": "Versatile Smuggler",
+  "memorylimit": 4,
+  "link": 0,
+  "cardsmin": 40,
+  "influence": 15
+}

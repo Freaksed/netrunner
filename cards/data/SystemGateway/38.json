@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 38,
+    "alliance": "Corp",
+    "faction": "Haas-Bioroid",
+    "influence": 3
+  },
+  "type": "ICE",
+  "subtypes": ["Sentry", "Bioroid", "Destroyer"],
+  "title": "Ansel 1.0",
+  "cost": 6,
+  "strength": 4
+}

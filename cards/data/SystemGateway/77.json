@@ -1,0 +1,12 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 77,
+    "alliance": "Corp",
+    "faction": "Neutral"
+  },
+  "type": "Identity",
+  "title": "The Syndicate",
+  "subtitle": "Profit Over Principal",
+  "subtypes": ["Megacorp"]
+}

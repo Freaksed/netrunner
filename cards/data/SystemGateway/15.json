@@ -1,0 +1,16 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 15,
+    "alliance": "Runner",
+    "faction": "Criminal",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "Program",
+  "subtypes": ["Icebreaker", "Killer"],
+  "title": "Carmen",
+  "cost": 5,
+  "memorycost": 1,
+  "strength": 2
+}

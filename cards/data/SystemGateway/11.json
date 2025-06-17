@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 11,
+    "alliance": "Runner",
+    "faction": "Criminal",
+    "influence": 3,
+    "limit": 2
+  },
+  "type": "Event",
+  "title": "Mutual Favor",
+  "cost": 0
+}

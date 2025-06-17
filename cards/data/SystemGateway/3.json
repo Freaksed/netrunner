@@ -1,0 +1,23 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 3,
+    "alliance": "Runner",
+    "faction": "Anarch",
+    "influence": 3
+  },
+  "type": "Hardware",
+  "subtypes": ["Console"],
+  "title": "Carnivore",
+  "cost": 4,
+  "memory": 1,
+  "limit": 1,
+  "abilities": [
+    {
+      "trigger": "access",
+      "action": "trash_accessed_card",
+      "limit": "once_per_turn",
+      "cost": { "trash_from_grip": 2 }
+    }
+  ]
+}

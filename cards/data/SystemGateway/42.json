@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 42,
+    "alliance": "Corp",
+    "faction": "Haas-Bioroid",
+    "influence": 3,
+    "limit": 1
+  },
+  "type": "Upgrade",
+  "title": "Manegarm Skunkworks",
+  "cost": 2,
+  "trashcost": 3
+}

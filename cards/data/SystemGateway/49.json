@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 49,
+    "alliance": "Corp",
+    "faction": "Jinteki",
+    "influence": 3
+  },
+  "type": "Operation",
+  "subtypes": ["Gray Ops"],
+  "title": "Neurospike",
+  "cost": 3
+}

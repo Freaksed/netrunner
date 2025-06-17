@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 31,
+    "alliance": "Runner",
+    "faction": "Neutral",
+    "influence": 0
+  },
+  "type": "Hardware",
+  "subtypes": ["Chip"],
+  "title": "T400 Memory Diamond",
+  "cost": 2,
+  "memory": 1
+}

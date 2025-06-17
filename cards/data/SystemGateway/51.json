@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 51,
+    "alliance": "Corp",
+    "faction": "NBN"
+  },
+  "type": "Identity",
+  "subtypes": ["Megacorp"],
+  "title": "NBN",
+  "subtitle": "Reality Plus",
+  "cardsmin": 40,
+  "influence": 15
+}

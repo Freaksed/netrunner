@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 27,
+    "alliance": "Runner",
+    "faction": "Shaper",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "Resource",
+  "subtypes": ["Job"],
+  "title": "Telework Contract",
+  "cost": 1
+}

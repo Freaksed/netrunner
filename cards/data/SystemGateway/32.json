@@ -1,0 +1,16 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 32,
+    "alliance": "Runner",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 2
+  },
+  "type": "Program",
+  "subtypes": ["Icebreaker", "AI"],
+  "title": "Mayfly",
+  "cost": 1,
+  "memorycost": 2,
+  "strength": 1
+}

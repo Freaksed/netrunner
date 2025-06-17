@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 39,
+    "alliance": "Corp",
+    "faction": "Haas-Bioroid",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "ICE",
+  "subtypes": ["Barrier", "Bioroid"],
+  "title": "Bran 1.0",
+  "cost": 6,
+  "strength": 6
+}

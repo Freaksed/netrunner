@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 12,
+    "alliance": "Runner",
+    "faction": "Criminal",
+    "influence": 1,
+    "limit": 2
+  },
+  "type": "Event",
+  "subtypes": ["Run"],
+  "title": "Tread Lightly",
+  "cost": 1
+}

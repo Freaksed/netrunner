@@ -1,0 +1,12 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 52,
+    "alliance": "Corp",
+    "faction": "NBN"
+  },
+  "type": "Agenda",
+  "title": "Tomorrow's Headline",
+  "cost": 3,
+  "value": 2
+}

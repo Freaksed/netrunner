@@ -1,0 +1,16 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 24,
+    "alliance": "Runner",
+    "faction": "Shaper",
+    "influence": 4,
+    "limit": 2
+  },
+  "type": "Program",
+  "subtypes": ["Virus"],
+  "title": "Conduit",
+  "cost": 4,
+  "memorycost": 1,
+  "strength": "-"
+}

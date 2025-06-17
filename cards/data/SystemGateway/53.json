@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 53,
+    "alliance": "Corp",
+    "faction": "NBN",
+    "influence": 1
+  },
+  "type": "Asset",
+  "subtypes": ["Character"],
+  "title": "Spin Doctor",
+  "cost": 0,
+  "trashcost": 2
+}

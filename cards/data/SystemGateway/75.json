@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 75,
+    "alliance": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 3
+  },
+  "type": "Operation",
+  "subtypes": ["Transaction"],
+  "title": "Hedge Fund",
+  "cost": 5
+}

@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 73,
+    "alliance": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 2
+  },
+  "type": "ICE",
+  "subtypes": ["Sentry", "AP"],
+  "title": "Tithe",
+  "cost": 1,
+  "strength": 1
+}

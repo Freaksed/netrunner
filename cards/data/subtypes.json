@@ -1,0 +1,44 @@
+{
+  "event": [
+    "Condition",
+    "Current",
+    "Double",
+    "Job",
+    "Mod",
+    "Orgcrime",
+    "Priority",
+    "Run",
+    "Sabotage",
+    "Stealth",
+    "Terminal"
+  ],
+  "hardware": [
+    "Chip",
+    "Companion",
+    "Console",
+    "Consumer-grade",
+    "Cybernetic",
+    "Gear",
+    "Link",
+    "Mod",
+    "Stealth",
+    "Vehicle",
+    "Weapon"
+  ],
+  "program": [
+    "AI",
+    "Caïssa",
+    "Cloud",
+    "Daemon",
+    "Decoder",
+    "Deep Net",
+    "Deva",
+    "Fracter",
+    "Icebreaker",
+    "Killer",
+    "Stealth",
+    "Trojan",
+    "Virus",
+    "Weapon"
+  ]
+}

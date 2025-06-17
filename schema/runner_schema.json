@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Netrunner Event",
+  "type": "object",
+  "properties": {
+    "set": { "type": "string" },
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "alliance": {
+      "type": "string",
+      "enum": ["corp", "runner"]
+    },
+    "faction": {
+      "type": "string",
+      "enum": [
+        "Anarch",
+        "Criminal",
+        "Shaper",
+        "Weyland",
+        "Haas-Bioroid",
+        "Jinteki",
+        "NBN"
+      ]
+    },
+    "influence": { "type": "integer" },
+    "limit": { "type": "integer" },
+    "type": {
+      "type": "string",
+      "enum": ["Event"]
+    },
+    "subtypes": { "type": "array" },
+    "cost": { "type": "integer" },
+    "abilities": { "type": "array" },
+    "action": {
+      "type": "string",
+      "enum": [
+        "draw_cards",
+        "gain_credits",
+        "lose_credits",
+        "gain_tags",
+        "move_cards",
+        "run_server",
+        "access_cards",
+        "skip_access",
+        "present_choice",
+        "choose_credit_loss"
+      ]
+    }
+  }
+}

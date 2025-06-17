@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 60,
+    "alliance": "Corp",
+    "faction": "Weyland Consortium"
+  },
+  "type": "Agenda",
+  "subtypes": ["Security"],
+  "title": "Above the Law",
+  "cost": 3,
+  "value": 2
+}

@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 56,
+    "alliance": "Corp",
+    "faction": "NBN",
+    "influence": 1,
+    "limit": 2
+  },
+  "type": "Operation",
+  "subtypes": ["Transaction"],
+  "title": "Predictive Planogram",
+  "cost": 0
+}

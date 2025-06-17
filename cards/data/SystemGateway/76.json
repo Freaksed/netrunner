@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 76,
+    "alliance": "Runner",
+    "faction": "Neutral"
+  },
+  "type": "Identity",
+  "title": "The Catalyst",
+  "subtitle": "Convention Breaker",
+  "subtypes": ["Natural"],
+  "memorylimit": 4,
+  "link": 0
+}

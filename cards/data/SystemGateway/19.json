@@ -1,0 +1,16 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 19,
+    "alliance": "Runner",
+    "faction": "Shaper"
+  },
+  "type": "Identity",
+  "subtypes": ["Natural"],
+  "title": "Tao Salonga",
+  "subtitle": "Telepresence Magician",
+  "memorylimit": 4,
+  "link": 0,
+  "cardsmin": 40,
+  "influence": 15
+}
