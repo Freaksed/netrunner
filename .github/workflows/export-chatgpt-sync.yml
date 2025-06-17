@@ -1,0 +1,27 @@
+name: Export Files for ChatGPT
+
+on:
+  workflow_dispatch: # Manual run
+  push: # Or run on push to main
+    branches: [main]
+
+jobs:
+  export-sync-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create sync package
+        run: |
+          mkdir -p chatgpt_sync
+          cp -r cards schemas chatgpt_sync/ 2>/dev/null || true
+          cp deck_schema.json event_schema.json chatgpt_sync/ 2>/dev/null || true
+          zip -r chatgpt_sync.zip chatgpt_sync
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatgpt-sync
+          path: chatgpt_sync.zip
