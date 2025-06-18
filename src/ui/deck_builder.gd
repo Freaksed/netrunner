@@ -9,47 +9,68 @@ extends Control
 
 var card_scene = preload("res://cards/Card.tscn")
 var all_card_data: Array = []
-var deck: Dictionary = {}  # key: card ID, value: count
+var deck: Array = [] # key: card ID, value: count
 
 var card_loader = preload("res://src/utils/card_loader.gd").new()
 
 func _ready():
 	back_button.pressed.connect(func(): SceneStack.pop_scene())
+	save_button.pressed.connect(_on_save_pressed)
 
 	all_card_data = card_loader.load_all_cards_from_folder("res://cards/data/System Gateway")
+	deck = load_deck_from_file("res://sample_deck.json")
 	_show_card_pool()
-	save_button.pressed.connect(_on_save_pressed)
+	card_selector.card_clicked.connect(_add_card_to_deck)
+	deck_view.card_clicked.connect(_remove_card_from_deck)
 
 
 func _show_card_pool():
 	card_selector.set_deck(all_card_data)
-	var mydeck = load_deck_from_file("res://sample_deck.json")
-	deck_view.set_deck(mydeck)
+	deck_view.set_deck(deck)
 	
 
 func _add_card_to_deck(card_data: Dictionary):
-	var title = card_data.get("title", "")
-	if not deck.has(title):
-		deck[title] = {"data": card_data, "count": 0}
-	deck[title]["count"] += 1
+	deck.append(card_data)
 	_refresh_deck_list()
 
 
+func _remove_card_from_deck(card_data: Dictionary):
+	print("Removin: ", card_data["title"])
+
+
 func _refresh_deck_list():
-	return
+	deck_view.set_deck(deck)
 
 
 func _on_save_pressed():
+	# Group and count cards
+	var counts := {}
+	for card in deck:
+		var id = card.get("deck", {}).get("id")
+		var set = card.get("deck", {}).get("set")
+		var key = "%s|%s" % [set, id]  # unique key per card type
+
+		if not counts.has(key):
+			counts[key] = {
+				"id": id,
+				"set": set,
+				"title": card.get("title"),
+				"count": 0
+			}
+		counts[key]["count"] += 1
+
+	# Convert to array
 	var deck_json = {
-		"cards": deck.values().map(func(entry): return {
-			"id": entry["data"].get("deck", {}).get("id"),
-			"set": entry["data"].get("deck", {}).get("set"),
-			"title": entry["data"].get("title"),
-			"count": entry["count"]
-		})
+		"cards": counts.values()
 	}
+
+	# Save
 	var file = FileAccess.open("user://my_deck.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify(deck_json, "\t"))
+	if file:
+		file.store_string(JSON.stringify(deck_json, "\t"))
+		print("Deck saved to user://my_deck.json")
+	else:
+		push_error("Failed to save deck!")
 
 
 func load_deck_from_file(path: String) -> Array:

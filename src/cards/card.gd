@@ -1,6 +1,8 @@
 class_name Card
 extends TextureButton
 
+signal clicked(card_data: Dictionary)
+
 var card_data: Dictionary
 
 func init_from_json(data: Dictionary):
@@ -9,6 +11,17 @@ func init_from_json(data: Dictionary):
 		_update_ui()
 
 func _ready():
+	mouse_entered.connect(func():
+		modulate = Color(1.2, 1.2, 1.2)  # brighten on hover
+	)
+	mouse_exited.connect(func():
+		modulate = Color(1, 1, 1)  # reset
+	)
+	pressed.connect(func():
+		modulate = Color(0.8, 0.8, 0.8)  # dim when pressed
+		emit_signal("clicked", card_data)
+	)
+	
 	if card_data:  # init_from_json was already called
 		_update_ui()
 

@@ -8,7 +8,7 @@ extends VBoxContainer
 @onready var deck_list = $ScrollContainer/CardGrid
 @onready var total_label = $TotalLabel
 
-signal card_selected(card_data: Dictionary)
+signal card_clicked(card_data: Dictionary)
 
 var card_scene = preload("res://cards/Card.tscn")
 
@@ -17,8 +17,14 @@ var all_factions: Array = []
 var all_types: Array = []
 
 const FACTION_TO_SIDE := {
-	"Shaper": "Runner", "Criminal": "Runner", "Anarch": "Runner", "Neutral": "Runner",
-	"HB": "Corp", "Jinteki": "Corp", "NBN": "Corp", "Weyland": "Corp"
+	"Shaper": "Runner",
+	"Criminal": "Runner",
+	"Anarch": "Runner",
+	"Neutral": "Runner",
+	"HB": "Corp",
+	"Jinteki": "Corp",
+	"NBN": "Corp",
+	"Weyland": "Corp"
 }
 
 const VALID_TYPES := {
@@ -26,17 +32,20 @@ const VALID_TYPES := {
 	"Corp": ["Agenda", "Asset", "Operation", "Upgrade", "ICE"]
 }
 
+
 func _ready():
 	filter_box.text_changed.connect(_refresh)
 	side_filter.item_selected.connect(_refresh)
 	faction_filter.item_selected.connect(_refresh)
 	type_filter.item_selected.connect(_refresh)
 
+
 func set_deck(new_deck: Array):
 	deck = new_deck
 	_collect_filter_options()
 	_setup_filters()
 	_refresh()
+
 
 func _collect_filter_options():
 	var faction_set := {}
@@ -48,6 +57,7 @@ func _collect_filter_options():
 	all_types = type_set.keys()
 	all_factions.sort()
 	all_types.sort()
+
 
 func _setup_filters():
 	side_filter.clear()
@@ -64,6 +74,7 @@ func _setup_filters():
 	type_filter.add_item("All")
 	for t in all_types:
 		type_filter.add_item(t)
+
 
 func _refresh(_val = null):
 	# Clear current list
@@ -83,7 +94,7 @@ func _refresh(_val = null):
 			card = entry["data"]
 		else:
 			card = entry
-			
+
 		var title = card.get("title", "").to_lower()
 		var faction = card.get("faction", "")
 		var side = card.get("side", "")
@@ -105,8 +116,10 @@ func _refresh(_val = null):
 
 		var card_instance = card_scene.instantiate()
 		card_instance.init_from_json(card)
-		card_instance.pressed.connect(func():
-			emit_signal("card_selected", card)
+		card_instance.clicked.connect(
+			func(card_data):
+				print("view click: ", card_instance.card_data["title"])
+				emit_signal("card_clicked", card_instance.card_data)
 		)
 		deck_list.add_child(card_instance)
 
