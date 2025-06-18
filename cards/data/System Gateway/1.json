@@ -1,0 +1,17 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 1,
+    "side": "Runner",
+    "faction": "Anarch"
+  },
+  "type": "Identity",
+  "subtypes": ["G-mod"],
+  "title": "Rene \"Loup\" Arcemont",
+  "subtitle": "Party Animal",
+  "memorylimit": 4,
+  "link": 0,
+  "cardsmin": 40,
+  "influence": 15,
+  "abilities": []
+}

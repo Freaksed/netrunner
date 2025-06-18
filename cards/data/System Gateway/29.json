@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 29,
+    "side": "Runner",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 2
+  },
+  "type": "Event",
+  "subtypes": ["Run"],
+  "title": "Overclock",
+  "cost": 1
+}

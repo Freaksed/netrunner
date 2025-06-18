@@ -1,0 +1,212 @@
+[gd_scene load_steps=2 format=3 uid="uid://sddsmjmnbunq"]
+
+[sub_resource type="GDScript" id="GDScript_445d3"]
+script/source = "extends Control
+
+@onready var card_parent = $VBoxContainer/MarginContainer/ScrollContainer/CardGrid
+@onready var filter_box = $VBoxContainer/HBoxContainer/FilterBox
+@onready var filter_side = $VBoxContainer/HBoxContainer/SideFilter
+@onready var filter_faction = $VBoxContainer/HBoxContainer/FactionFilter
+@onready var filter_type = $VBoxContainer/HBoxContainer/TypeFilter
+@onready var back_button = $VBoxContainer/HBoxContainer/BackButton
+
+const FACTION_TO_SIDE := {
+	\"Shaper\": \"Runner\",
+	\"Criminal\": \"Runner\",
+	\"Anarch\": \"Runner\",
+	\"Neutral\": \"Runner\",  # special case; used by both
+	\"HB\": \"Corp\",
+	\"Jinteki\": \"Corp\",
+	\"NBN\": \"Corp\",
+	\"Weyland\": \"Corp\"
+}
+
+const VALID_FACTIONS := {
+	\"Runner\": [\"Shaper\", \"Criminal\", \"Anarch\"],
+	\"Corp\": [\"HB\", \"Jinteki\", \"NBN\", \"Weyland\"]
+}
+
+const VALID_TYPES := {
+	\"Runner\": [\"Program\", \"Hardware\", \"Resource\", \"Event\"],
+	\"Corp\": [\"Agenda\", \"Asset\", \"Operation\", \"Upgrade\", \"ICE\"]
+}
+
+var card_scene = preload(\"res://cards/Card.tscn\")
+var card_loader = preload(\"res://src/utils/card_loader.gd\").new()
+var all_card_data = []
+
+
+func _ready():
+	back_button.pressed.connect(_on_back_pressed)
+	filter_box.text_changed.connect(_on_filter_text_changed)
+	filter_side.item_selected.connect(_on_filter_side)
+	filter_faction.item_selected.connect(_on_filter_faction)
+	filter_type.item_selected.connect(_on_filter_type)
+
+	filter_side.add_item(\"All\")
+	filter_side.add_item(\"Runner\")
+	filter_side.add_item(\"Corp\")
+	
+	_update_faction_filter()
+	_update_type_filter()
+	
+	all_card_data = card_loader.load_all_cards_from_folder(\"res://cards/data/System Gateway\")
+	_update_card_display()
+
+
+func _on_filter_side(_index: int) -> void:
+	_update_faction_filter()
+	_update_type_filter()
+	_update_card_display()
+
+
+func _on_filter_faction(_index: int) -> void:
+	_update_type_filter()
+	_update_card_display()
+
+
+func _on_filter_type(_index: int) -> void:
+	_update_card_display()
+	
+
+func _on_filter_text_changed(new_text: String):
+	_update_card_display()
+
+
+func _update_faction_filter():
+	var selected_side = filter_side.get_item_text(filter_side.get_selected_id())
+	filter_faction.clear()
+	filter_faction.add_item(\"All\")
+
+	if selected_side in VALID_FACTIONS:
+		for faction in VALID_FACTIONS[selected_side]:
+			filter_faction.add_item(faction)
+	if selected_side == \"All\":
+		for side in VALID_FACTIONS:
+			for faction in VALID_FACTIONS[side]:
+				filter_faction.add_item(faction)
+
+	filter_faction.add_item(\"Neutral\")
+
+
+func _update_type_filter():
+	var selected_side = filter_side.get_item_text(filter_side.get_selected_id())
+	filter_type.clear()
+	filter_type.add_item(\"All\")
+
+	if selected_side in VALID_TYPES:
+		for type in VALID_TYPES[selected_side]:
+			filter_type.add_item(type)
+	if selected_side == \"All\":
+		for side in VALID_TYPES:
+			for type in VALID_TYPES[side]:
+				filter_type.add_item(type)
+
+
+func _update_card_display():
+	# Clear current list
+	for child in card_parent.get_children():
+		card_parent.remove_child(child)
+		child.queue_free()
+
+	# Read filters
+	var query = filter_box.text.strip_edges().to_lower()
+	var selected_side = filter_side.get_item_text(filter_side.get_selected_id())
+	var selected_faction = filter_faction.get_item_text(filter_faction.get_selected_id())
+	var selected_type = filter_type.get_item_text(filter_type.get_selected_id())
+	
+	print('filter '+selected_side + ' : '+selected_faction + ' : ' + selected_type)
+	
+	for card_data in all_card_data:
+		var deck = card_data.get(\"deck\",{})
+		var side = deck.get(\"side\",\"\")
+		var faction = deck.get(\"faction\",\"\")
+		var title = card_data.get(\"title\", \"\").to_lower()
+		var card_type = card_data.get(\"type\", \"\")
+		
+		# Title match
+		if query != \"\" and not title.contains(query):
+			continue
+
+		# Side filter (if applied)
+		if selected_side != \"All\" and side != selected_side:
+			continue
+
+		# Faction filter (if applied)
+		if selected_faction != \"All\" and faction != selected_faction:
+			continue
+
+		# Type filter (if applied)
+		if selected_type != \"All\":
+			# If side is \"All\", try to infer from faction
+			var valid_type_set = VALID_TYPES.get(side, null)
+			if selected_side == \"All\" and selected_faction != \"All\":
+				var inferred_side = FACTION_TO_SIDE.get(selected_faction, null)
+				valid_type_set = VALID_TYPES.get(inferred_side, null)
+
+			# Skip card if its type isn't in the expected set
+			if valid_type_set and card_type != selected_type:
+				continue
+
+		# Passed all filters → display
+		var card_instance = card_scene.instantiate()
+		card_instance.init_from_json(card_data)
+		card_parent.add_child(card_instance)
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file(\"res://mainmenu.tscn\")
+"
+
+[node name="DeckViewer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_445d3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "< Back"
+
+[node name="FilterBox" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Filter Cards"
+
+[node name="SideFilter" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FactionFilter" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TypeFilter" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CardGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3

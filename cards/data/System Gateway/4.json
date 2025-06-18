@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 4,
+    "side": "Runner",
+    "faction": "Anarch",
+    "influence": 3
+  },
+  "type": "Program",
+  "subtypes": ["Virus", "Trojan"],
+  "title": "Botulus",
+  "cost": 2,
+  "memorycost": 1,
+  "strength": "-"
+}

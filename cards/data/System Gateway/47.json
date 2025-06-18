@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 47,
+    "side": "Corp",
+    "faction": "Jinteki",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "ICE",
+  "subtypes": ["Sentry", "AP"],
+  "title": "Karuna",
+  "cost": 4,
+  "strength": 3
+}

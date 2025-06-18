@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 43,
+    "side": "Corp",
+    "faction": "Jinteki"
+  },
+  "type": "Identity",
+  "subtypes": ["Megacorp"],
+  "title": "Jinteki",
+  "subtitle": "Restoring Humanity",
+  "cardsmin": 40,
+  "influence": 15
+}

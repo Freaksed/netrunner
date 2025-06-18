@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 65,
+    "side": "Corp",
+    "faction": "Weyland Consortium",
+    "influence": 1,
+    "limit": 1
+  },
+  "type": "Operation",
+  "subtypes": ["Gray Ops"],
+  "title": "Retribution",
+  "cost": 1
+}

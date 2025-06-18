@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 57,
+    "side": "Corp",
+    "faction": "NBN",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "Operation",
+  "subtypes": ["Gray Ops"],
+  "title": "Public Trail",
+  "cost": 4
+}

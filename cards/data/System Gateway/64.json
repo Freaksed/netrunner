@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 64,
+    "side": "Corp",
+    "faction": "Weyland Consortium",
+    "influence": 1
+  },
+  "type": "Operation",
+  "subtypes": ["Transaction"],
+  "title": "Government Subsidy",
+  "cost": 10
+}

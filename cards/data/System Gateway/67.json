@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 67,
+    "side": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 3
+  },
+  "type": "Agenda",
+  "subtypes": ["Expansion"],
+  "title": "Offworld Office",
+  "cost": 4,
+  "value": 2
+}

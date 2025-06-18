@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 58,
+    "side": "Corp",
+    "faction": "NBN",
+    "influence": 3,
+    "limit": 1
+  },
+  "type": "Upgrade",
+  "title": "AMAZE Amusements",
+  "cost": 1,
+  "trashcost": 3
+}

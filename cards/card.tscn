@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk2lwq46guydr"]
+
+[ext_resource type="Script" uid="uid://hodu0vov6pij" path="res://src/cards/card.gd" id="1_ivai2"]
+[ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="2_nwofj"]
+
+[node name="Card" type="TextureButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("2_nwofj")
+script = ExtResource("1_ivai2")

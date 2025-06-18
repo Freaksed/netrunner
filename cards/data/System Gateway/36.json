@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 36,
+    "side": "Corp",
+    "faction": "Haas-Bioroid"
+  },
+  "type": "Agenda",
+  "subtypes": ["Research"],
+  "title": "Luminal Transubstantiation",
+  "cost": 3,
+  "value": 2
+}

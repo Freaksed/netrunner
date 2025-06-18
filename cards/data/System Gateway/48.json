@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 48,
+    "side": "Corp",
+    "faction": "Jinteki",
+    "influence": 1
+  },
+  "type": "Operation",
+  "subtypes": ["Transaction"],
+  "title": "Hansei Review",
+  "cost": 5
+}

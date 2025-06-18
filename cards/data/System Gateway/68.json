@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 68,
+    "side": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 2
+  },
+  "type": "Agenda",
+  "subtypes": ["Security"],
+  "title": "Obrital Superiority",
+  "cost": 4,
+  "value": 2
+}

@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdywu7pev7kdl"]
+
+[ext_resource type="Script" uid="uid://d36dqm65npll2" path="res://src/ui/deck_builder.gd" id="1_gwmgs"]
+[ext_resource type="PackedScene" uid="uid://bf5v6a3mlj7e3" path="res://deck_view.tscn" id="2_sxdv4"]
+
+[node name="DeckBuilder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gwmgs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Available Cards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Deck Title" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Deck Title"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardSelector" parent="MarginContainer/VBoxContainer/HSplitContainer" instance=ExtResource("2_sxdv4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/CardSelector"]
+layout_mode = 2
+text = "Back"
+
+[node name="DeckView" parent="MarginContainer/VBoxContainer/HSplitContainer" instance=ExtResource("2_sxdv4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/DeckView"]
+layout_mode = 2
+text = "Save"

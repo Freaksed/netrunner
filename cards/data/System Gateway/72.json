@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 72,
+    "side": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 3
+  },
+  "type": "ICE",
+  "subtypes": ["Barrier"],
+  "title": "Palisade",
+  "cost": 3,
+  "strength": 2
+}

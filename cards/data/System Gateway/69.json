@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 69,
+    "side": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 2
+  },
+  "type": "Agenda",
+  "subtypes": ["Security"],
+  "title": "Send a Message",
+  "cost": 5,
+  "value": 3
+}

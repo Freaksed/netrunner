@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 59,
+    "side": "Corp",
+    "faction": "Weyland Consortium"
+  },
+  "type": "Identity",
+  "subtypes": ["Megacorp"],
+  "title": "Weyland Consortium",
+  "subtitle": "Built to Last",
+  "cardsmin": 40,
+  "influence": 15
+}

@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 17,
+    "side": "Runner",
+    "faction": "Criminal",
+    "influence": 3
+  },
+  "type": "Program",
+  "subtypes": ["Virus", "Trojan"],
+  "title": "Tranquilizer",
+  "cost": 2,
+  "memorycost": 1,
+  "strength": "-"
+}

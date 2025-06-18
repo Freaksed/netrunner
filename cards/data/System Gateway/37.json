@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 37,
+    "side": "Corp",
+    "faction": "Haas-Bioroid",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "Asset",
+  "subtypes": ["Advertisement"],
+  "title": "Nico Campaign",
+  "cost": 2,
+  "trashcost": 2
+}

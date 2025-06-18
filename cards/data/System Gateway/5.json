@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 5,
+    "side": "Runner",
+    "faction": "Anarch",
+    "influence": 1
+  },
+  "type": "Program",
+  "subtypes": ["Icebreaker", "Decoder"],
+  "title": "Buzzsaw",
+  "cost": 4,
+  "memorycost": 1,
+  "strength": 3
+}

@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 63,
+    "side": "Corp",
+    "faction": "Weyland Consortium",
+    "influence": 3
+  },
+  "type": "ICE",
+  "subtypes": ["Barrier"],
+  "title": "Pharos",
+  "cost": 7,
+  "strength": 5
+}

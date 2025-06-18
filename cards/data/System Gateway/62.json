@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 62,
+    "side": "Corp",
+    "faction": "Weyland Consortium",
+    "influence": 2
+  },
+  "type": "ICE",
+  "subtypes": ["Sentry", "Detroyer"],
+  "title": "Ballista",
+  "cost": 5,
+  "strength": 4
+}

@@ -1,0 +1,30 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 23,
+    "side": "Runner",
+    "faction": "Shaper",
+    "influence": 3
+  },
+  "type": "Hardware",
+  "subtypes": ["Console"],
+  "title": "Pantograph",
+  "cost": 2,
+  "memory": 1,
+  "abilities": [
+    {
+      "trigger": "agenda_scored_or_stolen",
+      "actions": [
+        {
+          "action": "gain_credits",
+          "target": "runner",
+          "amount": 1
+        },
+        {
+          "action": "install_from_grip",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}

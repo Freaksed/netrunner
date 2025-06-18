@@ -1,0 +1,12 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 44,
+    "side": "Corp",
+    "faction": "Jinteki"
+  },
+  "type": "Agenda",
+  "title": "Longevity Serum",
+  "cost": 3,
+  "value": 2
+}

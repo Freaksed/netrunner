@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 16,
+    "side": "Runner",
+    "faction": "Criminal",
+    "influence": 1
+  },
+  "type": "Program",
+  "subtypes": ["Icebreaker", "Fracter"],
+  "title": "Marjanah",
+  "cost": 0,
+  "memorycost": 1,
+  "strength": 1
+}

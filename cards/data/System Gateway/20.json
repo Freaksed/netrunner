@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 20,
+    "side": "Runner",
+    "faction": "Shaper",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "Event",
+  "title": "Creative Commission",
+  "cost": 1
+}

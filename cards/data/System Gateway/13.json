@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 13,
+    "side": "Runner",
+    "faction": "Criminal",
+    "influence": 2,
+    "limit": 1
+  },
+  "type": "Hardware",
+  "title": "Docklands Pass",
+  "cost": 2
+}

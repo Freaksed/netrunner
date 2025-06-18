@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://mbmystyo16rw"]
+
+[ext_resource type="Script" uid="uid://ymtc5ihoaog" path="res://src/main_menu.gd" id="1_cmhrf"]
+[ext_resource type="Texture2D" uid="uid://cs8dip7rxgr60" path="res://NetrunnerBG.jpg" id="2_d2nv2"]
+[ext_resource type="PackedScene" uid="uid://bdywu7pev7kdl" path="res://deck_builder.tscn" id="2_wgsso"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_cmhrf")
+deck_builder_scene = ExtResource("2_wgsso")
+
+[node name="RootContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="RootContainer"]
+layout_mode = 2
+texture = ExtResource("2_d2nv2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="RootContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Netrunner"
+horizontal_alignment = 1
+
+[node name="ViewCardsButton" type="Button" parent="RootContainer/VBoxContainer"]
+layout_mode = 2
+text = "View Cards"
+
+[node name="StartGameButton" type="Button" parent="RootContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="RootContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"

@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 50,
+    "side": "Corp",
+    "faction": "Jinteki",
+    "influence": 4
+  },
+  "type": "Upgrade",
+  "title": "Anoetic Void",
+  "cost": 0,
+  "trashcost": 1
+}

@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf5v6a3mlj7e3"]
+
+[ext_resource type="Script" uid="uid://buh23nv4hcsps" path="res://src/ui/deck_view.gd" id="1_0fxvb"]
+
+[node name="DeckView" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fxvb")
+
+[node name="FilterBar" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FilterBox" type="LineEdit" parent="FilterBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SideFilter" type="OptionButton" parent="FilterBar"]
+layout_mode = 2
+
+[node name="FactionFilter" type="OptionButton" parent="FilterBar"]
+layout_mode = 2
+
+[node name="TypeFilter" type="OptionButton" parent="FilterBar"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardGrid" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="TotalLabel" type="Label" parent="."]
+layout_mode = 2

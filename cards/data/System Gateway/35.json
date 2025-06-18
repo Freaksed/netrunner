@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 35,
+    "side": "Corp",
+    "faction": "Haas-Bioroid"
+  },
+  "type": "Identity",
+  "subtypes": ["Megacorp"],
+  "title": "Haas-Bioroid",
+  "subtitle": "Precision Design",
+  "cardsmin": 40,
+  "influence": 15
+}

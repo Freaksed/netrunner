@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 18,
+    "side": "Runner",
+    "faction": "Criminal",
+    "influence": 2,
+    "limit": 1
+  },
+  "type": "Resource",
+  "subtypes": ["Job"],
+  "title": "Red Team",
+  "cost": 5
+}

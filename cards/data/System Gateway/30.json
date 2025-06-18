@@ -1,0 +1,13 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 30,
+    "side": "Runner",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 3
+  },
+  "type": "Event",
+  "title": "Sure Gamble",
+  "cost": 5
+}

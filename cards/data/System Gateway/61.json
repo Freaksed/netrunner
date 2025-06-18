@@ -1,0 +1,14 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 61,
+    "side": "Corp",
+    "faction": "Weyland Consortium",
+    "influence": 3
+  },
+  "type": "Asset",
+  "subtypes": ["Hostile"],
+  "title": "Clearinghouse",
+  "cost": 0,
+  "trashcost": 3
+}

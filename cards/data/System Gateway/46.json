@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 46,
+    "side": "Corp",
+    "faction": "Jinteki",
+    "influence": 2,
+    "limit": 2
+  },
+  "type": "ICE",
+  "subtypes": ["Code Gate", "AP"],
+  "title": "Diviner",
+  "cost": 2,
+  "strength": 3
+}

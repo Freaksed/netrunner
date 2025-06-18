@@ -1,0 +1,15 @@
+{
+  "deck": {
+    "set": "System Gateway",
+    "id": 70,
+    "side": "Corp",
+    "faction": "Neutral",
+    "influence": 0,
+    "limit": 2
+  },
+  "type": "Agenda",
+  "subtypes": ["Expansion"],
+  "title": "Superconducting Hub",
+  "cost": 3,
+  "value": 1
+}
