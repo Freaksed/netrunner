@@ -33,7 +33,7 @@ text = "Available Cards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Deck Title" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DeckTitle" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Deck Title"

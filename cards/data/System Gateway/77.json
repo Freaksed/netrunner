@@ -3,7 +3,8 @@
     "set": "System Gateway",
     "id": 77,
     "side": "Corp",
-    "faction": "Neutral"
+    "faction": "Neutral",
+    "limit": 1
   },
   "type": "Identity",
   "title": "The Syndicate",

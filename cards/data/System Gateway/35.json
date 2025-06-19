@@ -3,7 +3,8 @@
     "set": "System Gateway",
     "id": 35,
     "side": "Corp",
-    "faction": "Haas-Bioroid"
+    "faction": "Haas-Bioroid",
+    "limit": 1
   },
   "type": "Identity",
   "subtypes": ["Megacorp"],

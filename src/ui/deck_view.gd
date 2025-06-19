@@ -13,6 +13,7 @@ signal card_clicked(card_data: Dictionary)
 var card_scene = preload("res://cards/Card.tscn")
 
 var deck: Array = []
+var invalid_cards = {}
 var all_factions: Array = []
 var all_types: Array = []
 
@@ -40,8 +41,9 @@ func _ready():
 	type_filter.item_selected.connect(_refresh)
 
 
-func set_deck(new_deck: Array):
+func set_deck(new_deck: Array, invalid_map := {}):
 	deck = new_deck
+	invalid_cards = invalid_map
 	_collect_filter_options()
 	_setup_filters()
 	_refresh()
@@ -77,9 +79,8 @@ func _setup_filters():
 
 
 func _refresh(_val = null):
-	# Clear current list
+	# Clear old children
 	for child in deck_list.get_children():
-		deck_list.remove_child(child)
 		child.queue_free()
 
 	var query = filter_box.text.strip_edges().to_lower()
@@ -88,16 +89,15 @@ func _refresh(_val = null):
 	var selected_type = type_filter.get_item_text(type_filter.get_selected_id())
 
 	var total = 0
+
 	for entry in deck:
-		var card = null
-		if "data" in entry:
-			card = entry["data"]
-		else:
-			card = entry
+		var card = CardDatabase.get_card_by_set_and_id(entry["set"], entry["id"])
+		if card.is_empty():
+			continue
 
 		var title = card.get("title", "").to_lower()
-		var faction = card.get("faction", "")
-		var side = card.get("side", "")
+		var faction = card.get("deck", {}).get("faction", "")
+		var side = card.get("deck", {}).get("side", "")
 		var card_type = card.get("type", "")
 
 		if query != "" and not title.contains(query):
@@ -114,15 +114,25 @@ func _refresh(_val = null):
 			if selected_type not in valid or card_type != selected_type:
 				continue
 
-		var card_instance = card_scene.instantiate()
-		card_instance.init_from_json(card)
-		card_instance.clicked.connect(
-			func(card_data):
-				print("view click: ", card_instance.card_data["title"])
-				emit_signal("card_clicked", card_instance.card_data)
-		)
-		deck_list.add_child(card_instance)
+		var key = "%s|%s" % [entry["set"], entry["id"]]
+		var is_invalid = invalid_cards.has(key)
+		var tooltip = invalid_cards.get(key, "")
 
-		#total += count
+		var count = int(entry.get("count", 1))
+		# Add N copies
+		for i in range(count):
+			var card_instance = card_scene.instantiate()
+			card_instance.init_from_json(entry)
+			card_instance.custom_minimum_size = Vector2(160, 220)
+			card_instance.clicked.connect(func(min_card_data):
+				emit_signal("card_clicked", min_card_data)
+			)
+
+			if is_invalid:
+				card_instance.modulate = Color(1.0, 0.8, 0.8)
+				card_instance.tooltip_text = tooltip
+
+			deck_list.add_child(card_instance)
+			total += 1
 
 	total_label.text = "Total cards: %d" % total

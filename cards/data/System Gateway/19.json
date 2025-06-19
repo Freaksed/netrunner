@@ -3,7 +3,8 @@
     "set": "System Gateway",
     "id": 19,
     "side": "Runner",
-    "faction": "Shaper"
+    "faction": "Shaper",
+    "limit": 1
   },
   "type": "Identity",
   "subtypes": ["Natural"],

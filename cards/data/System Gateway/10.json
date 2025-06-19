@@ -3,7 +3,8 @@
     "set": "System Gateway",
     "id": 10,
     "side": "Runner",
-    "faction": "Criminal"
+    "faction": "Criminal",
+    "limit": 1
   },
   "type": "Identity",
   "subtypes": ["Cyborg"],

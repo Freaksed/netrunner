@@ -1,9 +1,10 @@
 {
   "deck": {
-    "set": "System Gateway",
-    "id": 1,
-    "side": "Runner",
-    "faction": "Anarch"
+	"set": "System Gateway",
+	"id": 1,
+	"side": "Runner",
+	"faction": "Anarch",
+	"limit": 1
   },
   "type": "Identity",
   "subtypes": ["G-mod"],

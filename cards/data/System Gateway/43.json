@@ -3,7 +3,8 @@
     "set": "System Gateway",
     "id": 43,
     "side": "Corp",
-    "faction": "Jinteki"
+    "faction": "Jinteki",
+    "limit": 1
   },
   "type": "Identity",
   "subtypes": ["Megacorp"],

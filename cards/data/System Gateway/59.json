@@ -3,7 +3,8 @@
     "set": "System Gateway",
     "id": 59,
     "side": "Corp",
-    "faction": "Weyland Consortium"
+    "faction": "Weyland Consortium",
+    "limit": 1
   },
   "type": "Identity",
   "subtypes": ["Megacorp"],

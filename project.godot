@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneStack="*res://scene_stack.gd"
+CardDatabase="*res://src/core/card_database.gd"
 
 [display]
 
@@ -28,4 +29,6 @@ window/stretch/mode="viewport"
 
 [rendering]
 
+rendering_device/fallback_to_vulkan=false
+rendering_device/fallback_to_d3d12=false
 renderer/rendering_method="mobile"
