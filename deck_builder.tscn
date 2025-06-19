@@ -23,37 +23,58 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Available Cards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeckTitle" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DeckTitle" type="LineEdit" parent="MarginContainer/VBoxContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Deck Title"
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CardSelector" parent="MarginContainer/VBoxContainer/HSplitContainer" instance=ExtResource("2_sxdv4")]
+[node name="CardSelector" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_sxdv4")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/CardSelector"]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/CardSelector"]
 layout_mode = 2
 text = "Back"
 
-[node name="DeckView" parent="MarginContainer/VBoxContainer/HSplitContainer" instance=ExtResource("2_sxdv4")]
+[node name="CardPreview" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/DeckView"]
+[node name="PreviewRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CardPreview"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CardPreview"]
+layout_mode = 2
+
+[node name="ButtonRemove" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/CardPreview/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<- Remove"
+
+[node name="ButtonAdd" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/CardPreview/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add ->"
+
+[node name="DeckView" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_sxdv4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/DeckView"]
 layout_mode = 2
 text = "Save"

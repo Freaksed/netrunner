@@ -1,16 +1,21 @@
 class_name DeckBuilder
 extends Control
 
-@onready var deck_title = $MarginContainer/VBoxContainer/HBoxContainer/DeckTitle
+@onready var deck_title = $MarginContainer/VBoxContainer/TopBar/DeckTitle
 
-@onready var back_button = $MarginContainer/VBoxContainer/HSplitContainer/CardSelector/BackButton
-@onready var save_button = $MarginContainer/VBoxContainer/HSplitContainer/DeckView/SaveButton
+@onready var back_button = $MarginContainer/VBoxContainer/HBoxContainer/CardSelector/BackButton
+@onready var save_button = $MarginContainer/VBoxContainer/HBoxContainer/DeckView/SaveButton
 
-@onready var card_selector = $MarginContainer/VBoxContainer/HSplitContainer/CardSelector
-@onready var deck_view = $MarginContainer/VBoxContainer/HSplitContainer/DeckView
+@onready var preview = $MarginContainer/VBoxContainer/HBoxContainer/CardPreview/PreviewRect
+@onready var add_button = $MarginContainer/VBoxContainer/HBoxContainer/CardPreview/HBoxContainer/ButtonAdd
+@onready var remove_button = $MarginContainer/VBoxContainer/HBoxContainer/CardPreview/HBoxContainer/ButtonRemove
+
+@onready var card_selector = $MarginContainer/VBoxContainer/HBoxContainer/CardSelector
+@onready var deck_view = $MarginContainer/VBoxContainer/HBoxContainer/DeckView
 
 var card_scene = preload("res://cards/Card.tscn")
-var my_deck: Array = [] # key: card ID, value: count
+var my_deck: Array = []
+var selected_card = {}
 
 
 func _ready():
@@ -19,14 +24,30 @@ func _ready():
 
 	my_deck = load_deck_from_file("user://my_deck.json")
 	_show_card_pool()
-	card_selector.card_clicked.connect(_add_card_to_deck)
-	deck_view.card_clicked.connect(_remove_card_from_deck)
+	card_selector.card_clicked.connect(_select_card)
+	deck_view.card_clicked.connect(_select_card)
+	add_button.pressed.connect(func():_add_card_to_deck(selected_card))
+	remove_button.pressed.connect(func():_remove_card_from_deck(selected_card))
 
 
 func _show_card_pool():
 	card_selector.set_deck(CardDatabase.get_minimal_card_list())
 	deck_view.set_deck(my_deck)
 	
+
+func _select_card(card_data: Dictionary):
+	var card_set = card_data.get("set", null)
+	var id = card_data.get("id", null)
+	if card_set == null or id == null:
+		push_warning("Card is missing deck ID/set: %s" % card_data.get("title", "???"))
+		return
+		
+	var path = "res://cards/art/%s/%s.jpg" % [card_set, int(id)]
+	var texture = load(path)
+	preview.texture = texture
+	
+	selected_card = card_data
+
 
 func _add_card_to_deck(card_data: Dictionary):
 	print("Adding: ", card_data)

@@ -123,7 +123,7 @@ func _refresh(_val = null):
 		for i in range(count):
 			var card_instance = card_scene.instantiate()
 			card_instance.init_from_json(entry)
-			card_instance.custom_minimum_size = Vector2(160, 220)
+			card_instance.custom_minimum_size = Vector2(93, 128)
 			card_instance.clicked.connect(func(min_card_data):
 				emit_signal("card_clicked", min_card_data)
 			)
