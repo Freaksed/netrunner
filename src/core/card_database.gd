@@ -1,5 +1,7 @@
 extends Node
 
+const CARD_SIZE = Vector2(366,512)
+
 var all_card_data: Array = []
 
 var card_loader = preload("res://src/utils/card_loader.gd").new()

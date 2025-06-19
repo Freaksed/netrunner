@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdywu7pev7kdl"]
+[gd_scene load_steps=4 format=3 uid="uid://bdywu7pev7kdl"]
 
 [ext_resource type="Script" uid="uid://d36dqm65npll2" path="res://src/ui/deck_builder.gd" id="1_gwmgs"]
 [ext_resource type="PackedScene" uid="uid://bf5v6a3mlj7e3" path="res://deck_view.tscn" id="2_sxdv4"]
+[ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="3_pcmq2"]
 
 [node name="DeckBuilder" type="Control"]
 layout_mode = 3
@@ -57,6 +58,8 @@ size_flags_horizontal = 3
 [node name="PreviewRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CardPreview"]
 layout_mode = 2
 size_flags_vertical = 3
+texture = ExtResource("3_pcmq2")
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CardPreview"]
 layout_mode = 2
