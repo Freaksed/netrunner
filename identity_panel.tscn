@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://pepyhox41acu"]
+
+[ext_resource type="Texture2D" uid="uid://754aa45pwrx5" path="res://Faction Glyphs/NSG_ANARCH.svg" id="1_3ebbb"]
+[ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="1_un6r3"]
+[ext_resource type="Texture2D" uid="uid://b71afuep58fcj" path="res://Game Symbols/NSG_5_CREDITS.svg" id="2_g4qlt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4qlt"]
+font_size = 100
+
+[node name="IdentityPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Faction" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+texture = ExtResource("1_3ebbb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Identity" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_un6r3")
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreditsIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_g4qlt")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = SubResource("LabelSettings_g4qlt")
+vertical_alignment = 1

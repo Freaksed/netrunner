@@ -17,15 +17,24 @@ var invalid_cards = {}
 var all_factions: Array = []
 var all_types: Array = []
 
+var selected_side = "All"
+var selected_faction = "All"
+var selected_type = "All"
+
 const FACTION_TO_SIDE := {
 	"Shaper": "Runner",
 	"Criminal": "Runner",
 	"Anarch": "Runner",
 	"Neutral": "Runner",
-	"HB": "Corp",
+	"Haas-Bioroid": "Corp",
 	"Jinteki": "Corp",
 	"NBN": "Corp",
-	"Weyland": "Corp"
+	"Weyland Consortium": "Corp"
+}
+
+const VALID_FACTIONS := {
+	"Runner": ["Anarch", "Criminal", "Shaper"],
+	"Corp": ["Haas-Bioroid", "Jinteki", "NBN", "Weyland Consortium"]
 }
 
 const VALID_TYPES := {
@@ -36,46 +45,47 @@ const VALID_TYPES := {
 
 func _ready():
 	filter_box.text_changed.connect(_refresh)
-	side_filter.item_selected.connect(_refresh)
-	faction_filter.item_selected.connect(_refresh)
-	type_filter.item_selected.connect(_refresh)
+	side_filter.item_selected.connect(
+		func(index):
+			selected_side = side_filter.get_item_text(index)
+			_refresh()
+	)
+	faction_filter.item_selected.connect(
+		func(index):
+			selected_faction = faction_filter.get_item_text(index)
+			_refresh()
+	)
+	type_filter.item_selected.connect(
+		func(index):
+			selected_type = type_filter.get_item_text(index)
+			_refresh
+	)
 
 
 func set_deck(new_deck: Array, invalid_map := {}):
 	deck = new_deck
 	invalid_cards = invalid_map
-	_collect_filter_options()
 	_setup_filters()
 	_refresh()
-
-
-func _collect_filter_options():
-	var faction_set := {}
-	var type_set := {}
-	for entry in deck:
-		faction_set[entry.get("faction", "")] = true
-		type_set[entry.get("type", "")] = true
-	all_factions = faction_set.keys()
-	all_types = type_set.keys()
-	all_factions.sort()
-	all_types.sort()
 
 
 func _setup_filters():
 	side_filter.clear()
 	side_filter.add_item("All")
-	side_filter.add_item("Runner")
 	side_filter.add_item("Corp")
+	side_filter.add_item("Runner")
 
 	faction_filter.clear()
 	faction_filter.add_item("All")
-	for f in all_factions:
-		faction_filter.add_item(f)
+	for side in VALID_FACTIONS:
+		for faction in VALID_FACTIONS[side]:
+			faction_filter.add_item(faction)
 
 	type_filter.clear()
 	type_filter.add_item("All")
-	for t in all_types:
-		type_filter.add_item(t)
+	for side in VALID_TYPES:
+		for type in VALID_TYPES[side]:
+			type_filter.add_item(type)
 
 
 func _refresh(_val = null):
@@ -124,8 +134,8 @@ func _refresh(_val = null):
 			var card_instance = card_scene.instantiate()
 			card_instance.init_from_json(entry)
 			card_instance.custom_minimum_size = Vector2(93, 128)
-			card_instance.clicked.connect(func(min_card_data):
-				emit_signal("card_clicked", min_card_data)
+			card_instance.clicked.connect(
+				func(min_card_data): emit_signal("card_clicked", min_card_data)
 			)
 
 			if is_invalid:

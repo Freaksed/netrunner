@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfb4skgtt8ctd"]
+
+[ext_resource type="Script" uid="uid://mm5s5yhsq1bc" path="res://src/ui/esc_menu.gd" id="1_4yblc"]
+
+[node name="EscMenu" type="CanvasLayer"]
+script = ExtResource("1_4yblc")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ButtonResume" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="ButtonMenu" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ButtonQuit" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
