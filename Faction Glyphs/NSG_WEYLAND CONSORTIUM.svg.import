@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pb710dnrw2gp"
-path="res://.godot/imported/NSG_HB.svg-08d87a9a80c22e78c678af8fe1733ca3.ctex"
+uid="uid://kiymuv6io68j"
+path="res://.godot/imported/NSG_WEYLAND CONSORTIUM.svg-b84b9d6cf72bff883e96b9a5c592f08b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Faction Glyphs/NSG_HB.svg"
-dest_files=["res://.godot/imported/NSG_HB.svg-08d87a9a80c22e78c678af8fe1733ca3.ctex"]
+source_file="res://Faction Glyphs/NSG_WEYLAND CONSORTIUM.svg"
+dest_files=["res://.godot/imported/NSG_WEYLAND CONSORTIUM.svg-b84b9d6cf72bff883e96b9a5c592f08b.ctex"]
 
 [params]
 

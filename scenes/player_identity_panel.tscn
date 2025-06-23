@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://csqle5s6c23qk"]
+
+[ext_resource type="StyleBox" uid="uid://c2huh6jk7gqmh" path="res://PlayerBoxTheme.tres" id="1_edf1h"]
+[ext_resource type="Texture2D" uid="uid://j47v5ty4df2i" path="res://cards/art/System Gateway/76.jpg" id="2_djo0h"]
+[ext_resource type="Texture2D" uid="uid://cnm1hnofpphkr" path="res://Faction Glyphs/NSG_APEX.svg" id="3_th3e3"]
+[ext_resource type="Texture2D" uid="uid://5fq0sqqme1rt" path="res://Game Symbols/NSG_CREDIT.svg" id="4_5plsd"]
+[ext_resource type="LabelSettings" uid="uid://dgljc1h5bvc1k" path="res://InGameFont.tres" id="5_3rdkl"]
+[ext_resource type="Texture2D" uid="uid://cg7nlgdgp876" path="res://Game Symbols/NSG_CLICK.svg" id="6_mwnkt"]
+
+[node name="PlayerIdentityPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_edf1h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IdentityCard" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_djo0h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Resources" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="FactionIcon" type="TextureRect" parent="HBoxContainer/Resources"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_th3e3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CreditIcon" type="TextureRect" parent="HBoxContainer/Resources"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("4_5plsd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Credits" type="Label" parent="HBoxContainer/Resources"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("5_3rdkl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClickIcon" type="TextureRect" parent="HBoxContainer/Resources"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("6_mwnkt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Clicks" type="Label" parent="HBoxContainer/Resources"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("5_3rdkl")
+horizontal_alignment = 1
+vertical_alignment = 1

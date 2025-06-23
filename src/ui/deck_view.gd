@@ -10,8 +10,6 @@ extends VBoxContainer
 
 signal card_clicked(card_data: Dictionary)
 
-var card_scene = preload("res://cards/Card.tscn")
-
 var deck: Array = []
 var invalid_cards = {}
 var all_factions: Array = []
@@ -131,7 +129,7 @@ func _refresh(_val = null):
 		var count = int(entry.get("count", 1))
 		# Add N copies
 		for i in range(count):
-			var card_instance = card_scene.instantiate()
+			var card_instance = CardDatabase.card2d.instantiate()
 			card_instance.init_from_json(entry)
 			card_instance.custom_minimum_size = Vector2(93, 128)
 			card_instance.clicked.connect(

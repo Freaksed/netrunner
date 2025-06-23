@@ -18,7 +18,8 @@ func _on_resume_pressed():
 
 func _on_main_menu_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://ui/MainMenu.tscn")
+	SceneStack.pop_scene()
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 
 func _on_quit_pressed():

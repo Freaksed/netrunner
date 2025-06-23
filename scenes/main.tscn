@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnvtwg7h34s6n"]
+
+[ext_resource type="Script" uid="uid://d3wwyl3vy8wxq" path="res://src/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bfb4skgtt8ctd" path="res://scenes/esc_menu.tscn" id="2_sugp2"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_0wfyh")
+
+[node name="EscMenu" parent="." instance=ExtResource("2_sugp2")]
+process_mode = 2
+visible = false

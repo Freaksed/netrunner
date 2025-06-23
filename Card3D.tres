@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cvqwlu2spqdhl"]
+
+[ext_resource type="Shader" uid="uid://c0iydlhm5ydjq" path="res://shaders/double_sided_card.gdshader" id="1_a4rnc"]
+[ext_resource type="Texture2D" uid="uid://ccrsem3cfp4i5" path="res://cards/cardback.png" id="2_qskii"]
+[ext_resource type="Texture2D" uid="uid://8ofvpwrr6se6" path="res://cards/art/System Gateway/54.jpg" id="3_qskii"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_a4rnc")
+shader_parameter/front_tex = ExtResource("3_qskii")
+shader_parameter/back_tex = ExtResource("2_qskii")

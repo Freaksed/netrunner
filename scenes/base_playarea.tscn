@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg0fp15tg1521"]
 
-[ext_resource type="PackedScene" uid="uid://pepyhox41acu" path="res://identity_panel.tscn" id="1_frpxe"]
-[ext_resource type="Texture2D" uid="uid://ccrsem3cfp4i5" path="res://cards/cardback.png" id="2_e6ryj"]
-[ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="2_sqnfm"]
+[ext_resource type="PackedScene" uid="uid://pepyhox41acu" path="res://scenes/identity_panel.tscn" id="1_uvt24"]
+[ext_resource type="Texture2D" uid="uid://ccrsem3cfp4i5" path="res://cards/cardback.png" id="2_xm6ik"]
+[ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="3_qtp7i"]
 
 [node name="CorpArea" type="HBoxContainer"]
 anchors_preset = 15
@@ -13,7 +13,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="IdentityPanel" parent="." instance=ExtResource("1_frpxe")]
+[node name="IdentityPanel" parent="." instance=ExtResource("1_uvt24")]
 custom_minimum_size = Vector2(183, 0)
 layout_mode = 2
 
@@ -24,13 +24,13 @@ size_flags_horizontal = 3
 [node name="Deck" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(183, 0)
 layout_mode = 2
-texture = ExtResource("2_e6ryj")
+texture = ExtResource("2_xm6ik")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Trash" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(183, 0)
 layout_mode = 2
-texture = ExtResource("2_sqnfm")
+texture = ExtResource("3_qtp7i")
 expand_mode = 1
 stretch_mode = 5

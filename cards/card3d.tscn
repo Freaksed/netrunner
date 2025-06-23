@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgbfporbuveqy"]
+
+[ext_resource type="Material" uid="uid://cvqwlu2spqdhl" path="res://Card3D.tres" id="1_6x2j5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ja7sr"]
+
+[node name="Card" type="MeshInstance3D"]
+transform = Transform3D(-0.366, 0, -8.74228e-08, 0, 0.512, 0, 3.19967e-08, 0, -1, 0, 0, 0)
+material_override = ExtResource("1_6x2j5")
+mesh = SubResource("QuadMesh_ja7sr")
+skeleton = NodePath("")

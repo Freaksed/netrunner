@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://j4ytleha1hpj"]
+
+[ext_resource type="Shader" uid="uid://bga8xl8fopimv" path="res://shaders/deck.gdshader" id="1_1ojk0"]
+[ext_resource type="Texture2D" uid="uid://ccrsem3cfp4i5" path="res://cards/cardback.png" id="2_80rs0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1ojk0")
+shader_parameter/top_texture = ExtResource("2_80rs0")
+shader_parameter/top_face_normal = Vector3(0, 1, 0)
+shader_parameter/stripe_density = 200.0
+shader_parameter/stripe_thickness = 0.5
+shader_parameter/stripe_light = Vector3(0.5, 0.5, 0.5)
+shader_parameter/stripe_dark = Vector3(0.2, 0.2, 0.2)

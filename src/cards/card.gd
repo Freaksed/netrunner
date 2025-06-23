@@ -4,6 +4,7 @@ extends TextureButton
 signal clicked(card_data: Dictionary)
 
 var card_data: Dictionary
+var tween: Tween
 
 
 func init_from_json(data: Dictionary):

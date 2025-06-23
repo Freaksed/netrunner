@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdywu7pev7kdl"]
 
 [ext_resource type="Script" uid="uid://d36dqm65npll2" path="res://src/ui/deck_builder.gd" id="1_gwmgs"]
-[ext_resource type="PackedScene" uid="uid://bf5v6a3mlj7e3" path="res://deck_view.tscn" id="2_sxdv4"]
+[ext_resource type="PackedScene" uid="uid://bf5v6a3mlj7e3" path="res://scenes/deck_view.tscn" id="2_sxdv4"]
 [ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="3_pcmq2"]
 
 [node name="DeckBuilder" type="Control"]

@@ -14,4 +14,4 @@ func _ready():
 
 
 func _start_game():
-	SceneStack.reset_stack(load("res://mainmenu.tscn"))
+	SceneStack.reset_stack(load("res://scenes/mainmenu.tscn"))

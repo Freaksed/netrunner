@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6chccr8ofrii"]
+
+[ext_resource type="Script" uid="uid://41kmt8k0ps33" path="res://src/core/game_manager.gd" id="1_np83g"]
+[ext_resource type="Texture2D" uid="uid://sq4n6gemamgw" path="res://Tabletop.png" id="2_3emq6"]
+[ext_resource type="Script" uid="uid://bgeoaqg41robh" path="res://src/ui/playfield.gd" id="3_3s18r"]
+[ext_resource type="PackedScene" uid="uid://cvcyjitg6b3ju" path="res://scenes/player_zone.tscn" id="3_xs6qu"]
+[ext_resource type="PackedScene" uid="uid://csqle5s6c23qk" path="res://scenes/player_identity_panel.tscn" id="7_k06pt"]
+[ext_resource type="PackedScene" uid="uid://ue885thgqsea" path="res://scenes/hand_2d.tscn" id="12_htv1k"]
+[ext_resource type="Script" uid="uid://dgxxqfgpsgyyg" path="res://src/core/player.gd" id="13_3txcd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3emq6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28vkq"]
+albedo_texture = ExtResource("2_3emq6")
+
+[node name="Playfield" type="Node3D"]
+script = ExtResource("1_np83g")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 1.8, 2.2)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node"]
+transform = Transform3D(0.693289, -0.458299, 0.556159, 0, 0.771736, 0.635944, -0.72066, -0.440893, 0.535036, 0, 5.93663, 0)
+
+[node name="Table" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3emq6")
+surface_material_override/0 = SubResource("StandardMaterial3D_28vkq")
+
+[node name="LocalZone" parent="." instance=ExtResource("3_xs6qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="RemoteZone" parent="." instance=ExtResource("3_xs6qu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.5)
+
+[node name="UIOverlay" type="CanvasLayer" parent="."]
+script = ExtResource("3_3s18r")
+
+[node name="TopRight" type="Control" parent="UIOverlay"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 400.0
+offset_bottom = 400.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIOverlay/TopRight"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2320.0
+offset_right = -400.0
+offset_bottom = 408.0
+grow_horizontal = 0
+
+[node name="Hand" parent="UIOverlay/TopRight/HBoxContainer" instance=ExtResource("12_htv1k")]
+layout_mode = 2
+
+[node name="IdentityPanel" parent="UIOverlay/TopRight/HBoxContainer" instance=ExtResource("7_k06pt")]
+layout_mode = 2
+
+[node name="BottomLeft" type="Control" parent="UIOverlay"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -400.0
+offset_right = 400.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIOverlay/BottomLeft"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -408.0
+offset_right = 1920.0
+grow_vertical = 0
+
+[node name="IdentityPanel" parent="UIOverlay/BottomLeft/HBoxContainer" instance=ExtResource("7_k06pt")]
+layout_mode = 2
+
+[node name="Hand" parent="UIOverlay/BottomLeft/HBoxContainer" instance=ExtResource("12_htv1k")]
+layout_mode = 2
+
+[node name="LocalPlayer" type="Node" parent="." node_paths=PackedStringArray("player_ui", "player_field")]
+script = ExtResource("13_3txcd")
+player_ui = NodePath("../UIOverlay/BottomLeft")
+player_field = NodePath("../LocalZone")
+metadata/_custom_type_script = "uid://dgxxqfgpsgyyg"
+
+[node name="RemotePlayer" type="Node" parent="." node_paths=PackedStringArray("player_ui", "player_field")]
+script = ExtResource("13_3txcd")
+player_ui = NodePath("../UIOverlay/TopRight")
+player_field = NodePath("../RemoteZone")
+metadata/_custom_type_script = "uid://dgxxqfgpsgyyg"

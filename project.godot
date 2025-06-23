@@ -13,7 +13,7 @@ config_version=5
 config/name="Netrunner"
 run/main_scene="uid://dnvtwg7h34s6n"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://dsgtrwu6agck3"
 
 [autoload]
 

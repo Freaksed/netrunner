@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8ofvpwrr6se6"
-path.s3tc="res://.godot/imported/54.jpg-15998ffdd29789e9f092e9d04a755ac5.s3tc.ctex"
+uid="uid://dmjd6kkfook3a"
+path.s3tc="res://.godot/imported/skybox.png-eace0dd4ad45fb6d481d45258d1ed7fd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://cards/art/System Gateway/54.jpg"
-dest_files=["res://.godot/imported/54.jpg-15998ffdd29789e9f092e9d04a755ac5.s3tc.ctex"]
+source_file="res://skybox.png"
+dest_files=["res://.godot/imported/skybox.png-eace0dd4ad45fb6d481d45258d1ed7fd.s3tc.ctex"]
 
 [params]
 
