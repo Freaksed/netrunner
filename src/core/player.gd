@@ -98,6 +98,7 @@ func _on_deck_event(camera: Camera3D,
 			use_clicks()
 			await animate_to_camera(draw_card)
 		else:
+			print("Not your turn, cannot draw card")
 			pass
 	
 func draw_card():
