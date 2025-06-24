@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvcyjitg6b3ju"]
+[gd_scene load_steps=5 format=3 uid="uid://cvcyjitg6b3ju"]
 
 [ext_resource type="PackedScene" uid="uid://bgbfporbuveqy" path="res://cards/card3d.tscn" id="1_1rbqj"]
 [ext_resource type="Material" uid="uid://j4ytleha1hpj" path="res://materials/deck.tres" id="2_rt68f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rbqj"]
+size = Vector3(0.365936, 0.512264, 0.100082)
 
 [sub_resource type="BoxMesh" id="BoxMesh_n0f75"]
 
@@ -9,6 +12,13 @@
 
 [node name="Deck" type="Marker3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 1.2, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="Deck"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Deck/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57764e-05, -0.00010109, -0.0501328)
+shape = SubResource("BoxShape3D_1rbqj")
+debug_fill = false
 
 [node name="TopCard" parent="Deck" instance=ExtResource("1_1rbqj")]
 transform = Transform3D(0.366, 0, 0, 0, 0.512, 0, 3.17637e-22, 0, 1, 0, 0, -0.101)

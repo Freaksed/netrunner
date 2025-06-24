@@ -4,17 +4,27 @@ class_name Player
 @export var player_ui: Control
 @export var player_field: Node3D
 
-var side: String
-var faction: String
-var identity_id: String
+var game_manager: Node = null
+var my_turn: bool = false
+
+var side: String = ""
+var faction: String = ""
+var identity_id: String = ""
 var id_ui: TextureRect
 var faction_ui: TextureRect
 var credit_counter: Label
+var click_counter: Label
+
+var deck_zone: Node3D
+var trash_zone: Node3D
 
 var deck: Array = []
 var hand: Array = []
 var hand_limit: int = 5
-var credits: int = 5
+var credits: int = 0
+var clicks: int = 0
+var click_max: int = 0
+var income: int = 0
 
 
 func _ready() -> void:
@@ -24,17 +34,15 @@ func _ready() -> void:
 	id_ui = id_panel.get_node("HBoxContainer/IdentityCard") as TextureRect
 	faction_ui = id_panel.get_node("HBoxContainer/Resources/FactionIcon") as TextureRect
 	credit_counter = id_panel.get_node("HBoxContainer/Resources/Credits") as Label
+	click_counter = id_panel.get_node("HBoxContainer/Resources/Clicks") as Label
 	
-	var trash = player_field.get_node("Trash")
-	var top_card = trash.get_node("TopCard")
+	deck_zone = player_field.get_node("Deck")
+	var deck_select = deck_zone.get_node("Area3D")
+	deck_select.input_event.connect(_on_deck_event)
+
+	trash_zone = player_field.get_node("Trash")
+	var top_card = trash_zone.get_node("TopCard")
 	top_card.material_override = top_card.material_override.duplicate()
-
-
-func initialize_player():
-	if self.name == "LocalPlayer":
-		load_deck_from_file("user://my_deck.json")
-		shuffle_deck()
-	credit_counter.text = "%d" % credits
 
 
 func load_deck_from_file(path: String):
@@ -54,65 +62,98 @@ func load_deck_from_file(path: String):
 			faction_ui.texture = texture
 		else:
 			for i in range(card["count"]):
-				deck.append(card)
+				deck.append({"set":card["set"], "id":card["id"]})
 
 
 func shuffle_deck():
 	deck.shuffle()
+
+
+func use_clicks(amount: int = 1):
+	clicks -= amount
+	click_counter.text = "%d" % clicks
+	if clicks <= 0:
+		game_manager.turn_manager.end_turn(self)
+
+func gain_clicks(amount: int = 1):
+	print("Gaining clicks: ", amount)
+	clicks += amount
+	click_counter.text = "%d" % clicks
+
+func add_credits(amount: int):
+	credits += amount
+	credit_counter.text = "%d" % credits
 	
+func remove_credits(amount: int):
+	credits -= amount
+	credit_counter.text = "%d" % credits
+
+func _on_deck_event(camera: Camera3D,
+					event: InputEvent, 
+					position: Vector3, 
+					normal: Vector3, 
+					shape_idx: int):
+	if event is InputEventMouseButton and event.pressed:
+		if my_turn:
+			use_clicks()
+			await animate_to_camera(draw_card)
+		else:
+			pass
 	
-func draw_card() -> Dictionary:
+func draw_card():
 	if deck.is_empty():
 		push_warning("Deck is empty")
 		return {}
-	var card = deck.pop_front()
-	hand.append(card)
-	return card
-
-func draw_to_hand_ui():
-	var card_data = draw_card()
-	if card_data.is_empty() || self.name == "RemotePlayer":
-		return
+	var card_data = deck.pop_front()
+	hand.append(card_data)
 	var card = player_ui.get_node("HBoxContainer/Hand").add_card(card_data)
-	card.connect("clicked", Callable(self, "_on_card_clicked"))
+	card.set_meta("set", card_data["set"])
+	card.set_meta("id", card_data["id"])
+	card.connect("clicked", func(clicked): _on_card_clicked(clicked))
+
 
 func draw_starting_hand(count := 5):
 	for i in range(count):
-		await animate_to_camera(draw_to_hand_ui)
-		#draw_to_hand_ui()
+		await animate_to_camera(draw_card)
+
 
 func animate_to_camera(on_finish: Callable):
-	var camera = get_viewport().get_camera_3d()
-	var target_screen_pos = Vector2(0.5, 0.8)
-	var target_world_pos = camera.project_position(target_screen_pos, 3)
-	var deck3d = player_field.get_node("Deck")
-	var card_node = deck3d.get_node("TopCard")
+	var target_world_pos = player_field.position + player_field.basis.z + Vector3.UP
+	var card_node = deck_zone.get_node("TopCard")
 	var tween = create_tween()
 	tween.tween_property(card_node, "global_position", target_world_pos, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_callback(on_finish)
 	await tween.finished
-	target_world_pos = deck3d.get_node("Stack/TopMarker").global_position
+	target_world_pos = deck_zone.get_node("Stack/TopMarker").global_position
 	card_node.global_position = target_world_pos
 
-func _on_card_clicked(card_data: Dictionary):
-	#player_ui.get_node("Hand").remove_card(card)
-	#hand.erase(card)
-	card_data = CardDatabase.get_card_by_set_and_id(card_data["set"], card_data["id"])
-
-	var path = "res://cards/art/%s/%s.jpg" % [card_data["deck"]["set"], int(card_data["deck"]["id"])]
-	var texture = load(path)
+func _on_card_clicked(card: TextureButton):
+	if !my_turn || clicks <= 0: 
+		push_warning("Trying to play card off turn")
+		return
+	use_clicks()
 	
+	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
+	var hand_ui = player_ui.get_node("HBoxContainer/Hand")
+	await hand_ui.play_card(card)
+		
 	var cardtype = card_data["type"]
 	match cardtype:
 		"Resource", "Hardware", "Program":
-			add_field_card(card_data, texture)
+			add_field_card(card)
 		"Event":
-			add_trash_card(card_data, texture)
+			add_trash_card(card)
 		
-func add_field_card(card_data: Dictionary, texture: Texture2D):
+func add_field_card(card: TextureButton):
+	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
+	var path = "res://cards/art/%s/%d.jpg" % [card.get_meta("set"), card.get_meta("id")]
+	var texture = load(path)
 	var cardtype = card_data["type"]
 	var zone = null
 	var card3d = preload("res://cards/card3d.tscn").instantiate()
+	card3d.set_meta("set", card.get_meta("set"))
+	card3d.set_meta("id", card.get_meta("id"))
+	
 	card3d.material_override = card3d.material_override.duplicate()
 	card3d.material_override.set_shader_parameter("front_tex", texture)
 	
@@ -130,9 +171,15 @@ func add_field_card(card_data: Dictionary, texture: Texture2D):
 		var offset = (zone.get_child_count()-1) * -0.4
 		card3d.position = Vector3(offset, 0, 0)
 
-func add_trash_card(card_data: Dictionary, texture: Texture2D):
-	var trash = player_field.get_node("Trash")
-	if !trash.visible:
-		trash.visible = true
-	var top_card = trash.get_node("TopCard")
+func add_trash_card(card: TextureButton):
+	#var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
+	var path = "res://cards/art/%s/%d.jpg" % [card.get_meta("set"), card.get_meta("id")]
+	var texture = load(path)
+	
+	if !trash_zone.visible:
+		trash_zone.visible = true
+	var top_card = trash_zone.get_node("TopCard")
 	top_card.material_override.set_shader_parameter("front_tex", texture)
+
+func start_turn():
+	add_credits(income)
