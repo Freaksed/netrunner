@@ -12,6 +12,7 @@ var faction: String = ""
 var identity_id: String = ""
 var id_ui: TextureRect
 var faction_ui: TextureRect
+var credit_button: TextureButton
 var credit_counter: Label
 var click_counter: Label
 
@@ -35,6 +36,8 @@ func _ready() -> void:
 	faction_ui = id_panel.get_node("HBoxContainer/Resources/FactionIcon") as TextureRect
 	credit_counter = id_panel.get_node("HBoxContainer/Resources/Credits") as Label
 	click_counter = id_panel.get_node("HBoxContainer/Resources/Clicks") as Label
+	credit_button = id_panel.get_node("HBoxContainer/Resources/CreditIcon") as TextureButton
+	credit_button.pressed.connect(click_for_credit)
 	
 	deck_zone = player_field.get_node("Deck")
 	var deck_select = deck_zone.get_node("Area3D")
@@ -88,6 +91,13 @@ func remove_credits(amount: int):
 	credits -= amount
 	credit_counter.text = "%d" % credits
 
+func click_for_credit():
+	if my_turn and clicks >= 1:
+		add_credits(1)
+		use_clicks(1)
+	else:
+		push_warning("Cannot buy credit, not your turn or not enough credits")
+
 func _on_deck_event(camera: Camera3D,
 					event: InputEvent, 
 					position: Vector3, 
@@ -95,7 +105,7 @@ func _on_deck_event(camera: Camera3D,
 					shape_idx: int):
 	if event is InputEventMouseButton and event.pressed:
 		if my_turn:
-			use_clicks()
+			use_clicks(1)
 			await animate_to_camera(draw_card)
 		else:
 			print("Not your turn, cannot draw card")
