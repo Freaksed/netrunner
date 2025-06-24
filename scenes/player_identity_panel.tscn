@@ -38,11 +38,11 @@ texture = ExtResource("3_th3e3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CreditIcon" type="TextureRect" parent="HBoxContainer/Resources"]
+[node name="CreditIcon" type="TextureButton" parent="HBoxContainer/Resources"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("4_5plsd")
-expand_mode = 1
+texture_normal = ExtResource("4_5plsd")
+ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Credits" type="Label" parent="HBoxContainer/Resources"]
