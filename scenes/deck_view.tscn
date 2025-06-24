@@ -39,5 +39,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 6
 
-[node name="TotalLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="TotalLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

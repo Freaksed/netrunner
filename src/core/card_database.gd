@@ -29,8 +29,8 @@ func get_minimal_card_list() -> Array:
 			return {"id": card.get("deck", {}).get("id"), "set": card.get("deck", {}).get("set")}
 	)
 
-func load_deck_from_file(path: String) -> Array:
-	var loaded_deck: Array = []
+func load_deck_from_file(path: String) -> Dictionary:
+	var loaded_deck: Dictionary = {"title": "", "identity": {}, "cards":[]}
 	var file = FileAccess.open(path, FileAccess.READ)
 	if not file:
 		push_error("Failed to open deck file: %s" % path)
@@ -40,10 +40,12 @@ func load_deck_from_file(path: String) -> Array:
 	if typeof(parsed) != TYPE_DICTIONARY:
 		push_error("Invalid deck format")
 		return loaded_deck
-
+	
+	loaded_deck["title"] = parsed.get("title", "")
+	loaded_deck["identity"] = parsed.get("identity", {})
 	for entry in parsed.get("cards", []):
 		if entry.has("set") and entry.has("id") and entry.has("count"):
-			loaded_deck.append(entry)
+			loaded_deck["cards"].append(entry)
 
 	return loaded_deck
 

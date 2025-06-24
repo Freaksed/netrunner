@@ -6,7 +6,7 @@ extends VBoxContainer
 @onready var faction_filter = $FilterBar/FactionFilter
 @onready var type_filter = $FilterBar/TypeFilter
 @onready var deck_list = $ScrollContainer/CardGrid
-@onready var total_label = $TotalLabel
+@onready var total_label = $HBoxContainer/TotalLabel
 
 signal card_clicked(card_data: Dictionary)
 
@@ -56,7 +56,7 @@ func _ready():
 	type_filter.item_selected.connect(
 		func(index):
 			selected_type = type_filter.get_item_text(index)
-			_refresh
+			_refresh()
 	)
 
 
@@ -92,9 +92,6 @@ func _refresh(_val = null):
 		child.queue_free()
 
 	var query = filter_box.text.strip_edges().to_lower()
-	var selected_side = side_filter.get_item_text(side_filter.get_selected_id())
-	var selected_faction = faction_filter.get_item_text(faction_filter.get_selected_id())
-	var selected_type = type_filter.get_item_text(type_filter.get_selected_id())
 
 	var total = 0
 
@@ -130,10 +127,11 @@ func _refresh(_val = null):
 		# Add N copies
 		for i in range(count):
 			var card_instance = CardDatabase.card2d.instantiate()
-			card_instance.init_from_json(entry)
+			card_instance.set_meta("set", entry["set"])
+			card_instance.set_meta("id", int(entry["id"]))
 			card_instance.custom_minimum_size = Vector2(93, 128)
 			card_instance.clicked.connect(
-				func(min_card_data): emit_signal("card_clicked", min_card_data)
+				func(): emit_signal("card_clicked", card_instance)
 			)
 
 			if is_invalid:

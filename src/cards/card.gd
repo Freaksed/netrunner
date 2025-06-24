@@ -5,10 +5,6 @@ signal clicked(card: TextureButton)
 
 var tween: Tween
 
-#func init_from_json(data: Dictionary):
-#if is_inside_tree():  # we're already ready
-#_update_ui()
-
 
 func _ready():
 	mouse_entered.connect(func(): modulate = Color(1.2, 1.2, 1.2))  # brighten on hover
@@ -16,7 +12,7 @@ func _ready():
 	pressed.connect(
 		func():
 			modulate = Color(0.8, 0.8, 0.8)  # dim when pressed
-			emit_signal("clicked", self)  #{"id": card_data.get("id"), "set": card_data.get("set")})
+			emit_signal("clicked")
 	)
 	_update_ui()
 

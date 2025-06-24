@@ -13,94 +13,113 @@ extends Control
 @onready var card_selector = $MarginContainer/VBoxContainer/HBoxContainer/CardSelector
 @onready var deck_view = $MarginContainer/VBoxContainer/HBoxContainer/DeckView
 
-var my_deck: Array = []
-var selected_card = {}
+var id_label: Label
+
+var my_deck: Dictionary = {"title":"","identity":{},"cards":[]}
+var selected_card: TextureButton
 
 
 func _ready():
 	back_button.pressed.connect(func(): SceneStack.pop_scene())
 	save_button.pressed.connect(_on_save_pressed)
+	id_label = Label.new()
+	deck_view.get_node("HBoxContainer").add_child(id_label)
 
 	my_deck = CardDatabase.load_deck_from_file("user://my_deck.json")
+	if !my_deck.is_empty():
+		var identity = CardDatabase.get_card_by_set_and_id(
+			my_deck["identity"].get("set", ""), my_deck["identity"].get("id", -1)
+		)["title"]
+		id_label.text = identity
+		deck_title.text = my_deck["title"] if my_deck["title"] != "" else "My Deck"
 	_show_card_pool()
 	card_selector.card_clicked.connect(_select_card)
 	deck_view.card_clicked.connect(_select_card)
-	add_button.pressed.connect(func(): _add_card_to_deck(selected_card))
-	remove_button.pressed.connect(func(): _remove_card_from_deck(selected_card))
+	add_button.pressed.connect(_add_card_to_deck)
+	remove_button.pressed.connect(_remove_card_from_deck)
 
 
 func _show_card_pool():
 	card_selector.set_deck(CardDatabase.get_minimal_card_list())
-	deck_view.set_deck(my_deck)
+	deck_view.set_deck(my_deck["cards"])
 
 
-func _select_card(card_data: Dictionary):
-	var card_set = card_data.get("set", null)
-	var id = card_data.get("id", null)
+func _select_card(card: TextureButton):
+	print("Selected card: ", card)
+	var card_set = card.get_meta("set")
+	var id = int(card.get_meta("id"))
 	if card_set == null or id == null:
-		push_warning("Card is missing deck ID/set: %s" % card_data.get("title", "???"))
+		push_warning("Card is missing deck ID/set")
 		return
 
-	var path = "res://cards/art/%s/%s.jpg" % [card_set, int(id)]
+	var path = "res://cards/art/%s/%s.jpg" % [card_set, id]
 	var texture = load(path)
 	preview.texture = texture
 
-	selected_card = card_data
+	selected_card = card
 
 
-func _add_card_to_deck(card_data: Dictionary):
-	print("Adding: ", card_data)
-	var card_set = card_data.get("set", null)
-	var id = card_data.get("id", null)
+func _add_card_to_deck():
+	var card_set = selected_card.get_meta("set")
+	var id = int(selected_card.get_meta("id"))
 	if card_set == null or id == null:
-		push_warning("Card is missing deck ID/set: %s" % card_data.get("title", "???"))
+		push_warning("Card is missing deck ID/set")
 		return
 
-	for entry in my_deck:
+	var full_card_data = CardDatabase.get_card_by_set_and_id(card_set, id)
+	if full_card_data["type"] == "Identity":
+		my_deck["identity"] = {"set": set, "id": id}
+		id_label.text = full_card_data["title"]
+		_refresh_deck_list()
+		return
+
+	if my_deck["identity"].is_empty():
+		print("No identity set, cannot add non-identity cards")
+		return
+
+	for entry in my_deck["cards"]:
 		if entry["set"] == card_set and entry["id"] == id:
 			entry["count"] += 1
 			_refresh_deck_list()
 			return
 
 	# If not found, add new entry
-	my_deck.append({"set": card_set, "id": id, "count": 1})
+	my_deck["cards"].append({"set": card_set, "id": id, "count": 1})
 	_refresh_deck_list()
 
 
-func _remove_card_from_deck(card_data: Dictionary):
-	print("Removing: ", card_data)
-	var card_set = card_data.get("set", null)
-	var id = card_data.get("id", null)
+func _remove_card_from_deck():
+	var card_set = selected_card.get_meta("set")
+	var id = selected_card.get_meta("id")
 
-	for i in range(my_deck.size()):
-		var entry = my_deck[i]
+	for i in range(my_deck["cards"].size()):
+		var entry = my_deck["cards"][i]
 		if entry["set"] == card_set and entry["id"] == id:
 			entry["count"] -= 1
 			if entry["count"] <= 0:
-				my_deck.remove_at(i)
+				my_deck["cards"].remove_at(i)
 			_refresh_deck_list()
 			return
 
-	push_warning("Tried to remove card not in deck: %s" % card_data.get("title", "???"))
+	push_warning("Tried to remove card not in deck")
 
 
 func _refresh_deck_list():
 	var validation_result = validate_deck(my_deck)
-	deck_view.set_deck(my_deck, validation_result["invalid_cards"])
+	deck_view.set_deck(my_deck["cards"], validation_result["invalid_cards"])
 	print("Validation:", validate_deck(my_deck))
 
 
 func _on_save_pressed():
 	var file = FileAccess.open("user://my_deck.json", FileAccess.WRITE)
 	if file:
-		var deck_json = {"title": deck_title.text, "cards": my_deck}
-		file.store_string(JSON.stringify(deck_json, "\t"))
+		file.store_string(JSON.stringify(my_deck, "\t"))
 		print("✅ Deck saved to user://my_deck.json")
 	else:
 		push_error("❌ Failed to save deck")
 
 
-func validate_deck(deck: Array) -> Dictionary:
+func validate_deck(deck: Dictionary) -> Dictionary:
 	var result = {
 		"valid": true,
 		"errors": [],
@@ -111,7 +130,7 @@ func validate_deck(deck: Array) -> Dictionary:
 	}
 
 	# Count identity cards
-	var identities = deck.filter(
+	var identities = deck["cards"].filter(
 		func(e):
 			return CardDatabase.get_card_by_set_and_id(e["set"], e["id"]).get("type") == "Identity"
 	)
@@ -135,7 +154,7 @@ func validate_deck(deck: Array) -> Dictionary:
 	var card_total = 0
 	var influence_total = 0
 
-	for entry in deck:
+	for entry in deck["cards"]:
 		var card = CardDatabase.get_card_by_set_and_id(entry["set"], entry["id"])
 		var key = "%s|%s" % [entry["set"], entry["id"]]
 
