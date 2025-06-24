@@ -2,8 +2,8 @@ extends Panel
 
 var hand: Array[Control] = []
 
-const lift_amount = 30
-const grow_to = Vector2(1.1,1.1)
+const lift_amount = 100
+const grow_to = Vector2(1.5,1.5)
 var card_original_position = Vector2.ZERO
 var card_original_rotation = Vector2.ZERO
 var card_original_scale = Vector2.ONE

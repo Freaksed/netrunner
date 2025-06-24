@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ue885thgqsea"]
+[gd_scene load_steps=3 format=3 uid="uid://ue885thgqsea"]
 
 [ext_resource type="Script" uid="uid://5a5mkcvg6ekf" path="res://src/ui/hand2d.gd" id="1_62tcw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62tcw"]
 
 [node name="Hand2D" type="Panel"]
 anchors_preset = 15
@@ -11,4 +13,5 @@ grow_vertical = 2
 pivot_offset = Vector2(960, 540)
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_62tcw")
 script = ExtResource("1_62tcw")

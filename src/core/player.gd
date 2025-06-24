@@ -29,9 +29,8 @@ var income: int = 0
 
 
 func _ready() -> void:
-	print("prep: ", self.name)
 	var id_panel = player_ui.get_node("HBoxContainer/IdentityPanel")
-		
+
 	id_ui = id_panel.get_node("HBoxContainer/IdentityCard") as TextureRect
 	faction_ui = id_panel.get_node("HBoxContainer/Resources/FactionIcon") as TextureRect
 	credit_counter = id_panel.get_node("HBoxContainer/Resources/Credits") as Label
