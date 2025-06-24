@@ -5,6 +5,9 @@ name: GPT Commits summarizer
 # summaries, and delete outdated code review comments
 
 on:
+  workflow_dispatch: # Manual run
+  push: # Or run on push to main
+    branches: [main]
   pull_request:
     types: [opened, synchronize]
 
