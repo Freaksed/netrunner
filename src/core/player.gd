@@ -98,6 +98,10 @@ func click_for_credit():
 	else:
 		push_warning("Cannot buy credit, not your turn or not enough credits")
 
+func click_for_card():
+	use_clicks(1)
+	await animate_to_camera(draw_card)
+
 func _on_deck_event(camera: Camera3D,
 					event: InputEvent, 
 					position: Vector3, 
@@ -105,8 +109,7 @@ func _on_deck_event(camera: Camera3D,
 					shape_idx: int):
 	if event is InputEventMouseButton and event.pressed:
 		if my_turn:
-			use_clicks(1)
-			await animate_to_camera(draw_card)
+			click_for_card()
 		else:
 			print("Not your turn, cannot draw card")
 			pass
