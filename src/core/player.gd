@@ -49,7 +49,7 @@ func _ready() -> void:
 
 func load_deck_from_file(path: String):
 	deck.clear()
-	var intermediate_deck = CardDatabase.load_deck_from_file(path)
+	var intermediate_deck = CardDatabase.load_deck_from_file(path)["cards"]
 	for card in intermediate_deck:
 		var card_data = CardDatabase.get_card_by_set_and_id(card["set"], card["id"])
 		if card_data["type"] == "Identity":

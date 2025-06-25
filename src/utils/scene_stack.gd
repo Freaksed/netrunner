@@ -12,6 +12,7 @@ func push_scene(new_scene: PackedScene):
 		current_scene.queue_free()
 	current_scene = new_scene.instantiate()
 	get_tree().get_root().add_child(current_scene)
+	return current_scene
 
 func pop_scene():
 	if stack.is_empty():

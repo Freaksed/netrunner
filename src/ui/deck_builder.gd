@@ -4,7 +4,9 @@ extends Control
 @onready var deck_title = $MarginContainer/VBoxContainer/TopBar/DeckTitle
 
 @onready var back_button = $MarginContainer/VBoxContainer/HBoxContainer/CardSelector/BackButton
-@onready var save_button = $MarginContainer/VBoxContainer/HBoxContainer/DeckView/SaveButton
+@onready var save_button = $MarginContainer/VBoxContainer/HBoxContainer/DeckView/Buttons/SaveButton
+@onready var load_button = $MarginContainer/VBoxContainer/HBoxContainer/DeckView/Buttons/LoadButton
+@onready var deck_selector = $DeckSelector
 
 @onready var preview = $MarginContainer/VBoxContainer/HBoxContainer/CardPreview/PreviewRect
 @onready var add_button = $MarginContainer/VBoxContainer/HBoxContainer/CardPreview/HBoxContainer/ButtonAdd
@@ -22,21 +24,23 @@ var selected_card: TextureButton
 func _ready():
 	back_button.pressed.connect(func(): SceneStack.pop_scene())
 	save_button.pressed.connect(_on_save_pressed)
+	load_button.pressed.connect(_on_load_pressed)
+
 	id_label = Label.new()
 	deck_view.get_node("HBoxContainer").add_child(id_label)
 
-	my_deck = CardDatabase.load_deck_from_file("user://my_deck.json")
-	if !my_deck.is_empty():
-		var identity = CardDatabase.get_card_by_set_and_id(
-			my_deck["identity"].get("set", ""), my_deck["identity"].get("id", -1)
-		)["title"]
-		id_label.text = identity
-		deck_title.text = my_deck["title"] if my_deck["title"] != "" else "My Deck"
-	_show_card_pool()
 	card_selector.card_clicked.connect(_select_card)
 	deck_view.card_clicked.connect(_select_card)
 	add_button.pressed.connect(_add_card_to_deck)
 	remove_button.pressed.connect(_remove_card_from_deck)
+
+	deck_title.text_submitted.connect(func(text): my_deck["title"] = text)
+	deck_selector.deck_loaded.connect(func(deck): 
+		my_deck = deck
+		_refresh_deck_list()
+		)
+
+	_show_card_pool()
 
 
 func _show_card_pool():
@@ -68,7 +72,7 @@ func _add_card_to_deck():
 
 	var full_card_data = CardDatabase.get_card_by_set_and_id(card_set, id)
 	if full_card_data["type"] == "Identity":
-		my_deck["identity"] = {"set": set, "id": id}
+		my_deck["identity"] = {"set": card_set, "id": id}
 		id_label.text = full_card_data["title"]
 		_refresh_deck_list()
 		return
@@ -106,12 +110,23 @@ func _remove_card_from_deck():
 
 func _refresh_deck_list():
 	var validation_result = validate_deck(my_deck)
+	print(my_deck)
+	id_label.text = CardDatabase.get_card_by_set_and_id(my_deck["identity"]["set"], int(my_deck["identity"]["id"])).get("title", "No Identity")
 	deck_view.set_deck(my_deck["cards"], validation_result["invalid_cards"])
 	print("Validation:", validate_deck(my_deck))
 
 
+func _on_load_pressed():
+	deck_selector.visible = true
+
+
 func _on_save_pressed():
-	var file = FileAccess.open("user://my_deck.json", FileAccess.WRITE)
+	if !DirAccess.dir_exists_absolute("user://decks"):
+		DirAccess.make_dir_absolute("user://decks")
+	if my_deck["title"] == "":
+		push_error("❌ Deck title cannot be empty")
+		return
+	var file = FileAccess.open("user://decks/%s.json" % my_deck["title"] , FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(my_deck, "\t"))
 		print("✅ Deck saved to user://my_deck.json")
@@ -130,21 +145,13 @@ func validate_deck(deck: Dictionary) -> Dictionary:
 	}
 
 	# Count identity cards
-	var identities = deck["cards"].filter(
-		func(e):
-			return CardDatabase.get_card_by_set_and_id(e["set"], e["id"]).get("type") == "Identity"
-	)
-
-	if identities.size() != 1:
+	if my_deck["identity"].is_empty:
 		result["valid"] = false
 		result["errors"].append("Deck must include exactly one Identity card.")
 		return result
 
-	var identity = CardDatabase.get_card_by_set_and_id(identities[0]["set"], identities[0]["id"])
+	var identity = CardDatabase.get_card_by_set_and_id(my_deck["identity"]["set"], my_deck["identity"]["id"])
 	result["identity"] = identity
-	if identities.size() > 1:
-		result["valid"] = false
-		result["errors"].append("Must have exactly 1 Identity")
 
 	var side = identity["deck"]["side"]
 	var faction = identity["deck"]["faction"]
