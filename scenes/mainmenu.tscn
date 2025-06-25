@@ -42,7 +42,7 @@ horizontal_alignment = 1
 
 [node name="ViewCardsButton" type="Button" parent="RootContainer/VBoxContainer"]
 layout_mode = 2
-text = "View Cards"
+text = "Deck Builder"
 
 [node name="StartGameButton" type="Button" parent="RootContainer/VBoxContainer"]
 layout_mode = 2

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdywu7pev7kdl"]
+[gd_scene load_steps=5 format=3 uid="uid://bdywu7pev7kdl"]
 
 [ext_resource type="Script" uid="uid://d36dqm65npll2" path="res://src/ui/deck_builder.gd" id="1_gwmgs"]
+[ext_resource type="PackedScene" uid="uid://b1nhms00ar5a4" path="res://scenes/load_deck.tscn" id="2_nx1ff"]
 [ext_resource type="PackedScene" uid="uid://bf5v6a3mlj7e3" path="res://scenes/deck_view.tscn" id="2_sxdv4"]
 [ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="3_pcmq2"]
 
@@ -78,6 +79,18 @@ text = "Add ->"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/DeckView"]
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/DeckView"]
 layout_mode = 2
+
+[node name="LoadButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/DeckView/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load"
+
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/DeckView/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Save"
+
+[node name="DeckSelector" parent="." instance=ExtResource("2_nx1ff")]
+visible = false
