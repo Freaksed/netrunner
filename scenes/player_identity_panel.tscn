@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://csqle5s6c23qk"]
 
 [ext_resource type="StyleBox" uid="uid://c2huh6jk7gqmh" path="res://PlayerBoxTheme.tres" id="1_edf1h"]
-[ext_resource type="Texture2D" uid="uid://j47v5ty4df2i" path="res://cards/art/System Gateway/76.jpg" id="2_djo0h"]
-[ext_resource type="Texture2D" uid="uid://cnm1hnofpphkr" path="res://Faction Glyphs/NSG_APEX.svg" id="3_th3e3"]
+[ext_resource type="Texture2D" uid="uid://ccrsem3cfp4i5" path="res://cards/cardback.png" id="2_edf1h"]
+[ext_resource type="Texture2D" uid="uid://dsgtrwu6agck3" path="res://icon.svg" id="3_edf1h"]
 [ext_resource type="Texture2D" uid="uid://5fq0sqqme1rt" path="res://Game Symbols/NSG_CREDIT.svg" id="4_5plsd"]
 [ext_resource type="LabelSettings" uid="uid://dgljc1h5bvc1k" path="res://InGameFont.tres" id="5_3rdkl"]
 [ext_resource type="Texture2D" uid="uid://cg7nlgdgp876" path="res://Game Symbols/NSG_CLICK.svg" id="6_mwnkt"]
@@ -23,7 +23,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_djo0h")
+texture = ExtResource("2_edf1h")
 expand_mode = 1
 stretch_mode = 5
 
@@ -34,7 +34,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("3_th3e3")
+texture = ExtResource("3_edf1h")
 expand_mode = 1
 stretch_mode = 5
 

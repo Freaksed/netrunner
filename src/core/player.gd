@@ -19,6 +19,7 @@ var click_counter: Label
 var deck_zone: Node3D
 var trash_zone: Node3D
 
+var identity = {}
 var deck: Array = []
 var hand: Array = []
 var hand_limit: int = 5
@@ -49,22 +50,22 @@ func _ready() -> void:
 
 func load_deck_from_file(path: String):
 	deck.clear()
-	var intermediate_deck = CardDatabase.load_deck_from_file(path)["cards"]
-	for card in intermediate_deck:
-		var card_data = CardDatabase.get_card_by_set_and_id(card["set"], card["id"])
-		if card_data["type"] == "Identity":
-			side = card_data["deck"]["side"]
-			faction = card_data["deck"]["faction"]
-			identity_id = card_data["title"]
-			var asset_path = "res://cards/art/%s/%s.jpg" % [card_data["deck"]["set"], int(card_data["deck"]["id"])]
-			var texture = load(asset_path)
-			id_ui.texture = texture
-			asset_path = "res://Faction Glyphs/NSG_%s.svg" % [card_data["deck"]["faction"].to_upper()]
-			texture = load(asset_path)
-			faction_ui.texture = texture
-		else:
-			for i in range(card["count"]):
-				deck.append({"set":card["set"], "id":card["id"]})
+	var intermediate_deck = CardDatabase.load_deck_from_file(path)
+	identity = CardDatabase.get_card_by_set_and_id(intermediate_deck["identity"]["set"], int(intermediate_deck["identity"]["id"]))
+	side = identity["deck"]["side"]
+	faction = identity["deck"]["faction"]
+	identity_id = identity["title"]
+
+	var asset_path = "res://cards/art/%s/%s.jpg" % [identity["deck"]["set"], int(identity["deck"]["id"])]
+	var texture = load(asset_path)
+	id_ui.texture = texture
+	asset_path = "res://Faction Glyphs/NSG_%s.svg" % [identity["deck"]["faction"].to_upper()]
+	texture = load(asset_path)
+	faction_ui.texture = texture
+
+	for card in intermediate_deck["cards"]:
+		for i in range(card["count"]):
+			deck.append({"set":card["set"], "id":card["id"]})
 
 
 func shuffle_deck():

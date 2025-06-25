@@ -129,7 +129,7 @@ func _on_save_pressed():
 	var file = FileAccess.open("user://decks/%s.json" % my_deck["title"] , FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(my_deck, "\t"))
-		print("✅ Deck saved to user://my_deck.json")
+		print("✅ Deck saved to: ", file.get_path())
 	else:
 		push_error("❌ Failed to save deck")
 
@@ -145,7 +145,7 @@ func validate_deck(deck: Dictionary) -> Dictionary:
 	}
 
 	# Count identity cards
-	if my_deck["identity"].is_empty:
+	if my_deck["identity"] == {}:
 		result["valid"] = false
 		result["errors"].append("Deck must include exactly one Identity card.")
 		return result
