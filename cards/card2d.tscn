@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk2lwq46guydr"]
+[gd_scene load_steps=4 format=3 uid="uid://bk2lwq46guydr"]
 
 [ext_resource type="Script" uid="uid://hodu0vov6pij" path="res://src/cards/card.gd" id="1_ivai2"]
+[ext_resource type="Material" uid="uid://bk3sqwd2csaf2" path="res://materials/2dCard.tres" id="1_jc6yw"]
 [ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="2_nwofj"]
 
 [node name="Card" type="TextureButton"]
+material = ExtResource("1_jc6yw")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -12,7 +14,7 @@ anchor_bottom = 0.5
 offset_left = -960.0
 offset_top = -540.0
 offset_right = -780.0
-offset_bottom = -284.0
+offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(90, 128)

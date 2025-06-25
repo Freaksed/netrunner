@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bk3sqwd2csaf2"]
+
+[ext_resource type="Shader" uid="uid://cpnlm3jljnp46" path="res://shaders/2dCard.gdshader" id="1_g7sef"]
+[ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="2_0ba71"]
+
+[resource]
+shader = ExtResource("1_g7sef")
+shader_parameter/card_tex = ExtResource("2_0ba71")
+shader_parameter/rim_color = Vector4(1, 1, 1, 1)
+shader_parameter/rim_strength = 0.5
+shader_parameter/rim_falloff = 6.0
