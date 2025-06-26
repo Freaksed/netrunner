@@ -11,5 +11,6 @@
   "title": "Ping",
   "rez_cost": 2,
   "strength": 1,
+  "text": "When you rez this ice during a run against this server, give the Runner 1 tag.\n[subroutine] End the run.",
   "abilities": []
 }

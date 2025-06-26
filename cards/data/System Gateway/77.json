@@ -12,5 +12,6 @@
   "subtypes": ["Megacorp"],
   "cards_min": 0,
   "influence": 0,
+  "text": "Starter game only.",
   "abilities": []
 }

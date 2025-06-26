@@ -10,8 +10,9 @@
   "subtypes": ["Virus", "Trojan"],
   "title": "Botulus",
   "install_cost": 2,
-  "memorycost": 1,
+  "memory_cost": 1,
   "strength": "-",
+  "text": "Install only on a piece of ice. (If the host ice is uninstalled, this program is trashed.)\nWhen you install this program and when your turn begins, place 1 virus counter on this program.\nHosted virus counter: Break 1 subroutine on host ice.",
   "abilities": [
     {
       "type": "install_restriction",

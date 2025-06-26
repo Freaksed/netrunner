@@ -10,5 +10,6 @@
   "subtypes": ["Gray Ops"],
   "title": "Neurospike",
   "play_cost": 3,
+  "text": "Do X net damage, where X is equal to the sum of the printed agenda points on agendas you scored this turn.",
   "abilities": []
 }

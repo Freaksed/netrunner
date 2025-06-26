@@ -12,5 +12,6 @@
   "title": "Whitespace",
   "rez_cost": 2,
   "strength": 0,
+  "text": "[subroutine] The Runner loses 3[c].\n[subroutine] If the Runner has 6[c] or less, end the run.",
   "abilities": []
 }

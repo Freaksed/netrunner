@@ -11,6 +11,7 @@
   "title": "Pantograph",
   "install_cost": 2,
   "memory": 1,
+  "text": "+1[m]\nWhenever an agenda is scored or stolen, gain 1[c]. Then, you may install 1 card from your grip.\nLimit 1 console per player.",
   "abilities": [
     {
       "trigger": "agenda_scored_or_stolen",

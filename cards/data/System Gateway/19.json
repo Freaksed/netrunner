@@ -14,5 +14,6 @@
   "link": 0,
   "cards_min": 40,
   "influence": 15,
+  "text": "Whenever an agenda is scored or stolen, you may swap 2 installed pieces of ice.",
   "abilities": []
 }

@@ -11,5 +11,6 @@
   "subtypes": ["Gray Ops"],
   "title": "Public Trail",
   "play_cost": 4,
+  "text": "Play only if the Runner made a successful run during their last turn.\nGive the Runner 1 tag unless they pay 8[c].",
   "abilities": []
 }

@@ -12,5 +12,6 @@
   "title": "Send a Message",
   "advancement_requirement": 5,
   "value": 3,
+  "text": "When this agenda is scored or stolen, you may rez 1 installed piece of ice, ignoring all costs.",
   "abilities": []
 }

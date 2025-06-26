@@ -11,5 +11,6 @@
   "subtypes": ["Connection"],
   "title": "Smartware Distributor",
   "install_cost": 0,
+  "text": "[click]: Place 3[c] on this resource.\nWhen your turn begins, take 1[c] from this resource.",
   "abilities": []
 }

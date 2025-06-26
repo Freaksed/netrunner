@@ -11,5 +11,6 @@
   "subtypes": ["Transaction"],
   "title": "Hedge Fund",
   "play_cost": 5,
+  "text": "Gain 9[c].",
   "abilities": []
 }

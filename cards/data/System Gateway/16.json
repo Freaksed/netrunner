@@ -12,5 +12,6 @@
   "install_cost": 0,
   "memory_cost": 1,
   "strength": 1,
+  "text": "Interface -> 2[c]: Break 1 barrier subroutine. If you made a successful run this turn, this ability costs 1[c] less to use.\n1[c]: +1 strength.",
   "abilities": []
 }

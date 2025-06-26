@@ -13,5 +13,6 @@
   "install_cost": 1,
   "memory_cost": 2,
   "strength": 1,
+  "text": "Interface -> 1[c]: Break 1 subroutine. When this run ends, trash this program.\n1[c]: +1 strength.",
   "abilities": []
 }

@@ -10,5 +10,6 @@
   "type": "Event",
   "title": "Mutual Favor",
   "play_cost": 0,
+  "text": "Search you stack for 1 icebreaker and reveal it. (Shuffle your stack after searching it.) If you made a successful run this turn, you may install that program. If you do not, add it to your grip.",
   "abilities": []
 }

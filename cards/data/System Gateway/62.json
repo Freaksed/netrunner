@@ -11,5 +11,6 @@
   "title": "Ballista",
   "rez_cost": 5,
   "strength": 4,
+  "text": "[subroutine] Trash 1 installed program or end the run.",
   "abilities": []
 }

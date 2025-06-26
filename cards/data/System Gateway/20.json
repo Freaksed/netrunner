@@ -10,5 +10,6 @@
   "type": "Event",
   "title": "Creative Commission",
   "play_cost": 1,
+  "text": "Gain 5[c]. If you have any [click] remaining, lose 1[click].",
   "abilities": []
 }

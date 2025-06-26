@@ -12,5 +12,6 @@
   "title": "Obrital Superiority",
   "advancement_requirement": 4,
   "value": 2,
+  "text": "When you score this agenda, if the Runner is tagged, do 4 meat damage; otherwise, give the Runner 1 tag.",
   "abilities": []
 }

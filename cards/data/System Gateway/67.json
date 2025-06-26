@@ -12,5 +12,6 @@
   "title": "Offworld Office",
   "advancement_requirement": 4,
   "value": 2,
+  "text": "When you score this agenda, gain 7[c].",
   "abilities": []
 }

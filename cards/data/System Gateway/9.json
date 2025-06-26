@@ -10,5 +10,6 @@
   "subtypes": ["Virtual"],
   "title": "Cookbook",
   "install_cost": 1,
+  "text": "Whenever you install a virus program, you may place 1 virus counter on it.",
   "abilities": []
 }

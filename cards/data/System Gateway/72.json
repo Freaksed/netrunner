@@ -12,5 +12,6 @@
   "title": "Palisade",
   "rez_cost": 3,
   "strength": 2,
+  "text": "While this ice is protecting a remote server, it gets +2 strength.\n[subroutine] End the run.",
   "abilities": []
 }

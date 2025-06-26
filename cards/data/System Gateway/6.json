@@ -13,6 +13,7 @@
   "install_cost": 3,
   "memory_cost": 1,
   "strength": 3,
+  "text": "Interface -> 1[c]: Break up to 2 barries subroutines.\n2[c]: +1 strength.",
   "abilities": [
     {
       "type": "interface",

@@ -11,5 +11,6 @@
   "subtypes": ["Run"],
   "title": "Overclock",
   "play_cost": 1,
+  "text": "Place 5[c] on this event, then run any server. You can spend hosted credits during that run.",
   "abilities": []
 }

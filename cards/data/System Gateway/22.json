@@ -11,5 +11,6 @@
   "title": "DZMZ Optimizer",
   "install_cost": 2,
   "memory": 1,
+  "text": "+1[m]\nThe first program you install each turn costs 1[c] less to install.",
   "abilities": []
 }

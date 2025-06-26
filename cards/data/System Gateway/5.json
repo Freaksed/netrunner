@@ -12,6 +12,7 @@
   "install_cost": 4,
   "memory_cost": 1,
   "strength": 3,
+  "text": "Interface -> 1[c]: Break up to 2 code gate subroutines.\n3[c]: +1 strength.",
   "abilities": [
     {
       "type": "interface",

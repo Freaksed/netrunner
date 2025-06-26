@@ -12,5 +12,6 @@
   "title": "Superconducting Hub",
   "advancement_requirement": 3,
   "value": 1,
+  "text": "When you score this agenda, you may draw 2 cards.\nYou get +2 maximum hand size.",
   "abilities": []
 }

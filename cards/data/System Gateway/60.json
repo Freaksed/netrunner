@@ -10,5 +10,6 @@
   "title": "Above the Law",
   "advancement_requirement": 3,
   "value": 2,
+  "text": "When you score this agenda, you may trash 1 installed resource.\nLimit 1 per deck.",
   "abilities": []
 }

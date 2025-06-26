@@ -11,5 +11,6 @@
   "subtypes": ["Run"],
   "title": "Tread Lightly",
   "play_cost": 1,
+  "text": "Run any server. During that run, the rez cost of each piece of ice is increased by 3[c].",
   "abilities": []
 }

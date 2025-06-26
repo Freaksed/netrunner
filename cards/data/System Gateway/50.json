@@ -10,5 +10,6 @@
   "title": "Anoetic Void",
   "rez_cost": 0,
   "trash_cost": 1,
+  "text": "Whenever the Runner approached this server, you may pay 2[c] and trash 2 cards from HQ. If you do, end the run.",
   "abilities": []
 }

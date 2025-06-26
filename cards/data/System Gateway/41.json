@@ -9,5 +9,6 @@
   "type": "Operation",
   "title": "Sprint",
   "play_cost": 0,
+  "text": "Draw 3 cards. Shuffle 2 cards from HQ into R&D.",
   "abilities": []
 }

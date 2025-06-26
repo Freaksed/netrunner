@@ -10,5 +10,6 @@
   "type": "Event",
   "title": "VRcation",
   "play_cost": 1,
+  "text": "Draw 4 cards. If you have any [click] remaining, lose 1[click].",
   "abilities": []
 }

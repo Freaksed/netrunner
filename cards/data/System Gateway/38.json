@@ -11,5 +11,6 @@
   "title": "Ansel 1.0",
   "rez_cost": 6,
   "strength": 4,
+  "text": "Lose [click]: Break 1 subroutine on this ice. Only the Runner can use the ability.\n[subroutine] Trash 1 installed Runner card.\n[subroutine] You may install 1 card from HQ or Archives.\n[subroutine] The Runner cannot steal or trash Corp cards for the remainder of this run.",
   "abilities": []
 }

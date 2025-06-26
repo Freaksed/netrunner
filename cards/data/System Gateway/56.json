@@ -11,5 +11,6 @@
   "subtypes": ["Transaction"],
   "title": "Predictive Planogram",
   "play_cost": 0,
+  "text": "Resolve 1 of the following. If the Runner is tagged, you may resolve both instead.\nGain 3[c].\nDraw 3 cards.",
   "abilities": []
 }

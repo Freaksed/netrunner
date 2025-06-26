@@ -10,5 +10,6 @@
   "subtypes": ["Transaction"],
   "title": "Government Subsidy",
   "play_cost": 10,
+  "text": "Gain 15[c].",
   "abilities": []
 }

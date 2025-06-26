@@ -13,5 +13,6 @@
   "install_cost": 1,
   "memory_cost": 1,
   "strength": "-",
+  "text": "Whenever you make a successful run on a central server, place 1 virus counter on this program.\nHosted virus counter: The ice you are encountering gets -1 strength for the remainder of this encounter.",
   "abilities": []
 }

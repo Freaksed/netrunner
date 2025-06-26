@@ -10,5 +10,6 @@
   "type": "Operation",
   "title": "Seamless Launch",
   "play_cost": 1,
+  "text": "Place 2 advancement counters on 1 installed card that you did not install this turn.",
   "abilities": []
 }

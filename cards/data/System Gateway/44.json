@@ -9,5 +9,6 @@
   "title": "Longevity Serum",
   "advancement_requirement": 3,
   "value": 2,
+  "text": "When you score this agenda, trash any number of cards from HQ. Shuffle up to 3 cards from Archives into R&D.\nLimit 1 per deck.",
   "abilities": []
 }

@@ -11,5 +11,6 @@
   "title": "Clearinghouse",
   "rez_cost": 0,
   "trash_cost": 3,
+  "text": "You can advance this asset.\nWhen your turn begins, you may trash this asset to do 1 mean damage for each hosted advancement counter.",
   "abilities": []
 }

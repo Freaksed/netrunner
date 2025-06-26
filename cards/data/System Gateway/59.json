@@ -12,5 +12,6 @@
   "subtitle": "Built to Last",
   "cards_min": 40,
   "influence": 15,
+  "text": "Whenever you advance a card, gain 2[c] if it had no advancement counters.",
   "abilities": []
 }

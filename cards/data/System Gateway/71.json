@@ -11,5 +11,6 @@
   "title": "Regolith Mining License",
   "rez_cost": 2,
   "trash_cost": 3,
+  "text": "When you rez this asset, load 15[c] onto it. When it is empty, trash it.\n[click]: Take 3[c] from this asset.",
   "abilities": []
 }

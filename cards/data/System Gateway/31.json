@@ -11,5 +11,6 @@
   "title": "T400 Memory Diamond",
   "install_cost": 2,
   "memory": 1,
+  "text": "+1[m]\nYou get +1 maximum hand size.",
   "abilities": []
 }

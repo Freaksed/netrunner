@@ -9,5 +9,6 @@
   "title": "Tomorrow's Headline",
   "advancement_requirement": 3,
   "value": 2,
+  "text": "When this agenda is scored or stolen, give the Runner 1 tag.\nLimit 1 per deck.",
   "abilities": []
 }

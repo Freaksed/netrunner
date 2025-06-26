@@ -11,5 +11,6 @@
   "title": "Spin Doctor",
   "rez_cost": 0,
   "trash_cost": 2,
+  "text": "When you rez this asset, draw 2 cards.\nRemove this asset from the game: Shuffle up to 2 cards from Archives into R&D.",
   "abilities": []
 }

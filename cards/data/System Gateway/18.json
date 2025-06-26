@@ -11,5 +11,6 @@
   "subtypes": ["Job"],
   "title": "Red Team",
   "install_cost": 5,
+  "text": "When you install this resource, load 12[c] onto it. When it is empty, trash it.\n[click]: Run a central server you have not run this turn. If successful, take 3[c] from this resource.",
   "abilities": []
 }

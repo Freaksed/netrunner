@@ -12,5 +12,6 @@
   "title": "Funhouse",
   "rez_cost": 5,
   "strength": 4,
+  "text": "When the Runner encounters this ice, end the run unless the Runner takes 1 tag.\n[subroutine] Give the Runner 1 tag unless they pay 4[c].",
   "abilities": []
 }

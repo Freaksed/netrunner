@@ -12,5 +12,6 @@
   "subtitle": "Restoring Humanity",
   "cards_min": 40,
   "influence": 15,
+  "text": "When your discard phase ends, if there is a facedown card in Archives, gain 1[c].",
   "abilities": []
 }

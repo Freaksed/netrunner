@@ -12,5 +12,6 @@
   "install_cost": 3,
   "memory_cost": 1,
   "strength": 0,
+  "text": "This program gets +1 strength for each installed icebreaker (including this one).\nInterface -> 1[c]: Break 1 sentry subroutine.\n3[c]: +2 strength.",
   "abilities": []
 }

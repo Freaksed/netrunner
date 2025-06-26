@@ -12,6 +12,7 @@
   "install_cost": 4,
   "memory": 1,
   "limit": 1,
+  "text": "+1[m]\nAccess -> Trash 2 cards from your grip: Trash the card you are accessing. Use this ability only once per turn.\nLimit 1 console per player.",
   "abilities": [
     {
       "trigger": "access",

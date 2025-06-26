@@ -11,5 +11,6 @@
   "subtypes": ["Job"],
   "title": "Telework Contract",
   "install_cost": 1,
+  "text": "When you install this resource, load 9[c] onto it. When it is empty, trash it.\n[click]: Take 3[c] from this resource. Use this ability only once per turn.",
   "abilities": []
 }

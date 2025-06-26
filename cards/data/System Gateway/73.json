@@ -12,5 +12,6 @@
   "title": "Tithe",
   "rez_cost": 1,
   "strength": 1,
+  "text": "[subroutine] Do 1 net damage.\n[subroutine] Gain 1[c].",
   "abilities": []
 }

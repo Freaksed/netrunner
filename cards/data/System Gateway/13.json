@@ -10,5 +10,6 @@
   "type": "Hardware",
   "title": "Docklands Pass",
   "install_cost": 2,
+  "text": "The first time each turn you breach HQ, access 1 additional card.",
   "abilities": []
 }

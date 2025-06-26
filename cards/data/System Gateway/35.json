@@ -12,5 +12,6 @@
   "subtitle": "Precision Design",
   "cards_min": 40,
   "influence": 15,
+  "text": "You get +1 maximum hand size.\nWhenever you score an agenda, you may add 1 card from Archives to HQ.",
   "abilities": []
 }

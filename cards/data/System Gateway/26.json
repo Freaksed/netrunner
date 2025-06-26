@@ -13,5 +13,6 @@
   "install_cost": 3,
   "memory_cost": 1,
   "strength": 1,
+  "text": "Interface -> 1[c]: Break 1 code gate subroutine.\n1[c]: +X strength. X is equal to the number of installed icebreakers (including this one).",
   "abilities": []
 }

@@ -10,5 +10,6 @@
   "subtypes": ["Transaction"],
   "title": "Hansei Review",
   "play_cost": 5,
+  "text": "Gain 10[c]. If there are any cards in HQ, trash 1 of them.",
   "abilities": []
 }

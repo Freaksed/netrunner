@@ -12,5 +12,6 @@
   "title": "Karuna",
   "rez_cost": 4,
   "strength": 3,
+  "text": "[subroutine] Do 2 net damage. The Runner may jack out.\n[subroutine] Do 2 net damage.",
   "abilities": []
 }

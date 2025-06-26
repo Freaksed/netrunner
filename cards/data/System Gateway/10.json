@@ -14,5 +14,6 @@
   "link": 0,
   "cards_min": 40,
   "influence": 15,
+  "text": "Whenever a run on HQ or R&D ends, you may gain 1[c] for each time you accessed a card during that run. Use this ability only once per turn.",
   "abilities": []
 }
