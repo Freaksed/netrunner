@@ -13,7 +13,7 @@ func _ready():
 	pressed.connect(
 		func():
 			modulate = Color(0.8, 0.8, 0.8)  # dim when pressed
-			emit_signal("clicked")
+			emit_signal("clicked", self)
 	)
 	_update_ui()
 

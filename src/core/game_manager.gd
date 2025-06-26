@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func set_up_game():
-	local_player.load_deck_from_file("user://decks/My Corp.json")
+	local_player.load_deck_from_file("user://decks/My Runner.json")
 	#remote_player.load_deck_from_file("user://my_deck.json")
 	local_player.add_credits(5)
 	remote_player.add_credits(5)

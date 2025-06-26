@@ -20,8 +20,13 @@ var deck_zone: Node3D
 var trash_zone: Node3D
 
 var identity = {}
+
 var deck: Array = []
 var hand: Array = []
+var trash: Array = []
+
+var state: Node = null
+
 var hand_limit: int = 5
 var credits: int = 0
 var clicks: int = 0
@@ -66,6 +71,12 @@ func load_deck_from_file(path: String):
 	for card in intermediate_deck["cards"]:
 		for i in range(card["count"]):
 			deck.append({"set":card["set"], "id":card["id"]})
+
+	state = Node.new()
+	add_child(state)
+	match side:
+		"Corp": state.set_script(load("res://src/core/player_corp.gd"))
+		"Runner": state.set_script(load("res://src/core/player_runner.gd"))
 
 
 func shuffle_deck():
@@ -147,17 +158,22 @@ func _on_card_clicked(card: TextureButton):
 		return
 	use_clicks()
 	
-	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
 	var hand_ui = player_ui.get_node("HBoxContainer/Hand")
 	await hand_ui.play_card(card)
-		
-	var cardtype = card_data["type"]
-	match cardtype:
-		"Resource", "Hardware", "Program":
-			add_field_card(card)
-		"Event":
-			add_trash_card(card)
-		
+
+	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
+	state.play_card(card_data)
+
+
+func play_card(card: TextureButton):
+	if !my_turn:
+		push_warning("Trying to play card off turn")
+		return
+	if clicks <= 0:
+		push_warning("Not enough clicks to play card")
+		return
+
+
 func add_field_card(card: TextureButton):
 	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
 	var path = "res://cards/art/%s/%d.jpg" % [card.get_meta("set"), card.get_meta("id")]
@@ -172,12 +188,15 @@ func add_field_card(card: TextureButton):
 	card3d.material_override.set_shader_parameter("front_tex", texture)
 	
 	match cardtype:
-		"Resource":
-			zone = player_field.get_node("InnerLayer")
-		"Hardware":
-			zone = player_field.get_node("MidLayer")
-		"Program":
-			zone = player_field.get_node("OuterLayer")
+		"Resource": zone = player_field.get_node("InnerLayer")
+		"Hardware": zone = player_field.get_node("MidLayer")
+		"Program": zone = player_field.get_node("OuterLayer")
+
+		"ICE": pass
+		"Asset": pass
+		"Agenda": pass
+		"Operation": pass
+		"Upgrade": pass
 	
 	if zone != null:
 		zone.add_child(card3d)
@@ -186,7 +205,8 @@ func add_field_card(card: TextureButton):
 		card3d.position = Vector3(offset, 0, 0)
 
 func add_trash_card(card: TextureButton):
-	#var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
+	trash.append({"set": card.get_meta("set"), "id": int(card.get_meta("id"))})
+
 	var path = "res://cards/art/%s/%d.jpg" % [card.get_meta("set"), card.get_meta("id")]
 	var texture = load(path)
 	
