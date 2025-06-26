@@ -1,5 +1,7 @@
 extends Node
 
+var player: Node
+
 var resources = []
 var hardware = []
 var programs = []
@@ -8,28 +10,32 @@ func play_card(card_data: Dictionary):
 	var cardtype = card_data["type"]
 	match cardtype:
 		"Resource":
-			play_resource()
+			play_resource(card_data)
 		"Hardware":
-			play_hardware()
+			play_hardware(card_data)
 		"Program":
-			play_program()
+			play_program(card_data)
 		"Event":
-			play_event()
+			play_event(card_data)
 
-func play_resource():
-	get_parent().use_clicks()
+func play_resource(card_data:Dictionary):
+	player.use_clicks()
+	player.play_card(card_data, "InnerLayer")
 
-func play_hardware():
-	get_parent().use_clicks()
+func play_hardware(card_data:Dictionary):
+	player.use_clicks()
+	player.play_card(card_data, "MidLayer")
 
-func play_program():
-	get_parent().use_clicks()
+func play_program(card_data:Dictionary):
+	player.use_clicks()
+	player.play_card(card_data, "OuterLayer")
 
-func play_event():
-	get_parent().use_clicks()
+func play_event(card_data:Dictionary):
+	player.use_clicks()
+	player.play_card(card_data, "Trash")
 
 func run_server():
-	get_parent().use_clicks()
+	player.use_clicks()
 
 func remove_tag():
-	get_parent().use_clicks()
+	player.use_clicks()

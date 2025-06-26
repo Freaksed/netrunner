@@ -19,8 +19,11 @@ func set_up_game():
 	remote_player.add_credits(5)
 	local_player.shuffle_deck()
 	remote_player.shuffle_deck()
-	local_player.draw_starting_hand(5)
-	remote_player.draw_starting_hand(5)
+
+	for i in range(5):
+		await local_player.draw_card()
+		await remote_player.draw_card()
+
 	match local_player.side:
 		"Runner":
 			print("Setting up Runner")
