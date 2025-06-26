@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Program Schema",
+  "type": "object",
+  "properties": {
+    "deck": { "$ref": "deck.schema.json" },
+    "title": { "type": "string" },
+    "type": { "const": "Program" },
+    "subtypes": {
+      "type": "array",
+      "itema": {
+        "type": "string",
+        "enum": [
+          "AI",
+          "Caissa",
+          "Cloud",
+          "Daemon",
+          "Decoder",
+          "Deep Net",
+          "Deva",
+          "Fracter",
+          "Icebreaker",
+          "Killer",
+          "Stealth",
+          "Trojan",
+          "Virus",
+          "Weapon"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "install_cost": { "type": "integer" },
+    "memory_cost": { "type": "integer" },
+    "strength": { "oneOf": [{ "type": "integer" }, { "const": "-" }] },
+    "abilities": { "type": "array" }
+  },
+  "required": [
+    "deck",
+    "title",
+    "type",
+    "install_cost",
+    "memory_cost",
+    "strength",
+    "abilities"
+  ]
+}

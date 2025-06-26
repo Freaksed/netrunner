@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Upgrade Schema",
+  "type": "object",
+  "properties": {
+    "deck": { "$ref": "deck.schema.json" },
+    "title": { "type": "string" },
+    "type": { "const": "Upgrade" },
+    "subtypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Academic",
+          "Advertisement",
+          "Alliance",
+          "Ambush",
+          "Beanstalk",
+          "Bioroid",
+          "Character",
+          "Clone",
+          "Enforcer",
+          "Executive",
+          "Expendable",
+          "Facility",
+          "Hostile",
+          "Off-site",
+          "Orgcrime",
+          "Psi",
+          "Region",
+          "Ritzy",
+          "Seedy",
+          "Security Protocol",
+          "Sysop",
+          "Unorthodox"
+        ]
+      }
+    },
+    "rez_cost": { "type": "integer" },
+    "trash_cost": { "type": "integer" },
+    "abilities": { "type": "array" }
+  },
+  "required": ["deck", "title", "type", "rez_cost", "trash_cost", "abilities"]
+}

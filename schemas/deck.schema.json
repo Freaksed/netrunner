@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Netrunner Deck",
+  "type": "object",
+  "properties": {
+    "set": { "type": "string" },
+    "id": { "type": "integer" },
+    "alliance": {
+      "type": "string",
+      "enum": ["corp", "runner"]
+    },
+    "faction": {
+      "type": "string",
+      "enum": [
+        "Anarch",
+        "Criminal",
+        "Shaper",
+        "Weyland Consortium",
+        "Haas-Bioroid",
+        "Jinteki",
+        "NBN",
+        "Neutral"
+      ]
+    },
+    "influence": { "type": "integer" },
+    "limit": { "type": "integer" }
+  }
+}

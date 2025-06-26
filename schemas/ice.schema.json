@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ICE Schema",
+  "type": "object",
+  "properties": {
+    "deck": { "$ref": "deck.schema.json" },
+    "title": { "type": "string" },
+    "type": { "const": "ICE" },
+    "subtypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "AP",
+          "Advertisement",
+          "Ambush",
+          "Barrier",
+          "Bioroid",
+          "Code Gate",
+          "Deep Net",
+          "Deflector",
+          "Destroyer",
+          "Expendable",
+          "Grail",
+          "Harmonic",
+          "Illicit",
+          "Morph",
+          "Mythic",
+          "NEXT",
+          "Observer",
+          "Psi",
+          "Sentry",
+          "Tracer",
+          "Trap"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "rez_cost": { "type": "integer" },
+    "strength": { "type": "integer" },
+    "abilities": { "type": "array" }
+  },
+  "required": ["deck", "title", "type", "rez_cost", "strength", "abilities"]
+}

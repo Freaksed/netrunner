@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hardware Schema",
+  "type": "object",
+  "properties": {
+    "deck": { "$ref": "./deck.schema.json" },
+    "title": { "type": "string" },
+    "type": { "const": "Hardware" },
+    "subtypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Chip",
+          "Companion",
+          "Console",
+          "Consumer-grade",
+          "Cybernetic",
+          "Gear",
+          "Link",
+          "Mod",
+          "Stealth",
+          "Vehicle",
+          "Weapon"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "install_cost": { "type": "integer" },
+    "abilities": { "type": "array" }
+  },
+  "required": ["deck", "title", "type", "install_cost", "abilities"]
+}
