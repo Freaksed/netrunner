@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "effect.schema.json",
+  "title": "Effect",
+  "description": "An effect or a group of effects, possibly conditional.",
+  "oneOf": [
+    { "$ref": "#/definitions/effect" },
+    {
+      "type": "array",
+      "items": { "$ref": "#/definitions/effect" },
+      "description": "A sequence of effects resolved in order."
+    },
+    {
+      "type": "object",
+      "required": ["condition", "then"],
+      "properties": {
+        "condition": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "runner_tagged",
+                "corp_has_credits",
+                "installed",
+                "host_has_counter",
+                "successful_run",
+                "has_clicks"
+              ]
+            },
+            "player": {
+              "type": "string",
+              "enum": ["runner", "corp"]
+            },
+            "amount": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "counter": {
+              "type": "string"
+            }
+          }
+        },
+        "then": {
+          "$ref": "#"
+        },
+        "else": {
+          "$ref": "#"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "effect": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "gain_credit",
+            "lose_credit",
+            "draw_card",
+            "take_damage",
+            "place_counter",
+            "remove_counter",
+            "add_tag",
+            "remove_tag",
+            "install_card",
+            "trash_card",
+            "reveal_card",
+            "shuffle_into_stack",
+            "add_to_grip",
+            "add_to_hq",
+            "break_subroutine",
+            "end_the_run",
+            "prevent_damage",
+            "prevent_trash",
+            "gain_click",
+            "lose_click",
+            "forfeit_agenda",
+            "access_additional",
+            "choose_server",
+            "run_server",
+            "prevent_next",
+            "trace_attempt",
+            "give_virus_protection",
+            "gain_link",
+            "lose_link",
+            "uninstall_card",
+            "score_agenda",
+            "steal_agenda"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "runner",
+            "corp",
+            "self",
+            "hosted",
+            "hosted_ice",
+            "accessed_card",
+            "random_card_in_grip",
+            "server",
+            "stack_top",
+            "hq_random",
+            "archives",
+            "heap",
+            "identity",
+            "all_subroutines"
+          ]
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "counter": {
+          "type": "string"
+        },
+        "damage_type": {
+          "type": "string",
+          "enum": ["net", "meat", "core"]
+        },
+        "card_type": {
+          "type": "string",
+          "enum": [
+            "program",
+            "hardware",
+            "resource",
+            "agenda",
+            "asset",
+            "upgrade",
+            "event",
+            "operation",
+            "ice"
+          ]
+        }
+      },
+      "required": ["action"],
+      "additionalProperties": false
+    }
+  }
+}

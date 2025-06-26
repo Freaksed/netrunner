@@ -3,63 +3,146 @@
   "$id": "ability.schema.json",
   "title": "Ability",
   "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["triggered", "paid", "install_restriction", "static"]
+    },
     "trigger": {
+      "type": "string",
       "enum": [
-        "access",
-        "action",
-        "advance",
-        "approach",
-        "breach",
-        "clicks",
-        "credits",
-        "encounter",
-        "install",
-        "interface",
-        "played",
-        "phase",
-        "remove",
-        "rez",
-        "run",
-        "score",
-        "steal",
-        "tag",
-        "trash",
-        "turn"
-      ]
-    },
-    "phase": { "enum": ["begin", "end", "success", "failure"] },
-    "target": {
-      "enum": [
-        "this_card",
-        "accessed_card",
-        "virus",
-        "program",
-        "server",
-        "HQ",
-        "R&D",
-        "Heap",
-        "Stack",
-        "discard",
-        "draw",
-        "cost"
-      ]
-    },
-    "trigger_restriction": {
-      "enum": [
-        "first_per_turn",
+        "turn_begins",
+        "turn_ends",
+        "action_phase_begins",
+        "action_phase_ends",
+        "click_spent",
+
+        "run_begins",
+        "run_ends",
+        "run_successful",
+        "run_unsuccessful",
+        "server_breached",
+        "access_begins",
+        "card_accessed",
+        "agenda_stolen",
+        "agenda_scored",
+        "runner_passes_ice",
+        "encounter_begins",
+        "encounter_ends",
+        "run_click_action",
+
+        "on_install",
+        "on_play",
+        "on_hosted",
+        "card_installed",
+        "card_played",
+
+        "card_trashed",
+        "card_drawn",
+        "card_discarded",
+        "damage_taken",
+        "tag_received",
+        "credit_gained",
+        "card_stolen",
+        "counter_added",
+        "virus_purged",
+
         "once_per_turn",
-        "this_turn",
-        "installed",
-        "even",
-        "odd",
-        "gain",
-        "lose"
+        "threat_level_reached",
+        "mu_changed",
+        "link_changed"
       ]
+    },
+    "player": {
+      "type": "string",
+      "enum": ["runner", "corp"]
+    },
+    "cost": {
+      "type": "object",
+      "properties": {
+        "click": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "credit": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "spend_counter": {
+          "type": "object",
+          "properties": {
+            "counter": { "type": "string" },
+            "amount": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": ["counter", "amount"]
+        },
+        "trash_self": {
+          "type": "boolean",
+          "const": true
+        },
+        "trash_hosted": {
+          "type": "string"
+        },
+        "remove_counter": {
+          "type": "object",
+          "properties": {
+            "counter": { "type": "string" },
+            "amount": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": ["counter", "amount"]
+        },
+        "take_damage": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["net", "meat", "core"]
+            },
+            "amount": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": ["type", "amount"]
+        },
+        "forfeit_agenda": {
+          "type": "boolean",
+          "const": true
+        }
+      }
     },
     "effects": {
       "type": "array",
-      "$ref": "card_effect.schema.json"
+      "items": {
+        "$ref": "effect.schema.json"
+      }
     },
-    "source": { "type": "string" }
-  }
+    "source": {
+      "type": "string"
+    }
+  },
+  "required": ["type"],
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "triggered" } }
+      },
+      "then": {
+        "required": ["trigger", "effects"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "paid" } }
+      },
+      "then": {
+        "required": ["cost", "effects"]
+      }
+    }
+  ]
 }
