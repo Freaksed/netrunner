@@ -9,6 +9,7 @@
   },
   "type": "Hardware",
   "title": "DZMZ Optimizer",
-  "cost": 2,
-  "memory": 1
+  "install_cost": 2,
+  "memory": 1,
+  "abilities": []
 }

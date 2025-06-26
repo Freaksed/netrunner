@@ -10,5 +10,6 @@
   "type": "Operation",
   "subtypes": ["Gray Ops"],
   "title": "Public Trail",
-  "cost": 4
+  "play_cost": 4,
+  "abilities": []
 }

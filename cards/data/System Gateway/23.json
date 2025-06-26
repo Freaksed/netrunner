@@ -9,7 +9,7 @@
   "type": "Hardware",
   "subtypes": ["Console"],
   "title": "Pantograph",
-  "cost": 2,
+  "install_cost": 2,
   "memory": 1,
   "abilities": [
     {

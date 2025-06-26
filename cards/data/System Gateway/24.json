@@ -10,7 +10,8 @@
   "type": "Program",
   "subtypes": ["Virus"],
   "title": "Conduit",
-  "cost": 4,
-  "memorycost": 1,
-  "strength": "-"
+  "install_cost": 4,
+  "memory_cost": 1,
+  "strength": "-",
+  "abilities": []
 }

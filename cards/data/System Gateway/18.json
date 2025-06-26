@@ -10,5 +10,6 @@
   "type": "Resource",
   "subtypes": ["Job"],
   "title": "Red Team",
-  "cost": 5
+  "install_cost": 5,
+  "abilities": []
 }

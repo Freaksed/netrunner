@@ -9,7 +9,7 @@
   "type": "Hardware",
   "subtypes": ["Console"],
   "title": "Carnivore",
-  "cost": 4,
+  "install_cost": 4,
   "memory": 1,
   "limit": 1,
   "abilities": [

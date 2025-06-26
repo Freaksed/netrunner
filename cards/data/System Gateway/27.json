@@ -10,5 +10,6 @@
   "type": "Resource",
   "subtypes": ["Job"],
   "title": "Telework Contract",
-  "cost": 1
+  "install_cost": 1,
+  "abilities": []
 }

@@ -8,6 +8,7 @@
   "type": "Agenda",
   "subtypes": ["Research"],
   "title": "Luminal Transubstantiation",
-  "cost": 3,
-  "value": 2
+  "advancement_requirement": 3,
+  "value": 2,
+  "abilities": []
 }

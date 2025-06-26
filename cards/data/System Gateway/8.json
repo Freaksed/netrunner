@@ -10,7 +10,8 @@
   "type": "Program",
   "subtypes": ["Virus"],
   "title": "Leech",
-  "cost": 1,
-  "memorycost": 1,
-  "strength": "-"
+  "install_cost": 1,
+  "memory_cost": 1,
+  "strength": "-",
+  "abilities": []
 }

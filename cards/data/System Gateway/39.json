@@ -10,6 +10,7 @@
   "type": "ICE",
   "subtypes": ["Barrier", "Bioroid"],
   "title": "Bran 1.0",
-  "cost": 6,
-  "strength": 6
+  "rez_cost": 6,
+  "strength": 6,
+  "abilities": []
 }

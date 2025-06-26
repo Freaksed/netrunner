@@ -9,5 +9,6 @@
   "type": "Operation",
   "subtypes": ["Transaction"],
   "title": "Government Subsidy",
-  "cost": 10
+  "play_cost": 10,
+  "abilities": []
 }

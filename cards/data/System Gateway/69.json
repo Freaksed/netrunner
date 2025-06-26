@@ -10,6 +10,7 @@
   "type": "Agenda",
   "subtypes": ["Security"],
   "title": "Send a Message",
-  "cost": 5,
-  "value": 3
+  "advancement_requirement": 5,
+  "value": 3,
+  "abilities": []
 }

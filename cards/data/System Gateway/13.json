@@ -9,5 +9,6 @@
   },
   "type": "Hardware",
   "title": "Docklands Pass",
-  "cost": 2
+  "install_cost": 2,
+  "abilities": []
 }

@@ -8,5 +8,6 @@
   },
   "type": "Operation",
   "title": "Sprint",
-  "cost": 0
+  "play_cost": 0,
+  "abilities": []
 }

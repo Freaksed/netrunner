@@ -9,7 +9,52 @@
   "type": "Program",
   "subtypes": ["Virus", "Trojan"],
   "title": "Botulus",
-  "cost": 2,
+  "install_cost": 2,
   "memorycost": 1,
-  "strength": "-"
+  "strength": "-",
+  "abilities": [
+    {
+      "type": "install_restriction",
+      "restriction": "hosted_ice",
+      "effect": "trash_if_host_uninstalled"
+    },
+    {
+      "trigger": "on_install",
+      "effects": [
+        {
+          "action": "place_counter",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "trigger": "turn_begins",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "cost": {
+        "spend_counter": {
+          "counter": "virus",
+          "amount": 1
+        }
+      },
+      "effects": [
+        [
+          {
+            "action": "break_subroutine",
+            "target": "hosted_ice",
+            "amount": 1
+          }
+        ]
+      ]
+    }
+  ]
 }

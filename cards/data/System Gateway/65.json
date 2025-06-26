@@ -10,5 +10,6 @@
   "type": "Operation",
   "subtypes": ["Gray Ops"],
   "title": "Retribution",
-  "cost": 1
+  "play_cost": 1,
+  "abilities": []
 }

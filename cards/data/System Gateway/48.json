@@ -9,5 +9,6 @@
   "type": "Operation",
   "subtypes": ["Transaction"],
   "title": "Hansei Review",
-  "cost": 5
+  "play_cost": 5,
+  "abilities": []
 }

@@ -10,6 +10,7 @@
   "subtypes": ["Megacorp"],
   "title": "NBN",
   "subtitle": "Reality Plus",
-  "cardsmin": 40,
-  "influence": 15
+  "cards_min": 40,
+  "influence": 15,
+  "abilities": []
 }

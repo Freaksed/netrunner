@@ -9,6 +9,7 @@
   },
   "type": "Asset",
   "title": "Urtica Cipher",
-  "cost": 0,
-  "trashcost": 2
+  "rez_cost": 0,
+  "trash_cost": 2,
+  "abilities": []
 }

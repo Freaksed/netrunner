@@ -9,5 +9,8 @@
   "type": "Identity",
   "title": "The Syndicate",
   "subtitle": "Profit Over Principal",
-  "subtypes": ["Megacorp"]
+  "subtypes": ["Megacorp"],
+  "cards_min": 0,
+  "influence": 0,
+  "abilities": []
 }

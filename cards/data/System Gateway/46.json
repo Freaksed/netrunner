@@ -10,6 +10,7 @@
   "type": "ICE",
   "subtypes": ["Code Gate", "AP"],
   "title": "Diviner",
-  "cost": 2,
-  "strength": 3
+  "rez_cost": 2,
+  "strength": 3,
+  "abilities": []
 }

@@ -9,6 +9,7 @@
   "type": "ICE",
   "subtypes": ["Barrier"],
   "title": "Ping",
-  "cost": 2,
-  "strength": 1
+  "rez_cost": 2,
+  "strength": 1,
+  "abilities": []
 }

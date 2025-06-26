@@ -10,6 +10,7 @@
   "subtypes": ["Megacorp"],
   "title": "Weyland Consortium",
   "subtitle": "Built to Last",
-  "cardsmin": 40,
-  "influence": 15
+  "cards_min": 40,
+  "influence": 15,
+  "abilities": []
 }

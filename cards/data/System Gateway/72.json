@@ -10,6 +10,7 @@
   "type": "ICE",
   "subtypes": ["Barrier"],
   "title": "Palisade",
-  "cost": 3,
-  "strength": 2
+  "rez_cost": 3,
+  "strength": 2,
+  "abilities": []
 }

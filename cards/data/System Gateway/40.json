@@ -9,5 +9,6 @@
   },
   "type": "Operation",
   "title": "Seamless Launch",
-  "cost": 1
+  "play_cost": 1,
+  "abilities": []
 }

@@ -10,5 +10,6 @@
   "type": "Resource",
   "subtypes": ["Connection"],
   "title": "Smartware Distributor",
-  "cost": 0
+  "install_cost": 0,
+  "abilities": []
 }

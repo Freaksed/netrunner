@@ -9,6 +9,7 @@
   },
   "type": "Upgrade",
   "title": "AMAZE Amusements",
-  "cost": 1,
-  "trashcost": 3
+  "rez_cost": 1,
+  "trash_cost": 3,
+  "abilities": []
 }

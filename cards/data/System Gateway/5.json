@@ -9,7 +9,29 @@
   "type": "Program",
   "subtypes": ["Icebreaker", "Decoder"],
   "title": "Buzzsaw",
-  "cost": 4,
-  "memorycost": 1,
-  "strength": 3
+  "install_cost": 4,
+  "memory_cost": 1,
+  "strength": 3,
+  "abilities": [
+    {
+      "type": "interface",
+      "cont": { "credits": 1 },
+      "effects": [
+        {
+          "action": "break_subroutine",
+          "amount": 2,
+          "filters": { "type": "code_gate" }
+        }
+      ]
+    },
+    {
+      "cost": { "credits": 3 },
+      "effects": [
+        {
+          "action": "boost_strength",
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

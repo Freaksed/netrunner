@@ -7,6 +7,7 @@
   },
   "type": "Agenda",
   "title": "Tomorrow's Headline",
-  "cost": 3,
-  "value": 2
+  "advancement_requirement": 3,
+  "value": 2,
+  "abilities": []
 }

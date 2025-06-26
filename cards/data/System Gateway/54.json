@@ -8,8 +8,9 @@
     "limit": 2
   },
   "type": "ICE",
-  "subtypes": ["Codegate"],
+  "subtypes": ["Code Gate"],
   "title": "Funhouse",
-  "cost": 5,
-  "strength": 4
+  "rez_cost": 5,
+  "strength": 4,
+  "abilities": []
 }

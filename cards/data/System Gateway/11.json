@@ -9,5 +9,6 @@
   },
   "type": "Event",
   "title": "Mutual Favor",
-  "cost": 0
+  "play_cost": 0,
+  "abilities": []
 }

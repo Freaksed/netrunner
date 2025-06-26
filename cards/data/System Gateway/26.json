@@ -10,7 +10,8 @@
   "type": "Program",
   "subtypes": ["Icebreaker", "Decoder"],
   "title": "Unity",
-  "cost": 3,
-  "memorycost": 1,
-  "strength": 1
+  "install_cost": 3,
+  "memory_cost": 1,
+  "strength": 1,
+  "abilities": []
 }

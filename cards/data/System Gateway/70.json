@@ -10,6 +10,7 @@
   "type": "Agenda",
   "subtypes": ["Expansion"],
   "title": "Superconducting Hub",
-  "cost": 3,
-  "value": 1
+  "advancement_requirement": 3,
+  "value": 1,
+  "abilities": []
 }

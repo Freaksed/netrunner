@@ -1,33 +1,33 @@
 {
   "deck": {
-	"set": "System Gateway",
-	"id": 2,
-	"side": "Runner",
-	"faction": "Anarch",
-	"influence": 1,
-	"limit": 2
+    "set": "System Gateway",
+    "id": 2,
+    "side": "Runner",
+    "faction": "Anarch",
+    "influence": 1,
+    "limit": 2
   },
   "type": "Event",
   "title": "Wildcat Strike",
-  "cost": 2,
+  "play_cost": 2,
   "abilities": [
-	{
-	  "action": "present_choice",
-	  "target": "corp",
-	  "choices": [
-		{
-		  "choice": "Draw 4 cards",
-		  "action": "draw_cards",
-		  "target": "runner",
-		  "amount": 4
-		},
-		{
-		  "choice": "Gain 6[c]",
-		  "action": "gain_credits",
-		  "target": "runner",
-		  "amount": 6
-		}
-	  ]
-	}
+    {
+      "action": "present_choice",
+      "target": "corp",
+      "choices": [
+        {
+          "choice": "Draw 4 cards",
+          "action": "draw_cards",
+          "target": "runner",
+          "amount": 4
+        },
+        {
+          "choice": "Gain 6[c]",
+          "action": "gain_credits",
+          "target": "runner",
+          "amount": 6
+        }
+      ]
+    }
   ]
 }

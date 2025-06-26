@@ -9,5 +9,6 @@
   },
   "type": "Event",
   "title": "Creative Commission",
-  "cost": 1
+  "play_cost": 1,
+  "abilities": []
 }

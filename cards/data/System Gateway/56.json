@@ -10,5 +10,6 @@
   "type": "Operation",
   "subtypes": ["Transaction"],
   "title": "Predictive Planogram",
-  "cost": 0
+  "play_cost": 0,
+  "abilities": []
 }

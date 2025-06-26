@@ -8,6 +8,7 @@
   },
   "type": "Upgrade",
   "title": "Anoetic Void",
-  "cost": 0,
-  "trashcost": 1
+  "rez_cost": 0,
+  "trash_cost": 1,
+  "abilities": []
 }

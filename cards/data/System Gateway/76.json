@@ -10,6 +10,9 @@
   "title": "The Catalyst",
   "subtitle": "Convention Breaker",
   "subtypes": ["Natural"],
-  "memorylimit": 4,
-  "link": 0
+  "memory": 4,
+  "cards_min": 0,
+  "influence": 0,
+  "link": 0,
+  "abilities": []
 }

@@ -9,7 +9,8 @@
   "type": "Program",
   "subtypes": ["Icebreaker", "Fracter"],
   "title": "Marjanah",
-  "cost": 0,
-  "memorycost": 1,
-  "strength": 1
+  "install_cost": 0,
+  "memory_cost": 1,
+  "strength": 1,
+  "abilities": []
 }

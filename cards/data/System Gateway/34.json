@@ -10,5 +10,6 @@
   "type": "Resource",
   "subtypes": ["Genetics"],
   "title": "Verbal Plasticity",
-  "cost": 3
+  "install_cost": 3,
+  "abilities": []
 }

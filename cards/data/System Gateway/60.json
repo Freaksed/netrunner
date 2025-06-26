@@ -8,6 +8,7 @@
   "type": "Agenda",
   "subtypes": ["Security"],
   "title": "Above the Law",
-  "cost": 3,
-  "value": 2
+  "advancement_requirement": 3,
+  "value": 2,
+  "abilities": []
 }

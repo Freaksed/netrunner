@@ -10,5 +10,6 @@
   "type": "Event",
   "subtypes": ["Run"],
   "title": "Tread Lightly",
-  "cost": 1
+  "play_cost": 1,
+  "abilities": []
 }

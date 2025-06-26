@@ -10,6 +10,7 @@
   "type": "Asset",
   "subtypes": ["Advertisement"],
   "title": "Nico Campaign",
-  "cost": 2,
-  "trashcost": 2
+  "rez_cost": 2,
+  "trash_cost": 2,
+  "abilities": []
 }

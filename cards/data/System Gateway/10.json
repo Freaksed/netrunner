@@ -10,8 +10,9 @@
   "subtypes": ["Cyborg"],
   "title": "Zahya Sadeghi",
   "subtitle": "Versatile Smuggler",
-  "memorylimit": 4,
+  "memory": 4,
   "link": 0,
-  "cardsmin": 40,
-  "influence": 15
+  "cards_min": 40,
+  "influence": 15,
+  "abilities": []
 }

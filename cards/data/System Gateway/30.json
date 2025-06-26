@@ -9,5 +9,6 @@
   },
   "type": "Event",
   "title": "Sure Gamble",
-  "cost": 5
+  "play_cost": 5,
+  "abilities": []
 }

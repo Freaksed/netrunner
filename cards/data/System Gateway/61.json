@@ -9,6 +9,7 @@
   "type": "Asset",
   "subtypes": ["Hostile"],
   "title": "Clearinghouse",
-  "cost": 0,
-  "trashcost": 3
+  "rez_cost": 0,
+  "trash_cost": 3,
+  "abilities": []
 }

@@ -9,6 +9,7 @@
   "type": "ICE",
   "subtypes": ["Barrier"],
   "title": "Pharos",
-  "cost": 7,
-  "strength": 5
+  "rez_cost": 7,
+  "strength": 5,
+  "abilities": []
 }

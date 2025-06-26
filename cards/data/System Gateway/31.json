@@ -9,6 +9,7 @@
   "type": "Hardware",
   "subtypes": ["Chip"],
   "title": "T400 Memory Diamond",
-  "cost": 2,
-  "memory": 1
+  "install_cost": 2,
+  "memory": 1,
+  "abilities": []
 }

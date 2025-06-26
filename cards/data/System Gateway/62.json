@@ -7,8 +7,9 @@
     "influence": 2
   },
   "type": "ICE",
-  "subtypes": ["Sentry", "Detroyer"],
+  "subtypes": ["Sentry", "Destroyer"],
   "title": "Ballista",
-  "cost": 5,
-  "strength": 4
+  "rez_cost": 5,
+  "strength": 4,
+  "abilities": []
 }

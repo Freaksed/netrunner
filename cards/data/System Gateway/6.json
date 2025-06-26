@@ -10,7 +10,29 @@
   "type": "Program",
   "subtypes": ["Icebreaker", "Fracter"],
   "title": "Cleaver",
-  "cost": 3,
-  "memorycost": 1,
-  "strength": 3
+  "install_cost": 3,
+  "memory_cost": 1,
+  "strength": 3,
+  "abilities": [
+    {
+      "type": "interface",
+      "cont": { "credits": 1 },
+      "effects": [
+        {
+          "action": "break_subroutine",
+          "amount": 2,
+          "filters": { "type": "barrier" }
+        }
+      ]
+    },
+    {
+      "cost": { "credits": 2 },
+      "effects": [
+        {
+          "action": "boost_strength",
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

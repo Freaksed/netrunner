@@ -10,7 +10,8 @@
   "type": "Program",
   "subtypes": ["Icebreaker", "AI"],
   "title": "Mayfly",
-  "cost": 1,
-  "memorycost": 2,
-  "strength": 1
+  "install_cost": 1,
+  "memory_cost": 2,
+  "strength": 1,
+  "abilities": []
 }

@@ -9,7 +9,8 @@
   "type": "Program",
   "subtypes": ["Virus", "Trojan"],
   "title": "Tranquilizer",
-  "cost": 2,
-  "memorycost": 1,
-  "strength": "-"
+  "install_cost": 2,
+  "memory_cost": 1,
+  "strength": "-",
+  "abilities": []
 }

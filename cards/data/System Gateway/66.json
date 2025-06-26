@@ -8,6 +8,7 @@
   },
   "type": "Upgrade",
   "title": "Malapert Data Vault",
-  "cost": 1,
-  "trashcost": 4
+  "rez_cost": 1,
+  "trash_cost": 4,
+  "abilities": []
 }

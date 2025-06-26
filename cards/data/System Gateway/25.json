@@ -9,7 +9,8 @@
   "type": "Program",
   "subtypes": ["Icebreaker", "Killer"],
   "title": "Echelon",
-  "cost": 3,
-  "memorycost": 1,
-  "strength": 0
+  "install_cost": 3,
+  "memory_cost": 1,
+  "strength": 0,
+  "abilities": []
 }

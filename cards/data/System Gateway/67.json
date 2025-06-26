@@ -10,6 +10,7 @@
   "type": "Agenda",
   "subtypes": ["Expansion"],
   "title": "Offworld Office",
-  "cost": 4,
-  "value": 2
+  "advancement_requirement": 4,
+  "value": 2,
+  "abilities": []
 }

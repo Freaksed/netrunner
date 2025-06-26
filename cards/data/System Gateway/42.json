@@ -9,6 +9,7 @@
   },
   "type": "Upgrade",
   "title": "Manegarm Skunkworks",
-  "cost": 2,
-  "trashcost": 3
+  "rez_cost": 2,
+  "trash_cost": 3,
+  "abilities": []
 }

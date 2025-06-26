@@ -9,5 +9,6 @@
   "type": "Operation",
   "subtypes": ["Gray Ops"],
   "title": "Neurospike",
-  "cost": 3
+  "play_cost": 3,
+  "abilities": []
 }

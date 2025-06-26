@@ -9,5 +9,6 @@
   },
   "type": "Event",
   "title": "VRcation",
-  "cost": 1
+  "play_cost": 1,
+  "abilities": []
 }

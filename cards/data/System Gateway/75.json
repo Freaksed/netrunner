@@ -10,5 +10,6 @@
   "type": "Operation",
   "subtypes": ["Transaction"],
   "title": "Hedge Fund",
-  "cost": 5
+  "play_cost": 5,
+  "abilities": []
 }

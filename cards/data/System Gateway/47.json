@@ -10,6 +10,7 @@
   "type": "ICE",
   "subtypes": ["Sentry", "AP"],
   "title": "Karuna",
-  "cost": 4,
-  "strength": 3
+  "rez_cost": 4,
+  "strength": 3,
+  "abilities": []
 }

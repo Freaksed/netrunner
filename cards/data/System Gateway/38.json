@@ -9,6 +9,7 @@
   "type": "ICE",
   "subtypes": ["Sentry", "Bioroid", "Destroyer"],
   "title": "Ansel 1.0",
-  "cost": 6,
-  "strength": 4
+  "rez_cost": 6,
+  "strength": 4,
+  "abilities": []
 }
