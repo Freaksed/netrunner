@@ -1,32 +1,33 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Event Schema",
-  "type": "object",
-  "properties": {
-    "deck": { "$ref": "deck.schema.json" },
-    "title": { "type": "string" },
-    "type": { "const": "Event" },
-    "subtypes": {
-      "type": "array",
-      "items": {
-        "enum": [
-          "Condition",
-          "Current",
-          "Double",
-          "Job",
-          "Mod",
-          "Orgcrime",
-          "Priority",
-          "Run",
-          "Sabotage",
-          "Stealth",
-          "Terminal"
-        ]
+  "allOf": [
+    { "$ref": "./base.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "subtypes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "Condition",
+              "Current",
+              "Double",
+              "Job",
+              "Mod",
+              "Orgcrime",
+              "Priority",
+              "Run",
+              "Sabotage",
+              "Stealth",
+              "Terminal"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "play_cost": { "type": "integer" }
       },
-      "uniqueItems": true
-    },
-    "play_cost": { "type": "integer" },
-    "abilities": { "type": "array" }
-  },
-  "required": ["deck", "title", "type", "play_cost", "abilities"]
+      "required": ["play_cost"]
+    }
+  ]
 }

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "card_effect.schema.json",
+  "properties": {
+    "action": {
+      "enum": [
+        "gain_credits",
+        "draw_cards",
+        "trash_cards",
+        "remove_cards",
+        "add_virus",
+        "remove_virus",
+        "add_counters",
+        "remove_counters",
+        "gain_tags",
+        "lose_tags",
+        "gain_bad_publicity",
+        "lose_bad_publicity",
+        "gain_links",
+        "lose_links"
+      ]
+    },
+    "target": {
+      "enum": ["runner", "corp", "self", "opponent"]
+    },
+    "amount": {
+      "type": "integer"
+    }
+  }
+}

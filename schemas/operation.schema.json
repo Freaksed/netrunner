@@ -1,35 +1,36 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Operation Schema",
-  "type": "object",
-  "properties": {
-    "deck": { "$ref": "deck.schema.json" },
-    "title": { "type": "string" },
-    "type": { "const": "Operation" },
-    "subtypes": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "Alliance",
-          "Black Ops",
-          "Condition",
-          "Current",
-          "Double",
-          "Gray Ops",
-          "Illicit",
-          "Lockdown",
-          "Mandate",
-          "Psi",
-          "Reprisal",
-          "Terminal",
-          "Transaction",
-          "Triple"
-        ]
-      }
-    },
-    "play_cost": { "type": "integer" },
-    "abilities": { "type": "array" }
-  },
-  "required": ["deck", "title", "type", "play_cost", "abilities"]
+  "allOf": [
+    { "$ref": "./base.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "subtypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Alliance",
+              "Black Ops",
+              "Condition",
+              "Current",
+              "Double",
+              "Gray Ops",
+              "Illicit",
+              "Lockdown",
+              "Mandate",
+              "Psi",
+              "Reprisal",
+              "Terminal",
+              "Transaction",
+              "Triple"
+            ]
+          }
+        },
+        "play_cost": { "type": "integer" }
+      },
+      "required": ["play_cost"]
+    }
+  ]
 }

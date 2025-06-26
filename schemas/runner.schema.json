@@ -1,25 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Runner Schema",
-  "type": "object",
-  "properties": {
-    "deck": { "$ref": "./deck.schema.json" },
-    "cards_min": { "type": "integer" },
-    "influence": { "type": "integer" },
-    "type": { "const": "Identity" },
-    "subtypes": { "type": "array" },
-    "memory": { "type": "integer" },
-    "link": { "type": "integer" },
-    "abilities": { "type": "array" }
-  },
-  "required": [
-    "deck",
-    "cards_min",
-    "influence",
-    "type",
-    "subtypes",
-    "memory",
-    "link",
-    "abilities"
+  "allOf": [
+    { "$ref": "./base.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "cards_min": { "type": "integer" },
+        "influence": { "type": "integer" },
+        "subtypes": { "type": "array" },
+        "memory": { "type": "integer" },
+        "link": { "type": "integer" }
+      },
+      "required": ["cards_min", "influence", "subtypes", "memory", "link"]
+    }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "base.schema.json",
+  "type": "object",
+  "properties": {
+    "deck": { "$ref": "./deck.schema.json" },
+    "title": { "type": "string" },
+    "type": { "type": "string" },
+    "text": { "type": "string" },
+    "abilities": {
+      "type": "array",
+      "items": { "$ref": "ability.schema.json" }
+    }
+  },
+  "required": ["deck", "title", "type", "text", "abilities"]
+}

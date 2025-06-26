@@ -1,23 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Corp Schema",
-  "type": "object",
-  "properties": {
-    "deck": { "$ref": "deck.schema.json" },
-    "title": { "type": "string" },
-    "cards_min": { "type": "integer" },
-    "influence": { "type": "integer" },
-    "type": { "const": "Identity" },
-    "subtypes": { "type": "array" },
-    "abilities": { "type": "array" }
-  },
-  "required": [
-    "deck",
-    "title",
-    "cards_min",
-    "influence",
-    "type",
-    "subtypes",
-    "abilities"
+  "allOf": [
+    { "$ref": "./base.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "cards_min": { "type": "integer" },
+        "influence": { "type": "integer" },
+        "subtypes": { "type": "array" }
+      },
+      "required": ["cards_min", "influence", "subtypes"]
+    }
   ]
 }

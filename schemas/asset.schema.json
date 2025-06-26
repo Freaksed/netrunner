@@ -1,48 +1,49 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Asset Schema",
-  "type": "object",
-  "properties": {
-    "deck": { "$ref": "deck.schema.json" },
-    "title": { "type": "string" },
-    "type": { "const": "Asset" },
-    "subtypes": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "Academic",
-          "Advertisement",
-          "Alliance",
-          "Ambush",
-          "Beanstalk",
-          "Bioroid",
-          "Cast",
-          "Character",
-          "Clone",
-          "Corporation",
-          "Deep Net",
-          "Enforcer",
-          "Executive",
-          "Facility",
-          "Government",
-          "Hostile",
-          "Illicit",
-          "Industrial",
-          "Political",
-          "Psi",
-          "Region",
-          "Research",
-          "Ritzy",
-          "Seedy",
-          "Transaction"
-        ]
+  "allOf": [
+    { "$ref": "./base.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "subtypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Academic",
+              "Advertisement",
+              "Alliance",
+              "Ambush",
+              "Beanstalk",
+              "Bioroid",
+              "Cast",
+              "Character",
+              "Clone",
+              "Corporation",
+              "Deep Net",
+              "Enforcer",
+              "Executive",
+              "Facility",
+              "Government",
+              "Hostile",
+              "Illicit",
+              "Industrial",
+              "Political",
+              "Psi",
+              "Region",
+              "Research",
+              "Ritzy",
+              "Seedy",
+              "Transaction"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "rez_cost": { "type": "integer" },
+        "trash_cost": { "type": "integer" }
       },
-      "uniqueItems": true
-    },
-    "rez_cost": { "type": "integer" },
-    "trash_cost": { "type": "integer" },
-    "abilities": { "type": "array" }
-  },
-  "required": ["deck", "title", "type", "rez_cost", "trash_cost", "abilities"]
+      "required": ["rez_cost", "trash_cost"]
+    }
+  ]
 }

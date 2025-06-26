@@ -1,42 +1,36 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Agenda Schema",
-  "type": "object",
-  "properties": {
-    "deck": { "$ref": "deck.schema.json" },
-    "title": { "type": "string" },
-    "type": { "const": "Agenda" },
-    "subtypes": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "Ambush",
-          "Assassination",
-          "Expansion",
-          "Expendable",
-          "Initiative",
-          "NEXT",
-          "Psi",
-          "Public",
-          "Research",
-          "Security",
-          "Sensie",
-          "Source"
-        ],
-        "uniqueItems": true
-      }
-    },
-    "advancement_requirement": { "type": "integer" },
-    "value": { "type": "integer" },
-    "abilities": { "type": "array" }
-  },
-  "required": [
-    "deck",
-    "title",
-    "type",
-    "advancement_requirement",
-    "value",
-    "abilities"
+  "allOf": [
+    { "$ref": "./base.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "subtypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Ambush",
+              "Assassination",
+              "Expansion",
+              "Expendable",
+              "Initiative",
+              "NEXT",
+              "Psi",
+              "Public",
+              "Research",
+              "Security",
+              "Sensie",
+              "Source"
+            ],
+            "uniqueItems": true
+          }
+        },
+        "advancement_requirement": { "type": "integer" },
+        "value": { "type": "integer" }
+      },
+      "required": ["advancement_requirement", "value"]
+    }
   ]
 }

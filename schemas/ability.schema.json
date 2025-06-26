@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ability.schema.json",
+  "title": "Ability",
+  "properties": {
+    "trigger": {
+      "enum": [
+        "access",
+        "action",
+        "advance",
+        "approach",
+        "breach",
+        "clicks",
+        "credits",
+        "encounter",
+        "install",
+        "interface",
+        "played",
+        "phase",
+        "remove",
+        "rez",
+        "run",
+        "score",
+        "steal",
+        "tag",
+        "trash",
+        "turn"
+      ]
+    },
+    "phase": { "enum": ["begin", "end", "success", "failure"] },
+    "target": {
+      "enum": [
+        "this_card",
+        "accessed_card",
+        "virus",
+        "program",
+        "server",
+        "HQ",
+        "R&D",
+        "Heap",
+        "Stack",
+        "discard",
+        "draw",
+        "cost"
+      ]
+    },
+    "trigger_restriction": {
+      "enum": [
+        "first_per_turn",
+        "once_per_turn",
+        "this_turn",
+        "installed",
+        "even",
+        "odd",
+        "gain",
+        "lose"
+      ]
+    },
+    "effects": {
+      "type": "array",
+      "$ref": "card_effect.schema.json"
+    },
+    "source": { "type": "string" }
+  }
+}

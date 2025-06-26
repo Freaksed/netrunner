@@ -5,9 +5,9 @@
   "properties": {
     "set": { "type": "string" },
     "id": { "type": "integer" },
-    "alliance": {
+    "side": {
       "type": "string",
-      "enum": ["corp", "runner"]
+      "enum": ["Corp", "Runner"]
     },
     "faction": {
       "type": "string",
@@ -24,5 +24,6 @@
     },
     "influence": { "type": "integer" },
     "limit": { "type": "integer" }
-  }
+  },
+  "required": ["set", "id", "side", "faction"]
 }
