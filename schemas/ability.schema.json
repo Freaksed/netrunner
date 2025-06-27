@@ -7,6 +7,32 @@
       "type": "string",
       "enum": ["triggered", "paid", "install_restriction", "static"]
     },
+    "condition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "installed_card_has_subtype",
+            "server_in",
+            "successful_run",
+            "unsuccessful_run"
+          ]
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "servers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["HQ", "R&D", "Archives", "Remote"]
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["type", "subtype"]
+    },
     "trigger": {
       "type": "string",
       "enum": [
@@ -83,7 +109,20 @@
           "const": true
         },
         "trash_hosted": {
-          "type": "string"
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "properties": {
+                "zone": {
+                  "type": "string",
+                  "enum": ["grip", "heap", "stack", "hosted"]
+                },
+                "amount": { "type": "integer", "minimum": 1 }
+              },
+              "required": ["zone", "amount"]
+            }
+          ]
         },
         "remove_counter": {
           "type": "object",

@@ -89,7 +89,9 @@
             "lose_link",
             "uninstall_card",
             "score_agenda",
-            "steal_agenda"
+            "steal_agenda",
+            "gain_strength",
+            "modify_ice_rez_cost"
           ]
         },
         "target": {
@@ -105,11 +107,20 @@
             "server",
             "stack_top",
             "hq_random",
-            "archives",
-            "heap",
             "identity",
-            "all_subroutines"
+            "all_subroutines",
+            "installed_card",
+            "encountered_ice",
+            "HQ",
+            "R&D",
+            "Archives",
+            "Remote",
+            "Heap"
           ]
+        },
+        "per": {
+          "type": "string",
+          "enum": ["card_accessed", "subroutine_broken", "counter"]
         },
         "amount": {
           "type": "integer",
