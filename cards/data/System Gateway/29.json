@@ -12,5 +12,20 @@
   "title": "Overclock",
   "play_cost": 1,
   "text": "Place 5[c] on this event, then run any server. You can spend hosted credits during that run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "credit",
+          "amount": 5
+        },
+        { "action": "run_server", "target": "server" }
+      ]
+    }
+  ]
 }

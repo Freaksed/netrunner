@@ -13,5 +13,18 @@
   "advancement_requirement": 3,
   "value": 1,
   "text": "When you score this agenda, you may draw 2 cards.\nYou get +2 maximum hand size.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [{ "action": "draw_card", "target": "corp", "amount": 2 }]
+    },
+    {
+      "type": "static",
+      "effects": [
+        { "action": "modify_max_hand_size", "target": "corp", "amount": 2 }
+      ]
+    }
+  ]
 }

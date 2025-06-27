@@ -16,24 +16,16 @@
   "text": "Interface -> 1[c]: Break up to 2 barries subroutines.\n2[c]: +1 strength.",
   "abilities": [
     {
-      "type": "interface",
-      "cont": { "credits": 1 },
+      "type": "paid",
+      "cost": { "credit": 1 },
       "effects": [
-        {
-          "action": "break_subroutine",
-          "amount": 2,
-          "filters": { "type": "barrier" }
-        }
+        { "action": "break_subroutine", "target": "hosted_ice", "amount": 2 }
       ]
     },
     {
-      "cost": { "credits": 2 },
-      "effects": [
-        {
-          "action": "boost_strength",
-          "amount": 1
-        }
-      ]
+      "type": "paid",
+      "cost": { "credit": 2 },
+      "effects": [{ "action": "gain_strength", "target": "self", "amount": 1 }]
     }
   ]
 }

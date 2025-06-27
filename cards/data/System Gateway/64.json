@@ -11,5 +11,12 @@
   "title": "Government Subsidy",
   "play_cost": 10,
   "text": "Gain 15[c].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "effects": [{ "action": "gain_credit", "target": "corp", "amount": 15 }]
+    }
+  ]
 }

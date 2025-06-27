@@ -12,5 +12,25 @@
   "title": "Telework Contract",
   "install_cost": 1,
   "text": "When you install this resource, load 9[c] onto it. When it is empty, trash it.\n[click]: Take 3[c] from this resource. Use this ability only once per turn.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_install",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "credit",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "click": 1 },
+      "effects": [{ "action": "gain_credit", "target": "runner", "amount": 3 }],
+      "limit_per_turn": 1
+    }
+  ]
 }

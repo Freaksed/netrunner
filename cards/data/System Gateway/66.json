@@ -11,5 +11,24 @@
   "rez_cost": 1,
   "trash_cost": 4,
   "text": "Whenever you score an agenda from the root of this server, you may search R&D for 1 non-agenda card and reveal it. (Shuffle R&D after searching it.) Add that card to HQ.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "condition": {
+        "type": "agenda_scored_from_server_root",
+        "server": "this"
+      },
+      "effects": [
+        {
+          "action": "search_rnd",
+          "target": "corp",
+          "card_type": "non-agenda",
+          "reveal": true,
+          "destination": "HQ"
+        }
+      ]
+    }
+  ]
 }

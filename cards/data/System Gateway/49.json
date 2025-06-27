@@ -11,5 +11,19 @@
   "title": "Neurospike",
   "play_cost": 3,
   "text": "Do X net damage, where X is equal to the sum of the printed agenda points on agendas you scored this turn.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "do_damage",
+          "target": "runner",
+          "damage": "net",
+          "amount": "agenda_points_scored_this_turn"
+        }
+      ]
+    }
+  ]
 }

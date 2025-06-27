@@ -12,5 +12,21 @@
   "title": "Predictive Planogram",
   "play_cost": 0,
   "text": "Resolve 1 of the following. If the Runner is tagged, you may resolve both instead.\nGain 3[c].\nDraw 3 cards.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "conditional_choose_or_both",
+          "condition": { "type": "runner_is_tagged" },
+          "options": [
+            { "action": "gain_credit", "target": "corp", "amount": 3 },
+            { "action": "draw_card", "target": "corp", "amount": 3 }
+          ]
+        }
+      ]
+    }
+  ]
 }

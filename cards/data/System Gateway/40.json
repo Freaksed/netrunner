@@ -11,5 +11,22 @@
   "title": "Seamless Launch",
   "play_cost": 1,
   "text": "Place 2 advancement counters on 1 installed card that you did not install this turn.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "installed_card",
+          "counter": "advancement",
+          "amount": 2,
+          "condition": {
+            "type": "not_installed_this_turn"
+          }
+        }
+      ]
+    }
+  ]
 }

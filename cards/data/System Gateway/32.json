@@ -14,5 +14,24 @@
   "memory_cost": 2,
   "strength": 1,
   "text": "Interface -> 1[c]: Break 1 subroutine. When this run ends, trash this program.\n1[c]: +1 strength.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "paid",
+      "cost": { "credit": 1 },
+      "effects": [
+        { "action": "break_subroutine", "target": "hosted_ice", "amount": 1 }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "credit": 1 },
+      "effects": [{ "action": "gain_strength", "target": "self", "amount": 1 }]
+    },
+    {
+      "type": "triggered",
+      "trigger": "run_ends",
+      "player": "runner",
+      "effects": [{ "action": "trash_card", "target": "self" }]
+    }
+  ]
 }

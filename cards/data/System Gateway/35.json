@@ -13,5 +13,25 @@
   "cards_min": 40,
   "influence": 15,
   "text": "You get +1 maximum hand size.\nWhenever you score an agenda, you may add 1 card from Archives to HQ.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "static",
+      "effects": [
+        { "action": "modify_max_hand_size", "target": "corp", "amount": 1 }
+      ]
+    },
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "move_card",
+          "target": "archives",
+          "destination": "HQ",
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

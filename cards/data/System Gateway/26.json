@@ -14,5 +14,25 @@
   "memory_cost": 1,
   "strength": 1,
   "text": "Interface -> 1[c]: Break 1 code gate subroutine.\n1[c]: +X strength. X is equal to the number of installed icebreakers (including this one).",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "paid",
+      "cost": { "credit": 1 },
+      "effects": [
+        { "action": "break_subroutine", "target": "hosted_ice", "amount": 1 }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "credit": 1 },
+      "effects": [
+        {
+          "action": "gain_strength",
+          "target": "self",
+          "amount": 1,
+          "per": "installed_icebreaker"
+        }
+      ]
+    }
+  ]
 }

@@ -13,5 +13,26 @@
   "rez_cost": 5,
   "strength": 4,
   "text": "When the Runner encounters this ice, end the run unless the Runner takes 1 tag.\n[subroutine] Give the Runner 1 tag unless they pay 4[c].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "encounter_begins",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "runner_must_pay_or",
+          "options": [{ "take_tag": 1 }, { "end_the_run": true }]
+        }
+      ]
+    },
+    {
+      "type": "subroutine",
+      "effects": [
+        {
+          "action": "runner_must_pay_or",
+          "options": [{ "give_tag": 1 }, { "credit": 4 }]
+        }
+      ]
+    }
+  ]
 }

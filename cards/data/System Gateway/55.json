@@ -12,5 +12,20 @@
   "rez_cost": 2,
   "strength": 1,
   "text": "When you rez this ice during a run against this server, give the Runner 1 tag.\n[subroutine] End the run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_rez",
+      "player": "corp",
+      "condition": {
+        "type": "run_is_active",
+        "server": "this"
+      },
+      "effects": [{ "action": "give_tag", "target": "runner", "amount": 1 }]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "end_the_run" }]
+    }
+  ]
 }

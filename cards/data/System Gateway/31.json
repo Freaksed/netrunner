@@ -12,5 +12,13 @@
   "install_cost": 2,
   "memory": 1,
   "text": "+1[m]\nYou get +1 maximum hand size.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "static",
+      "effects": [
+        { "action": "gain_memory", "target": "runner", "amount": 1 },
+        { "action": "modify_max_hand_size", "target": "runner", "amount": 1 }
+      ]
+    }
+  ]
 }

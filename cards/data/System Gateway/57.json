@@ -12,5 +12,21 @@
   "title": "Public Trail",
   "play_cost": 4,
   "text": "Play only if the Runner made a successful run during their last turn.\nGive the Runner 1 tag unless they pay 8[c].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "condition": {
+        "type": "runner_made_successful_run",
+        "turn": "last"
+      },
+      "effects": [
+        {
+          "action": "runner_must_pay_or",
+          "options": [{ "give_tag": 1 }, { "credit": 8 }]
+        }
+      ]
+    }
+  ]
 }

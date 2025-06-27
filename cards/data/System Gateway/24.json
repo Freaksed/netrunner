@@ -14,5 +14,37 @@
   "memory_cost": 1,
   "strength": "-",
   "text": "Whenever a successful run on R&D ends, you may place 1 virus counter in this program.\n[click]: Run R&D. If successful, access X additional cards when you breach R&D. X is equal to the number of hosted virus counters.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "run_successful",
+      "player": "runner",
+      "condition": {
+        "type": "server_in",
+        "servers": ["R&D"]
+      },
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "click": 1 },
+      "effects": [
+        { "action": "run_server", "target": "R&D" },
+        {
+          "action": "access_additional",
+          "target": "R&D",
+          "amount": 1,
+          "per": "counter",
+          "counter": "virus"
+        }
+      ]
+    }
+  ]
 }

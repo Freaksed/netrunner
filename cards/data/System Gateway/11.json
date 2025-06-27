@@ -11,5 +11,32 @@
   "title": "Mutual Favor",
   "play_cost": 0,
   "text": "Search you stack for 1 icebreaker and reveal it. (Shuffle your stack after searching it.) If you made a successful run this turn, you may install that program. If you do not, add it to your grip.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "reveal_card",
+          "target": "stack_top",
+          "card_type": "icebreaker"
+        },
+        {
+          "action": "install_card",
+          "target": "stack_top",
+          "condition": {
+            "type": "successful_run"
+          }
+        },
+        {
+          "action": "add_to_grip",
+          "target": "stack_top",
+          "condition": {
+            "type": "unsuccessful_run"
+          }
+        }
+      ]
+    }
+  ]
 }

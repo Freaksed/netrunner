@@ -12,5 +12,12 @@
   "install_cost": 2,
   "memory": 1,
   "text": "+1[m]\nThe first program you install each turn costs 1[c] less to install.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "install_restriction",
+      "restriction": "first_program_per_turn",
+      "effect": "reduce_install_cost",
+      "amount": 1
+    }
+  ]
 }

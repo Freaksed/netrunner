@@ -10,5 +10,24 @@
   "advancement_requirement": 3,
   "value": 2,
   "text": "When you score this agenda, trash any number of cards from HQ. Shuffle up to 3 cards from Archives into R&D.\nLimit 1 per deck.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "trash_card",
+          "target": "HQ",
+          "amount": "any"
+        },
+        {
+          "action": "shuffle_into_deck",
+          "target": "archives",
+          "destination": "R&D",
+          "amount": 3
+        }
+      ]
+    }
+  ]
 }

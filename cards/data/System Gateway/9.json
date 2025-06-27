@@ -11,5 +11,23 @@
   "title": "Cookbook",
   "install_cost": 1,
   "text": "Whenever you install a virus program, you may place 1 virus counter on it.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "card_installed",
+      "player": "runner",
+      "condition": {
+        "type": "installed_card_has_subtype",
+        "subtype": "Virus"
+      },
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "installed_card",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

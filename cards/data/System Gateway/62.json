@@ -12,5 +12,22 @@
   "rez_cost": 5,
   "strength": 4,
   "text": "[subroutine] Trash 1 installed program or end the run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "subroutine",
+      "effects": [
+        {
+          "action": "runner_must_choose",
+          "options": [
+            {
+              "action": "trash_card",
+              "target": "runner_installed_program",
+              "amount": 1
+            },
+            { "action": "end_the_run" }
+          ]
+        }
+      ]
+    }
+  ]
 }

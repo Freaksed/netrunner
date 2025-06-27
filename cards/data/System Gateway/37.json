@@ -13,5 +13,38 @@
   "rez_cost": 2,
   "trash_cost": 2,
   "text": "When you rez this asset, load 9[c] onto it. When it is empty, trash it and draw 1 card.\nWhen your turn begins, take 3[c] from this asset.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_rez",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "credit",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "type": "triggered",
+      "trigger": "turn_begins",
+      "player": "corp",
+      "effects": [{ "action": "gain_credit", "target": "corp", "amount": 3 }]
+    },
+    {
+      "type": "triggered",
+      "trigger": "counter_removed",
+      "player": "corp",
+      "condition": {
+        "type": "counter_empty",
+        "counter": "credit"
+      },
+      "effects": [
+        { "action": "trash_card", "target": "self" },
+        { "action": "draw_card", "target": "corp", "amount": 1 }
+      ]
+    }
+  ]
 }

@@ -13,5 +13,22 @@
   "memory_cost": 1,
   "strength": "-",
   "text": "Install only on a piece of ice. (If the host ice is uninstalled, this program is trashed.)\nWhen you install this program and when your turn begins, place 1 virus counter on this program. Then, if there are 3 or more hosted virus counters, derez host ice.",
-  "abilities": []
+  "abilities": [
+    [
+      {
+        "type": "paid",
+        "cost": { "credit": 1 },
+        "effects": [
+          { "action": "break_subroutine", "target": "hosted_ice", "amount": 1 }
+        ]
+      },
+      {
+        "type": "paid",
+        "cost": { "credit": 2 },
+        "effects": [
+          { "action": "gain_strength", "target": "self", "amount": 3 }
+        ]
+      }
+    ]
+  ]
 }

@@ -14,25 +14,21 @@
   "strength": 3,
   "text": "Interface -> 1[c]: Break up to 2 code gate subroutines.\n3[c]: +1 strength.",
   "abilities": [
-    {
-      "type": "interface",
-      "cont": { "credits": 1 },
-      "effects": [
-        {
-          "action": "break_subroutine",
-          "amount": 2,
-          "filters": { "type": "code_gate" }
-        }
-      ]
-    },
-    {
-      "cost": { "credits": 3 },
-      "effects": [
-        {
-          "action": "boost_strength",
-          "amount": 1
-        }
-      ]
-    }
+    [
+      {
+        "type": "paid",
+        "cost": { "credit": 1 },
+        "effects": [
+          { "action": "break_subroutine", "target": "hosted_ice", "amount": 2 }
+        ]
+      },
+      {
+        "type": "paid",
+        "cost": { "credit": 3 },
+        "effects": [
+          { "action": "gain_strength", "target": "self", "amount": 1 }
+        ]
+      }
+    ]
   ]
 }

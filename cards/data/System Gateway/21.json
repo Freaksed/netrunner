@@ -11,5 +11,20 @@
   "title": "VRcation",
   "play_cost": 1,
   "text": "Draw 4 cards. If you have any [click] remaining, lose 1[click].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "runner",
+      "effects": [
+        { "action": "draw_card", "target": "runner", "amount": 4 },
+        {
+          "action": "lose_click",
+          "target": "runner",
+          "amount": 1,
+          "condition": { "type": "runner_has_clicks" }
+        }
+      ]
+    }
+  ]
 }

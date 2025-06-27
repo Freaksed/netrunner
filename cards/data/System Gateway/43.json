@@ -13,5 +13,24 @@
   "cards_min": 40,
   "influence": 15,
   "text": "When your discard phase ends, if there is a facedown card in Archives, gain 1[c].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "turn_ends",
+      "player": "corp",
+      "condition": {
+        "type": "corp_discarded_this_turn"
+      },
+      "effects": [
+        {
+          "action": "gain_credit",
+          "target": "corp",
+          "amount": 1,
+          "condition": {
+            "type": "facedown_in_archives"
+          }
+        }
+      ]
+    }
+  ]
 }

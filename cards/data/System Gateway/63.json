@@ -12,5 +12,33 @@
   "rez_cost": 7,
   "strength": 5,
   "text": "You can advance this ice. It gets +5 strength while there are 3 or more hosted advancement counters.\n[subroutine] Give the Runner 1 tag.\n[subroutine] End the run.\n[subroutine] End the run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "static",
+      "effects": [
+        {
+          "action": "gain_strength",
+          "target": "self",
+          "amount": 5,
+          "condition": {
+            "type": "counter_on_card",
+            "counter": "advancement",
+            "minimum": 3
+          }
+        }
+      ]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "give_tag", "target": "runner", "amount": 1 }]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "end_the_run" }]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "end_the_run" }]
+    }
+  ]
 }

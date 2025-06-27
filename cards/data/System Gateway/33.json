@@ -12,5 +12,24 @@
   "title": "Smartware Distributor",
   "install_cost": 0,
   "text": "[click]: Place 3[c] on this resource.\nWhen your turn begins, take 1[c] from this resource.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "paid",
+      "cost": { "click": 1 },
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "credit",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "type": "triggered",
+      "trigger": "turn_begins",
+      "player": "runner",
+      "effects": [{ "action": "gain_credit", "target": "runner", "amount": 1 }]
+    }
+  ]
 }

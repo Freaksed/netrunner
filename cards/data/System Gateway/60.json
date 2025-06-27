@@ -11,5 +11,18 @@
   "advancement_requirement": 3,
   "value": 2,
   "text": "When you score this agenda, you may trash 1 installed resource.\nLimit 1 per deck.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "trash_card",
+          "target": "runner_installed_resource",
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

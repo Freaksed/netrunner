@@ -16,24 +16,21 @@
   "text": "+1[m]\nWhenever you make a successful tun, place 1[c] on this hardware.\n[click]: Place 1[c] on this hardware, then take all credits from it.\nLimit 1 console per player.",
   "abilities": [
     {
-      "trigger": "successful_run",
-      "action": "place_credit",
-      "target": "self",
-      "amount": 1
-    },
-    {
-      "cost": { "clicks": 1 },
-      "actions": [
+      "type": "triggered",
+      "trigger": "server_breached",
+      "player": "runner",
+      "condition": {
+        "type": "server_in",
+        "servers": ["HQ"]
+      },
+      "effects": [
         {
-          "action": "place_credit",
-          "target": "self",
+          "action": "access_additional",
+          "target": "HQ",
           "amount": 1
-        },
-        {
-          "action": "take_all_credits",
-          "target": "self"
         }
-      ]
+      ],
+      "limit_per_turn": 1
     }
   ]
 }

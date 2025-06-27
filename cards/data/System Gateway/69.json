@@ -13,5 +13,32 @@
   "advancement_requirement": 5,
   "value": 3,
   "text": "When this agenda is scored or stolen, you may rez 1 installed piece of ice, ignoring all costs.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "rez_card",
+          "target": "installed_ice",
+          "ignore_cost": true,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "triggered",
+      "trigger": "agenda_stolen",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "rez_card",
+          "target": "installed_ice",
+          "ignore_cost": true,
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

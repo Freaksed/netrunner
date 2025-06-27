@@ -14,5 +14,28 @@
   "memory_cost": 1,
   "strength": "-",
   "text": "Whenever you make a successful run on a central server, place 1 virus counter on this program.\nHosted virus counter: The ice you are encountering gets -1 strength for the remainder of this encounter.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "run_successful",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": {
+        "spend_counter": { "counter": "virus", "amount": 1 }
+      },
+      "effects": [
+        { "action": "gain_strength", "target": "hosted_ice", "amount": -1 }
+      ]
+    }
+  ]
 }

@@ -11,5 +11,19 @@
   "rez_cost": 0,
   "trash_cost": 1,
   "text": "Whenever the Runner approached this server, you may pay 2[c] and trash 2 cards from HQ. If you do, end the run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "server_approached",
+      "player": "corp",
+      "cost": {
+        "credit": 2,
+        "trash_from_zone": {
+          "zone": "HQ",
+          "amount": 2
+        }
+      },
+      "effects": [{ "action": "end_the_run" }]
+    }
+  ]
 }

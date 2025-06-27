@@ -13,5 +13,17 @@
   "cards_min": 40,
   "influence": 15,
   "text": "Whenever you advance a card, gain 2[c] if it had no advancement counters.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "card_advanced",
+      "player": "corp",
+      "condition": {
+        "type": "counter_on_card_before_advance",
+        "counter": "advancement",
+        "amount": 0
+      },
+      "effects": [{ "action": "gain_credit", "target": "corp", "amount": 2 }]
+    }
+  ]
 }

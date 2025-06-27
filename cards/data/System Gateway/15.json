@@ -14,5 +14,28 @@
   "memory_cost": 1,
   "strength": 2,
   "text": "If you made a successful run this turn, this program costs 2[c] less to install.\nInterface -> 1[c]: Break 1 sentry subroutine.\n2[c]: +3 strength.",
-  "abilities": []
+  "abilities": [
+    [
+      {
+        "type": "install_restriction",
+        "restriction": "runner_made_successful_run",
+        "effect": "reduce_install_cost",
+        "amount": 2
+      },
+      {
+        "type": "paid",
+        "cost": { "credit": 1 },
+        "effects": [
+          { "action": "break_subroutine", "target": "hosted_ice", "amount": 1 }
+        ]
+      },
+      {
+        "type": "paid",
+        "cost": { "credit": 2 },
+        "effects": [
+          { "action": "gain_strength", "target": "self", "amount": 3 }
+        ]
+      }
+    ]
+  ]
 }

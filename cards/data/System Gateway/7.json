@@ -13,5 +13,47 @@
   "memory_cost": 1,
   "strength": "-",
   "text": "When you install this program and when your turn begins, place 1 virus counter on this program.\n[click],[trash]: Gain 2[c] for each hosted virus counter.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_install",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "triggered",
+      "trigger": "turn_begins",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": {
+        "click": 1,
+        "trash_self": true
+      },
+      "effects": [
+        {
+          "action": "gain_credit",
+          "target": "runner",
+          "amount": 2,
+          "counter": "virus"
+        }
+      ]
+    }
+  ]
 }

@@ -13,5 +13,24 @@
   "rez_cost": 3,
   "strength": 2,
   "text": "While this ice is protecting a remote server, it gets +2 strength.\n[subroutine] End the run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "static",
+      "effects": [
+        {
+          "action": "gain_strength",
+          "target": "self",
+          "amount": 2,
+          "condition": {
+            "type": "is_protecting",
+            "zone": "remote_server"
+          }
+        }
+      ]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "end_the_run" }]
+    }
+  ]
 }

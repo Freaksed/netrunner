@@ -15,10 +15,17 @@
   "text": "+1[m]\nAccess -> Trash 2 cards from your grip: Trash the card you are accessing. Use this ability only once per turn.\nLimit 1 console per player.",
   "abilities": [
     {
-      "trigger": "access",
-      "action": "trash_accessed_card",
-      "limit": "once_per_turn",
-      "cost": { "trash_from_grip": 2 }
+      "type": "paid",
+      "trigger": "card_accessed",
+      "player": "runner",
+      "cost": {
+        "trash_hosted": {
+          "zone": "grip",
+          "amount": 2
+        }
+      },
+      "effects": [{ "action": "trash_card", "target": "accessed_card" }],
+      "limit_per_turn": 1
     }
   ]
 }

@@ -12,5 +12,31 @@
   "rez_cost": 0,
   "trash_cost": 2,
   "text": "You can advance this asset.\nWhen the Runner accesses this asset while it is installed, do 2 net damage plus 1 net damage for each hosted advancement counter.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "card_accessed",
+      "player": "corp",
+      "condition": {
+        "type": "is_installed",
+        "card": "self"
+      },
+      "effects": [
+        {
+          "action": "do_damage",
+          "target": "runner",
+          "damage": "net",
+          "amount": 2
+        },
+        {
+          "action": "do_damage",
+          "target": "runner",
+          "damage": "net",
+          "amount": 1,
+          "per": "counter",
+          "counter": "advancement"
+        }
+      ]
+    }
+  ]
 }

@@ -12,5 +12,25 @@
   "title": "Jailbreak",
   "play_cost": 0,
   "text": "Run HQ or R&D. If successful, draw 1 card and when you breach the attacked server, access 1 additional card.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_install",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "place_counter",
+          "target": "self",
+          "counter": "credit",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "click": 1 },
+      "effects": [{ "action": "gain_credit", "target": "runner", "amount": 3 }],
+      "limit_per_turn": 1
+    }
+  ]
 }

@@ -12,5 +12,16 @@
   "rez_cost": 1,
   "trash_cost": 3,
   "text": "Persistent -> Whenever a run on this server ends, if the Runner stole any agendas during that run, give the Runner 2 tags. (If the Runner trashes this card while accessing it, this ability still applies for the remainder of this run.)",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "run_ends",
+      "player": "corp",
+      "persistent": true,
+      "condition": {
+        "type": "agenda_stolen_during_run"
+      },
+      "effects": [{ "action": "give_tag", "target": "runner", "amount": 2 }]
+    }
+  ]
 }

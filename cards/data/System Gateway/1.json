@@ -17,12 +17,14 @@
   "text": "The first time each turn you trash a card you are accessing, gain 1[c] and draw 1 card.",
   "abilities": [
     {
-      "trigger": "trash_accessed_card",
-      "trigger_restriction": "first_per_turn",
+      "type": "triggered",
+      "trigger": "card_trashed",
+      "player": "runner",
       "effects": [
-        { "action": "gain_credits", "target": "runner", "amount": 1 },
-        { "action": "draw_cards", "target": "runner", "amount": 1 }
-      ]
+        { "action": "gain_credit", "target": "runner", "amount": 1 },
+        { "action": "draw_card", "target": "runner", "amount": 1 }
+      ],
+      "limit_per_turn": 1
     }
   ]
 }

@@ -13,5 +13,29 @@
   "memory_cost": 1,
   "strength": 0,
   "text": "This program gets +1 strength for each installed icebreaker (including this one).\nInterface -> 1[c]: Break 1 sentry subroutine.\n3[c]: +2 strength.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "static",
+      "effects": [
+        {
+          "action": "gain_strength",
+          "target": "self",
+          "amount": 1,
+          "per": "installed_icebreaker"
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "credit": 1 },
+      "effects": [
+        { "action": "break_subroutine", "target": "hosted_ice", "amount": 1 }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": { "credit": 3 },
+      "effects": [{ "action": "gain_strength", "target": "self", "amount": 2 }]
+    }
+  ]
 }

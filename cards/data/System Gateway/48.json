@@ -11,5 +11,24 @@
   "title": "Hansei Review",
   "play_cost": 5,
   "text": "Gain 10[c]. If there are any cards in HQ, trash 1 of them.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "effects": [
+        { "action": "gain_credit", "target": "corp", "amount": 10 },
+        {
+          "action": "trash_card",
+          "target": "HQ",
+          "amount": 1,
+          "condition": {
+            "type": "cards_in_zone",
+            "zone": "HQ",
+            "minimum": 1
+          }
+        }
+      ]
+    }
+  ]
 }

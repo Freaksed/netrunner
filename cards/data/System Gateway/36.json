@@ -11,5 +11,19 @@
   "advancement_requirement": 3,
   "value": 2,
   "text": "When you score this agenda, gain [click][click][click]. You cannot score agendas for the remainder of the turn.\nLimit 1 per deck.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [
+        { "action": "gain_click", "target": "corp", "amount": 3 },
+        {
+          "action": "restrict_scoring",
+          "target": "corp",
+          "duration": "end_of_turn"
+        }
+      ]
+    }
+  ]
 }

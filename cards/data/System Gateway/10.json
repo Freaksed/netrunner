@@ -15,5 +15,24 @@
   "cards_min": 40,
   "influence": 15,
   "text": "Whenever a run on HQ or R&D ends, you may gain 1[c] for each time you accessed a card during that run. Use this ability only once per turn.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "run_ends",
+      "player": "runner",
+      "condition": {
+        "type": "server_in",
+        "servers": ["HQ", "R&D"]
+      },
+      "effects": [
+        {
+          "action": "gain_credit",
+          "target": "runner",
+          "amount": 1,
+          "per": "card_accessed"
+        }
+      ],
+      "limit_per_turn": 1
+    }
+  ]
 }

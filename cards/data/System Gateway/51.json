@@ -13,5 +13,21 @@
   "cards_min": 40,
   "influence": 15,
   "text": "The first time each turn the Runner takes a tag, gain 2[c] or draw 2 cards.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "tag_received",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "choose_one",
+          "options": [
+            { "action": "gain_credit", "target": "corp", "amount": 2 },
+            { "action": "draw_card", "target": "corp", "amount": 2 }
+          ]
+        }
+      ],
+      "limit_per_turn": 1
+    }
+  ]
 }

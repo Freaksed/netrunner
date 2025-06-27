@@ -12,5 +12,17 @@
   "rez_cost": 2,
   "trash_cost": 3,
   "text": "Whenever the Runner approaches this server, end the run unless they either spend [click][click] or pay 5[c].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "server_approached",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "runner_must_pay_or_end_run",
+          "options": [{ "click": 2 }, { "credit": 5 }]
+        }
+      ]
+    }
+  ]
 }

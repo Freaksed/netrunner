@@ -12,5 +12,26 @@
   "rez_cost": 0,
   "trash_cost": 2,
   "text": "When you rez this asset, draw 2 cards.\nRemove this asset from the game: Shuffle up to 2 cards from Archives into R&D.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_rez",
+      "player": "corp",
+      "effects": [{ "action": "draw_card", "target": "corp", "amount": 2 }]
+    },
+    {
+      "type": "paid",
+      "cost": {
+        "remove_self_from_game": true
+      },
+      "effects": [
+        {
+          "action": "shuffle_into_deck",
+          "target": "archives",
+          "destination": "R&D",
+          "amount": 2
+        }
+      ]
+    }
+  ]
 }

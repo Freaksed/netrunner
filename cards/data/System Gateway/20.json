@@ -11,5 +11,12 @@
   "title": "Creative Commission",
   "play_cost": 1,
   "text": "Gain 5[c]. If you have any [click] remaining, lose 1[click].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "runner",
+      "effects": [{ "action": "gain_credit", "target": "runner", "amount": 4 }]
+    }
+  ]
 }

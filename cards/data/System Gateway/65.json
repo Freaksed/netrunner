@@ -12,5 +12,21 @@
   "title": "Retribution",
   "play_cost": 1,
   "text": "Play only if the Runner is tagged.\nTrash 1 installed program or piece of hardware.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "corp",
+      "condition": {
+        "type": "runner_is_tagged"
+      },
+      "effects": [
+        {
+          "action": "trash_card",
+          "target": "runner_installed_program_or_hardware",
+          "amount": 1
+        }
+      ]
+    }
+  ]
 }

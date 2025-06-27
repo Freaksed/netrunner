@@ -13,5 +13,36 @@
   "rez_cost": 6,
   "strength": 6,
   "text": "Lose [click]: Break 1 subroutine on this ice. Only the Runner can use this ability.\n[subroutine] You may install 1 piece of ice from HQ or Archives directly inward from this ice, ignoring all costs.\n[subroutine] End the run.\n[subroutine] End the run.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "static",
+      "effects": [
+        {
+          "action": "allow_click_to_break",
+          "target": "self",
+          "player": "runner"
+        }
+      ]
+    },
+    {
+      "type": "subroutine",
+      "effects": [
+        {
+          "action": "install_card",
+          "target": "corp",
+          "source": ["HQ", "Archives"],
+          "location": "inward",
+          "ignore_cost": true
+        }
+      ]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "end_the_run" }]
+    },
+    {
+      "type": "subroutine",
+      "effects": [{ "action": "end_the_run" }]
+    }
+  ]
 }

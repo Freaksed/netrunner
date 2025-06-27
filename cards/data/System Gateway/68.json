@@ -13,5 +13,28 @@
   "advancement_requirement": 4,
   "value": 2,
   "text": "When you score this agenda, if the Runner is tagged, do 4 meat damage; otherwise, give the Runner 1 tag.",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "agenda_scored",
+      "player": "corp",
+      "effects": [
+        {
+          "action": "conditional_effect",
+          "condition": { "type": "runner_is_tagged" },
+          "if_true": {
+            "action": "do_damage",
+            "target": "runner",
+            "damage": "meat",
+            "amount": 4
+          },
+          "if_false": {
+            "action": "give_tag",
+            "target": "runner",
+            "amount": 1
+          }
+        }
+      ]
+    }
+  ]
 }

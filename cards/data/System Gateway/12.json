@@ -12,5 +12,22 @@
   "title": "Tread Lightly",
   "play_cost": 1,
   "text": "Run any server. During that run, the rez cost of each piece of ice is increased by 3[c].",
-  "abilities": []
+  "abilities": [
+    {
+      "type": "triggered",
+      "trigger": "on_play",
+      "player": "runner",
+      "effects": [
+        {
+          "action": "run_server",
+          "target": "server"
+        },
+        {
+          "action": "modify_ice_rez_cost",
+          "target": "encountered_ice",
+          "amount": 3
+        }
+      ]
+    }
+  ]
 }
