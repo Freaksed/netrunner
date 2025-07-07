@@ -1,0 +1,69 @@
+{
+  "name": "Godot Card Game Workspace",
+  "version": "0.1",
+  "system_prompt": "You are an expert in Godot and GDScript. Assist with code understanding and feature development for a card-based game.",
+  "groups": [
+    {
+      "name": "Game Logic",
+      "system_prompt": "Focus on the core gameplay logic for the card game.",
+      "data": ["main_gd", "game_logic_folder"]
+    },
+    {
+      "name": "Card System",
+      "system_prompt": "Focus on scripts that manage card behavior, creation, and card data.",
+      "data": ["cards_folder", "cards_data_folder"]
+    },
+    {
+      "name": "UI",
+      "system_prompt": "Focus on user interface related scripts and scenes.",
+      "data": ["ui_folder"]
+    },
+    {
+      "name": "Data Schemas",
+      "system_prompt": "Focus on JSON schema files used for validating card and deck data.",
+      "data": ["schemas_folder"]
+    },
+    {
+      "name": "Utilities",
+      "system_prompt": "Focus on general-purpose helper scripts used throughout the project.",
+      "data": ["utils_folder"]
+    }
+  ],
+  "data": {
+    "main_gd": {
+      "type": "file",
+      "path": "src/main.gd",
+      "description": "Main entry point script for the game."
+    },
+    "game_logic_folder": {
+      "type": "file",
+      "path": "src/core/",
+      "description": "Folder containing core gameplay logic scripts."
+    },
+    "cards_folder": {
+      "type": "file",
+      "path": "src/cards/",
+      "description": "Folder containing scripts relevant to card handling and logic."
+    },
+    "cards_data_folder": {
+      "type": "file",
+      "path": "cards/data/",
+      "description": "Folder containing card data JSON files."
+    },
+    "ui_folder": {
+      "type": "file",
+      "path": "src/ui/",
+      "description": "Folder containing UI-related scripts and scenes."
+    },
+    "schemas_folder": {
+      "type": "file",
+      "path": "schemas/",
+      "description": "Folder containing JSON schemas for validating card and deck data."
+    },
+    "utils_folder": {
+      "type": "file",
+      "path": "src/utils/",
+      "description": "Folder containing general-purpose utility scripts."
+    }
+  }
+}

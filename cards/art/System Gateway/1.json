@@ -1,0 +1,4 @@
+{
+  "error": "Invalid JSON",
+  "raw": "{\"title\": null, \"type\": \"Identity: G-mod\", \"cost\": null, \"influence\": null, \"deck_limit\": null, \"text\": \"acard you are accessing, gain 10 anddraw 1 card.\"}"
+}

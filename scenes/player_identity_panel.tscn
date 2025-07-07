@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://csqle5s6c23qk"]
+[gd_scene load_steps=6 format=3 uid="uid://csqle5s6c23qk"]
 
 [ext_resource type="StyleBox" uid="uid://c2huh6jk7gqmh" path="res://PlayerBoxTheme.tres" id="1_edf1h"]
-[ext_resource type="Texture2D" uid="uid://ccrsem3cfp4i5" path="res://cards/cardback.png" id="2_edf1h"]
 [ext_resource type="Texture2D" uid="uid://dsgtrwu6agck3" path="res://icon.svg" id="3_edf1h"]
 [ext_resource type="Texture2D" uid="uid://5fq0sqqme1rt" path="res://Game Symbols/NSG_CREDIT.svg" id="4_5plsd"]
 [ext_resource type="LabelSettings" uid="uid://dgljc1h5bvc1k" path="res://InGameFont.tres" id="5_3rdkl"]
@@ -16,21 +15,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_edf1h")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Resources" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="IdentityCard" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_edf1h")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Resources" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="FactionIcon" type="TextureRect" parent="HBoxContainer/Resources"]
+[node name="FactionIcon" type="TextureRect" parent="Resources"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -38,28 +26,28 @@ texture = ExtResource("3_edf1h")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CreditIcon" type="TextureButton" parent="HBoxContainer/Resources"]
+[node name="CreditIcon" type="TextureButton" parent="Resources"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_5plsd")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="Credits" type="Label" parent="HBoxContainer/Resources"]
+[node name="Credits" type="Label" parent="Resources"]
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("5_3rdkl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ClickIcon" type="TextureRect" parent="HBoxContainer/Resources"]
+[node name="ClickIcon" type="TextureRect" parent="Resources"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("6_mwnkt")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="Clicks" type="Label" parent="HBoxContainer/Resources"]
+[node name="Clicks" type="Label" parent="Resources"]
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("5_3rdkl")

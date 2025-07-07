@@ -1,5 +1,7 @@
 extends Node
 
+var player: Node
+
 var servers = []
 
 func play_card(card_data: Dictionary):

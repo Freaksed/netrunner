@@ -1,155 +1,359 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "effect.schema.json",
-  "title": "Effect",
-  "description": "An effect or a group of effects, possibly conditional.",
+  "title": "Card Effect",
+  "type": "object",
+  "description": "Defines a game effect",
   "oneOf": [
-    { "$ref": "#/definitions/effect" },
-    {
-      "type": "array",
-      "items": { "$ref": "#/definitions/effect" },
-      "description": "A sequence of effects resolved in order."
-    },
-    {
-      "type": "object",
-      "required": ["condition", "then"],
-      "properties": {
-        "condition": {
-          "type": "object",
-          "required": ["type"],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "runner_tagged",
-                "corp_has_credits",
-                "installed",
-                "host_has_counter",
-                "successful_run",
-                "has_clicks"
-              ]
-            },
-            "player": {
-              "type": "string",
-              "enum": ["runner", "corp"]
-            },
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "counter": {
-              "type": "string"
-            }
-          }
-        },
-        "then": {
-          "$ref": "#"
-        },
-        "else": {
-          "$ref": "#"
-        }
-      }
-    }
+    { "$ref": "#/definitions/gainCredits" },
+    { "$ref": "#/definitions/loseCredits" },
+    { "$ref": "#/definitions/drawCards" },
+    { "$ref": "#/definitions/gainClicks" },
+    { "$ref": "#/definitions/loseClicks" },
+    { "$ref": "#/definitions/gainStrength" },
+    { "$ref": "#/definitions/loseStrength" },
+    { "$ref": "#/definitions/discardCards" },
+    { "$ref": "#/definitions/installCard" },
+    { "$ref": "#/definitions/uninstallCard" },
+    { "$ref": "#/definitions/trashCard" },
+    { "$ref": "#/definitions/moveCard" },
+    { "$ref": "#/definitions/shuffleDeck" },
+    { "$ref": "#/definitions/revealCard" },
+    { "$ref": "#/definitions/lookAtCards" },
+    { "$ref": "#/definitions/payCost" },
+    { "$ref": "#/definitions/addCounter" },
+    { "$ref": "#/definitions/removeCounter" },
+    { "$ref": "#/definitions/trace" },
+    { "$ref": "#/definitions/run" },
+    { "$ref": "#/definitions/endRun" },
+    { "$ref": "#/definitions/prompt" },
+    { "$ref": "#/definitions/copyEffect" },
+    { "$ref": "#/definitions/reduceCost" },
+    { "$ref": "#/definitions/breakSubroutine" },
+    { "$ref": "#/definitions/setVariable" },
+    { "$ref": "#/definitions/compound" },
+    { "$ref": "#/definitions/conditional" }
   ],
   "definitions": {
-    "effect": {
+    "amount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "target": {
+      "type": "string",
+      "enum": ["runner", "corp", "ice", "host", "accessed", "self"]
+    },
+
+    "gainCredits": {
       "type": "object",
       "properties": {
-        "action": {
+        "type": { "const": "gain_credits" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "loseCredits": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "lose_credits" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "drawCards": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "draw_cards" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "gainClicks": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "gain_clicks" },
+        "amount": { "$ref": "#/definitions/amount" }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "loseClicks": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "lose_clicks" },
+        "amount": { "$ref": "#/definitions/amount" }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "gainStrength": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "gain_strength" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "duration": { "enum": ["encounter", "run", "turn"] }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "loseStrength": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "lose_strength" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "duration": { "enum": ["encounter", "run", "turn"] }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "discardCards": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "discard_cards" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "target": { "$ref": "#/definitions/target" },
+        "random": { "type": "boolean", "default": false },
+        "from": {
           "type": "string",
-          "enum": [
-            "gain_credit",
-            "lose_credit",
-            "draw_card",
-            "take_damage",
-            "place_counter",
-            "remove_counter",
-            "add_tag",
-            "remove_tag",
-            "install_card",
-            "trash_card",
-            "reveal_card",
-            "shuffle_into_stack",
-            "add_to_grip",
-            "add_to_hq",
-            "break_subroutine",
-            "end_the_run",
-            "prevent_damage",
-            "prevent_trash",
-            "gain_click",
-            "lose_click",
-            "forfeit_agenda",
-            "access_additional",
-            "choose_server",
-            "run_server",
-            "prevent_next",
-            "trace_attempt",
-            "give_virus_protection",
-            "gain_link",
-            "lose_link",
-            "uninstall_card",
-            "score_agenda",
-            "steal_agenda",
-            "gain_strength",
-            "modify_ice_rez_cost"
-          ]
-        },
-        "target": {
-          "type": "string",
-          "enum": [
-            "runner",
-            "corp",
-            "self",
-            "hosted",
-            "hosted_ice",
-            "accessed_card",
-            "random_card_in_grip",
-            "server",
-            "stack_top",
-            "hq_random",
-            "identity",
-            "all_subroutines",
-            "installed_card",
-            "encountered_ice",
-            "HQ",
-            "R&D",
-            "Archives",
-            "Remote",
-            "Heap"
-          ]
-        },
-        "per": {
-          "type": "string",
-          "enum": ["card_accessed", "subroutine_broken", "counter"]
-        },
-        "amount": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "counter": {
-          "type": "string"
-        },
-        "damage_type": {
-          "type": "string",
-          "enum": ["net", "meat", "core"]
-        },
-        "card_type": {
-          "type": "string",
-          "enum": [
-            "program",
-            "hardware",
-            "resource",
-            "agenda",
-            "asset",
-            "upgrade",
-            "event",
-            "operation",
-            "ice"
-          ]
+          "enum": ["hand", "stack", "heap", "grip"],
+          "default": "hand"
         }
       },
-      "required": ["action"],
-      "additionalProperties": false
+      "required": ["type", "amount"]
+    },
+
+    "installCard": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "install_card" },
+        "target": { "$ref": "#/definitions/target" },
+        "from": {
+          "type": "string",
+          "enum": ["grip", "heap", "stack", "hq", "archives", "r&d"]
+        },
+        "host": { "type": "string" },
+        "pay_cost": { "type": "boolean", "default": true },
+        "optional": { "type": "boolean", "default": false }
+      },
+      "required": ["type"]
+    },
+
+    "uninstallCard": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "uninstall_card" },
+        "target": { "type": "string" },
+        "trash": { "type": "boolean", "default": true }
+      },
+      "required": ["type", "target"]
+    },
+
+    "trashCard": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "trash_card" },
+        "target": { "type": "string" }
+      },
+      "required": ["type", "target"]
+    },
+
+    "moveCard": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "move_card" },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "target": { "type": "string" }
+      },
+      "required": ["type", "from", "to", "target"]
+    },
+
+    "shuffleDeck": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "shuffle_deck" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type"]
+    },
+
+    "revealCard": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "reveal_card" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type"]
+    },
+
+    "lookAtCards": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "look_at_cards" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "from": { "type": "string" }
+      },
+      "required": ["type", "amount", "from"]
+    },
+
+    "payCost": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "pay_cost" },
+        "costs": {
+          "type": "array",
+          "items": { "$ref": "#" }
+        }
+      },
+      "required": ["type", "costs"]
+    },
+
+    "addCounter": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "add_counter" },
+        "counter_type": { "type": "string" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type", "counter_type", "amount"]
+    },
+
+    "removeCounter": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "remove_counter" },
+        "counter_type": { "type": "string" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "target": { "$ref": "#/definitions/target" }
+      },
+      "required": ["type", "counter_type", "amount"]
+    },
+
+    "trace": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "trace" },
+        "base": { "type": "integer" },
+        "on_success": { "$ref": "#" }
+      },
+      "required": ["type", "base", "on_success"]
+    },
+
+    "compound": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "compound" },
+        "effects": {
+          "type": "array",
+          "items": { "$ref": "#" },
+          "minItems": 1
+        }
+      },
+      "required": ["type", "effects"]
+    },
+
+    "conditional": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "if" },
+        "condition": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "value": {}
+          },
+          "required": ["type"]
+        },
+        "then": { "$ref": "#" },
+        "else": { "$ref": "#" }
+      },
+      "required": ["type", "condition", "then"]
+    },
+    "run": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "run" },
+        "server": {
+          "type": "string",
+          "enum": ["hq", "rd", "archives", "remote", "chosen"]
+        }
+      },
+      "required": ["type", "server"]
+    },
+
+    "endRun": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "end_run" }
+      },
+      "required": ["type"]
+    },
+
+    "prompt": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "prompt" },
+        "message": { "type": "string" },
+        "choices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "effect": { "$ref": "#" }
+            },
+            "required": ["label", "effect"]
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["type", "message", "choices"]
+    },
+
+    "copyEffect": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "copy_effect" },
+        "ref": { "type": "string" }
+      },
+      "required": ["type", "ref"]
+    },
+
+    "reduceCost": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "reduce_cost" },
+        "target": { "$ref": "#/definitions/target" },
+        "amount": { "$ref": "#/definitions/amount" },
+        "duration": { "enum": ["encounter", "run", "turn"] }
+      },
+      "required": ["type", "target", "amount"]
+    },
+
+    "breakSubroutine": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "break_subroutine" },
+        "amount": { "$ref": "#/definitions/amount" }
+      },
+      "required": ["type", "amount"]
+    },
+
+    "setVariable": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "set_variable" },
+        "key": { "type": "string" },
+        "value": {}
+      },
+      "required": ["type", "key", "value"]
     }
   }
 }

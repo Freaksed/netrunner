@@ -10,12 +10,12 @@ var my_turn: bool = false
 var side: String = ""
 var faction: String = ""
 var identity_id: String = ""
-var id_ui: TextureRect
 var faction_ui: TextureRect
 var credit_button: TextureButton
 var credit_counter: Label
 var click_counter: Label
 
+var id_card: Node3D
 var deck_zone: Node3D
 var trash_zone: Node3D
 
@@ -37,13 +37,14 @@ var income: int = 0
 func _ready() -> void:
 	var id_panel = player_ui.get_node("HBoxContainer/IdentityPanel")
 
-	id_ui = id_panel.get_node("HBoxContainer/IdentityCard") as TextureRect
-	faction_ui = id_panel.get_node("HBoxContainer/Resources/FactionIcon") as TextureRect
-	credit_counter = id_panel.get_node("HBoxContainer/Resources/Credits") as Label
-	click_counter = id_panel.get_node("HBoxContainer/Resources/Clicks") as Label
-	credit_button = id_panel.get_node("HBoxContainer/Resources/CreditIcon") as TextureButton
+	faction_ui = id_panel.get_node("Resources/FactionIcon") as TextureRect
+	credit_counter = id_panel.get_node("Resources/Credits") as Label
+	click_counter = id_panel.get_node("Resources/Clicks") as Label
+	credit_button = id_panel.get_node("Resources/CreditIcon") as TextureButton
 	credit_button.pressed.connect(click_for_credit)
-	
+
+	id_card = player_field.get_node("Identity")
+
 	deck_zone = player_field.get_node("Deck")
 	var deck_select = deck_zone.get_node("Area3D")
 	deck_select.input_event.connect(_on_deck_event)
@@ -63,7 +64,8 @@ func load_deck_from_file(path: String):
 
 	var asset_path = "res://cards/art/%s/%s.jpg" % [identity["deck"]["set"], int(identity["deck"]["id"])]
 	var texture = load(asset_path)
-	id_ui.texture = texture
+	id_card.material_override = id_card.material_override.duplicate()
+	id_card.material_override.set_shader_parameter("front_tex", texture)
 	asset_path = "res://Faction Glyphs/NSG_%s.svg" % [identity["deck"]["faction"].to_upper()]
 	texture = load(asset_path)
 	faction_ui.texture = texture

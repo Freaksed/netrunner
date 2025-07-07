@@ -4,10 +4,13 @@ var hand: Array[Control] = []
 
 const lift_amount = 100
 const grow_to = Vector2(1.5,1.5)
+
 var card_original_position = Vector2.ZERO
 var card_original_rotation = Vector2.ZERO
 var card_original_scale = Vector2.ONE
 var card_original_z = -1
+
+var ready_for_input: bool = false
 
 func add_card(card_data: Dictionary) -> TextureButton:
 	var card := CardDatabase.card2d.instantiate()
@@ -16,6 +19,7 @@ func add_card(card_data: Dictionary) -> TextureButton:
 	
 	card.mouse_entered.connect(lift_card.bind(card))
 	card.mouse_exited.connect(return_card.bind(card))
+
 	card.custom_minimum_size = card.size
 	hand.append(card)
 	add_child(card)
@@ -30,9 +34,12 @@ func layout_hand():
 	var radius = 300
 	var angle_range = deg_to_rad(50)
 	
+	ready_for_input = false
 	var count = hand.size()
+	# TODO: reenable input after all tweens have completed
 	for i in range(count):
 		var card = hand[i]
+
 		var t = float(i) / float(max(1, count - 1))  # normalized 0–1
 		var angle = lerp(-angle_range / 2.0, angle_range / 2.0, t)
 
@@ -46,6 +53,7 @@ func layout_hand():
 
 
 func lift_card(card: TextureButton):
+	if !ready_for_input: return
 	card_original_position = card.position
 	card_original_rotation = card.rotation
 	card_original_scale = card.scale
@@ -60,6 +68,7 @@ func lift_card(card: TextureButton):
 
 
 func return_card(card: TextureButton):
+	if !ready_for_input: return
 	card.z_index = card_original_z
 	if card.tween: card.tween.kill()
 	card.tween = create_tween()
@@ -79,9 +88,7 @@ func play_card(card: TextureButton):
 	tween.parallel().tween_property(card, "modulate:a", 0.0, duration)
 	
 	await tween.finished
-	
 	card.queue_free()
-	
 	layout_hand()
 
 
