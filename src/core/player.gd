@@ -127,7 +127,10 @@ func _on_deck_event(camera: Camera3D,
 	if event is InputEventMouseButton and event.pressed:
 		if my_turn:
 			use_clicks(1)
-			draw_card()
+			var drawn_card = await draw_card()
+			# Emit event for data-driven abilities
+			if drawn_card:
+				game_manager.even_bus.emit_card_drawn(drawn_card, self)
 		else:
 			print("Not your turn, cannot draw card")
 			pass
@@ -135,7 +138,7 @@ func _on_deck_event(camera: Camera3D,
 func draw_card():
 	if deck.is_empty():
 		push_warning("Deck is empty")
-		return {}
+		return null
 
 	var target_world_pos = player_field.position + player_field.basis.z + Vector3.UP
 	var card_node = deck_zone.get_node("TopCard")
@@ -151,6 +154,8 @@ func draw_card():
 	card.set_meta("set", card_data["set"])
 	card.set_meta("id", card_data["id"])
 	card.connect("clicked", func(clicked): _on_card_clicked(clicked))
+
+	return card_data
 
 
 func _on_card_clicked(card: TextureButton):
