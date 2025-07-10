@@ -358,4 +358,21 @@ func compare_values(a, operator: String, b) -> bool:
 		"not_contains": return not str(a).contains(str(b))
 		_: return false
 
+func track_ability_usage(ability_data, source_card): pass
+func check_timing_restriction(timing):pass
+func check_player_restriction(player_restriction, player):pass
+func has_reached_usage_limit(ability_data, source_card):pass
+func trash_card(card):pass
+func remove_from_game(card):pass
+
 # Additional helper methods for zones, cards, etc. would be implemented here...
+func get_zone_cards(player, zone):pass
+func count_cards_with_subtype(player, zone, subtype):pass
+func get_cards_in_zone_matching(target_selector):pass
+func get_cards_with_subtype_matching(target_selector):pass
+func get_all_matching_targets(target_selector):pass
+func get_random_selection(all_matches, count):pass
+func search_deck(player, effect):pass
+func draw_cards(target, amount, zone_from):pass
+func move_card_to_zone(target, zone_to):pass
+func install_card(target, player, face_up):pass
