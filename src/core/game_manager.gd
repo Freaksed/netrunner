@@ -3,13 +3,12 @@ class_name GameManager
 
 @onready var local_player := $LocalPlayer
 @onready var remote_player := $RemotePlayer
-@onready var turn_manager := preload("res://src/core/turn_manager.gd").new()
 
 func _ready() -> void:
 	local_player.game_manager = self
 	remote_player.game_manager = self
-	set_up_game()
-	turn_manager.start_turn(local_player)
+	await set_up_game()
+	GameEvents.emit_turn_begins(local_player)
 
 
 func set_up_game():
@@ -62,4 +61,4 @@ func end_turn(player: Node):
 	player.reset_turn_state()
 	
 	# Notify the turn manager to proceed to the next phase
-	turn_manager.end_turn(player)
+	GameEvents.emit_turn_ends(player)

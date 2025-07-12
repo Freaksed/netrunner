@@ -53,6 +53,20 @@ func _ready() -> void:
 	var top_card = trash_zone.get_node("TopCard")
 	top_card.material_override = top_card.material_override.duplicate()
 
+	GameEvents.turn_begins.connect(on_turn_begins)
+	GameEvents.turn_ends.connect(on_turn_ends)
+
+
+func on_turn_begins(player: Player):
+	if(player == self):
+		print("Begin Turn")
+		if side == "Corp":
+			pass
+
+func on_turn_ends(player: Player):
+	if(player == self):
+		print("End Turn")
+
 
 func load_deck_from_file(path: String):
 	deck.clear()
@@ -77,22 +91,16 @@ func load_deck_from_file(path: String):
 	state = Node.new()
 	add_child(state)
 	match side:
-		"Corp": state.set_script(load("res://src/core/player_corp.gd"))
-		"Runner": state.set_script(load("res://src/core/player_runner.gd"))
+		"Corp": state.set_script(load("res://src/player/player_corp.gd"))
+		"Runner": state.set_script(load("res://src/player/player_runner.gd"))
 	state.player = self
-
-
-func start_turn():
-	add_credits(income)
-	if side == "Corp":
-		draw_card()
 
 
 func use_clicks(amount: int = 1):
 	clicks -= amount
 	click_counter.text = "%d" % clicks
 	if clicks <= 0:
-		game_manager.turn_manager.end_turn(self)
+		GameEvents.turn_ends.emit(self)
 
 func gain_clicks(amount: int = 1):
 	print("Gaining clicks: ", amount)
@@ -130,7 +138,7 @@ func _on_deck_event(camera: Camera3D,
 			var drawn_card = await draw_card()
 			# Emit event for data-driven abilities
 			if drawn_card:
-				game_manager.even_bus.emit_card_drawn(drawn_card, self)
+				GameEvents.emit_card_drawn(drawn_card, self)
 		else:
 			print("Not your turn, cannot draw card")
 			pass
@@ -163,16 +171,42 @@ func _on_card_clicked(card: TextureButton):
 		push_warning("Trying to play card off turn")
 		return
 	
+	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
+
+	if(!valid_to_play(card_data)):
+		return
+
 	var hand_ui = player_ui.get_node("HBoxContainer/Hand")
 	await hand_ui.play_card(card)
-
-	var card_data = CardDatabase.get_card_by_set_and_id(card.get_meta("set"), card.get_meta("id"))
 	state.play_card(card_data)
+
+
+func valid_to_play(card: Dictionary) -> bool:
+	var cost = 0
+	if('install_cost' in card):
+		cost = int(card['install_cost'])
+	elif('play_cost' in card):
+		cost = int(card['play_cost'])
+	elif('rez_cost' in card):
+		cost = int(card['rez_cost'])
+
+	if(cost <= credits):
+		remove_credits(cost)
+	else:
+		print('Insufficient Credits')
+		return false
+
+	return true
 
 
 func play_card(card: Dictionary, destination):
 	var card_set = card["deck"]["set"]
 	var card_id = card["deck"]["id"]
+
+	# TODO: Validate valid destination
+	if destination is String:
+		destination = player_field.get_node(destination)
+
 	var path = "res://cards/art/%s/%d.jpg" % [card_set, card_id]
 	var texture = load(path)
 	var card3d = preload("res://cards/card3d.tscn").instantiate()
@@ -180,10 +214,6 @@ func play_card(card: Dictionary, destination):
 	card3d.set_meta("id", card_id)
 	card3d.material_override = card3d.material_override.duplicate()
 	card3d.material_override.set_shader_parameter("front_tex", texture)
-
-	if destination is String:
-		destination = player_field.get_node(destination)
-	
 	destination.add_child(card3d)
 	card3d.rotation_degrees = Vector3(0,0,0)
 	var offset = (destination.get_child_count()-1) * -0.4
