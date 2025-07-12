@@ -17,8 +17,9 @@ config/icon="uid://dsgtrwu6agck3"
 
 [autoload]
 
-SceneStack="*res://src/utils/scene_stack.gd"
-CardDatabase="*res://src/core/card_database.gd"
+SceneStack="*res://src/autoload/scene_manager.gd"
+CardDatabase="*res://src/autoload/card_database.gd"
+GameEvents="*res://src/autoload/game_events.gd"
 
 [display]
 
