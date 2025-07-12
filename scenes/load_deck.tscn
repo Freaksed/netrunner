@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1nhms00ar5a4"]
 
-[ext_resource type="Script" uid="uid://bskjo4e8e0itv" path="res://src/ui/load_deck_panel.gd" id="1_donpu"]
+[ext_resource type="Script" uid="uid://bskjo4e8e0itv" path="res://src/ui/deck/load_deck_panel.gd" id="1_donpu"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_donpu")

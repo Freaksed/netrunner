@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk2lwq46guydr"]
 
-[ext_resource type="Script" uid="uid://hodu0vov6pij" path="res://src/cards/card.gd" id="1_ivai2"]
+[ext_resource type="Script" uid="uid://hodu0vov6pij" path="res://src/core/card.gd" id="1_ivai2"]
 [ext_resource type="Material" uid="uid://bk3sqwd2csaf2" path="res://materials/2dCard.tres" id="1_jc6yw"]
 [ext_resource type="Texture2D" uid="uid://3x26btyylk4f" path="res://cards/art/System Gateway/1.jpg" id="2_nwofj"]
 

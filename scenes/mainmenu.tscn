@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://mbmystyo16rw"]
 
-[ext_resource type="Script" uid="uid://ymtc5ihoaog" path="res://src/main_menu.gd" id="1_3vvtq"]
+[ext_resource type="Script" uid="uid://ymtc5ihoaog" path="res://src/ui/menus/main_menu.gd" id="1_3vvtq"]
 [ext_resource type="PackedScene" uid="uid://b6chccr8ofrii" path="res://scenes/playfield.tscn" id="2_s5g8n"]
 [ext_resource type="PackedScene" uid="uid://bdywu7pev7kdl" path="res://scenes/deck_builder.tscn" id="3_7yvfd"]
 [ext_resource type="Texture2D" uid="uid://cs8dip7rxgr60" path="res://NetrunnerBG.jpg" id="4_dfy5j"]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6chccr8ofrii"]
+[gd_scene load_steps=11 format=3 uid="uid://b6chccr8ofrii"]
 
 [ext_resource type="Script" uid="uid://41kmt8k0ps33" path="res://src/core/game_manager.gd" id="1_np83g"]
 [ext_resource type="Texture2D" uid="uid://sq4n6gemamgw" path="res://Tabletop.png" id="2_3emq6"]
 [ext_resource type="Script" uid="uid://bgeoaqg41robh" path="res://src/ui/playfield.gd" id="3_3s18r"]
 [ext_resource type="PackedScene" uid="uid://cvcyjitg6b3ju" path="res://scenes/player_zone.tscn" id="3_xs6qu"]
 [ext_resource type="PackedScene" uid="uid://csqle5s6c23qk" path="res://scenes/player_identity_panel.tscn" id="7_k06pt"]
+[ext_resource type="Script" uid="uid://bb46ip1wpwfqg" path="res://src/game/turn_manager.gd" id="8_2johs"]
 [ext_resource type="PackedScene" uid="uid://ue885thgqsea" path="res://scenes/hand_2d.tscn" id="12_htv1k"]
-[ext_resource type="Script" uid="uid://dgxxqfgpsgyyg" path="res://src/core/player.gd" id="13_3txcd"]
+[ext_resource type="Script" uid="uid://dgxxqfgpsgyyg" path="res://src/player/player.gd" id="13_3txcd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3emq6"]
 
@@ -100,3 +101,6 @@ script = ExtResource("13_3txcd")
 player_ui = NodePath("../UIOverlay/TopRight")
 player_field = NodePath("../RemoteZone")
 metadata/_custom_type_script = "uid://dgxxqfgpsgyyg"
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("8_2johs")

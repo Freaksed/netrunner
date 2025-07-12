@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bf5v6a3mlj7e3"]
 
-[ext_resource type="Script" uid="uid://buh23nv4hcsps" path="res://src/ui/deck_view.gd" id="1_0fxvb"]
+[ext_resource type="Script" uid="uid://buh23nv4hcsps" path="res://src/ui/deck/deck_view.gd" id="1_0fxvb"]
 
 [node name="DeckView" type="VBoxContainer"]
 anchors_preset = 15
