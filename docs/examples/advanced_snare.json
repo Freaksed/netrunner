@@ -1,0 +1,57 @@
+{
+  "deck": {
+    "set": "Examples",
+    "id": 1,
+    "side": "Corp",
+    "faction": "Jinteki",
+    "influence": 2
+  },
+  "type": "Asset",
+  "subtypes": ["Ambush"],
+  "title": "Advanced Snare!",
+  "rez_cost": 4,
+  "trash_cost": 0,
+  "text": "If the Runner accesses this card from R&D, they must reveal it. When the Runner accesses this card, do 3 net damage and give the Runner 1 tag. Ignore this ability if this card is accessed from Archives.",
+  "abilities": [
+    {
+      "type": "access_restriction",
+      "description": "Must reveal when accessed from R&D",
+      "condition": {
+        "query": "run_server",
+        "operator": "==",
+        "value": "rd"
+      },
+      "effects": [
+        {
+          "type": "reveal_card",
+          "target": "self"
+        }
+      ]
+    },
+    {
+      "type": "triggered",
+      "timing": "when_accessed",
+      "description": "Deal damage and tag when accessed (except from Archives)",
+      "condition": {
+        "not": {
+          "query": "run_server",
+          "operator": "==", 
+          "value": "archives"
+        }
+      },
+      "effects": [
+        {
+          "type": "deal_damage",
+          "target": "runner",
+          "damage_type": "net",
+          "amount": 3
+        },
+        {
+          "type": "give_tag",
+          "target": "runner",
+          "amount": 1
+        }
+      ]
+    }
+  ]
+}

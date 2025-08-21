@@ -1,0 +1,50 @@
+{
+  "deck": {
+    "set": "Examples",
+    "id": 5,
+    "side": "Corp",
+    "faction": "NBN",
+    "influence": 3
+  },
+  "type": "ICE",
+  "subtypes": ["Sentry", "Tracer"],
+  "title": "Data Raven",
+  "rez_cost": 4,
+  "strength": 3,
+  "text": "When the Runner encounters this ice, give the Runner 1 tag if the Runner is tagged. [subroutine] Trace 3 - if successful, give the Runner 1 tag.",
+  "abilities": [
+    {
+      "type": "triggered",
+      "timing": "encounter_ice",
+      "description": "Give tag if Runner already tagged",
+      "condition": {
+        "query": "player_tags",
+        "target": "runner",
+        "operator": ">",
+        "value": 0
+      },
+      "effects": [
+        {
+          "type": "give_tag",
+          "target": "runner", 
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "subroutine",
+      "description": "Trace to give tag",
+      "effects": [
+        {
+          "type": "trace",
+          "base_strength": 3,
+          "on_success": {
+            "type": "give_tag",
+            "target": "runner",
+            "amount": 1
+          }
+        }
+      ]
+    }
+  ]
+}

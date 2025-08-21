@@ -1,0 +1,621 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "comprehensive_ability.schema.json",
+  "title": "Comprehensive Netrunner Ability Language",
+  "description": "A complete JSON-based language for describing all Android: Netrunner card abilities",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of ability determines when and how it can be activated",
+      "type": "string",
+      "enum": [
+        "static",
+        "triggered", 
+        "paid",
+        "subroutine",
+        "install_restriction",
+        "play_restriction",
+        "access_restriction",
+        "replacement_effect",
+        "conditional_ability"
+      ]
+    },
+    "timing": {
+      "description": "Specifies when this ability can be used or triggers",
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "start_of_turn",
+            "end_of_turn", 
+            "action_phase",
+            "mandatory_draw_phase",
+            "discard_phase",
+            "start_of_run",
+            "approach_ice",
+            "encounter_ice",
+            "pass_ice",
+            "breach_server",
+            "access_card",
+            "end_of_run",
+            "successful_run",
+            "unsuccessful_run",
+            "when_installed",
+            "when_played", 
+            "when_rezzed",
+            "when_trashed",
+            "when_accessed",
+            "when_scored",
+            "when_stolen",
+            "when_advanced",
+            "when_damaged",
+            "when_tagged",
+            "when_purged",
+            "constant"
+          ]
+        },
+        {
+          "type": "object",
+          "description": "Complex timing with conditions",
+          "properties": {
+            "when": {
+              "type": "string",
+              "enum": [
+                "card_installed",
+                "card_played",
+                "card_rezzed", 
+                "card_trashed",
+                "card_accessed",
+                "damage_dealt",
+                "tag_given",
+                "run_initiated",
+                "server_breached",
+                "agenda_scored",
+                "agenda_stolen",
+                "ice_encountered",
+                "subroutine_broken",
+                "counter_placed",
+                "counter_spent",
+                "credit_gained",
+                "credit_spent",
+                "click_gained",
+                "click_spent"
+              ]
+            },
+            "filter": {
+              "$ref": "#/definitions/condition"
+            }
+          },
+          "required": ["when"]
+        }
+      ]
+    },
+    "condition": {
+      "description": "Conditions that must be met for this ability to be usable",
+      "$ref": "#/definitions/condition"
+    },
+    "cost": {
+      "description": "Costs that must be paid to use this ability",
+      "$ref": "#/definitions/cost"
+    },
+    "effects": {
+      "description": "The effects this ability produces when activated",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/effect"
+      },
+      "minItems": 1
+    },
+    "optional": {
+      "description": "Whether this ability is optional (may choose not to use)",
+      "type": "boolean",
+      "default": false
+    },
+    "once_per_turn": {
+      "description": "Whether this ability can only be used once per turn",
+      "type": "boolean", 
+      "default": false
+    },
+    "once_per_run": {
+      "description": "Whether this ability can only be used once per run",
+      "type": "boolean",
+      "default": false
+    },
+    "limit": {
+      "description": "Usage limits for this ability",
+      "type": "object",
+      "properties": {
+        "uses_per_turn": { "type": "integer", "minimum": 1 },
+        "uses_per_run": { "type": "integer", "minimum": 1 },
+        "uses_per_game": { "type": "integer", "minimum": 1 },
+        "reset_condition": { "$ref": "#/definitions/condition" }
+      }
+    },
+    "priority": {
+      "description": "Priority for simultaneous ability resolution",
+      "type": "integer",
+      "default": 0
+    },
+    "description": {
+      "description": "Human-readable description of what this ability does",
+      "type": "string"
+    }
+  },
+  "required": ["type"],
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "triggered" } }
+      },
+      "then": {
+        "required": ["timing", "effects"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "paid" } }
+      },
+      "then": {
+        "required": ["cost", "effects"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "subroutine" } }
+      },
+      "then": {
+        "required": ["effects"]
+      }
+    }
+  ],
+  "definitions": {
+    "condition": {
+      "description": "Defines conditions for abilities, effects, and targeting",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "Logical operators",
+          "properties": {
+            "and": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/condition" },
+              "minItems": 2
+            }
+          },
+          "required": ["and"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "or": {
+              "type": "array", 
+              "items": { "$ref": "#/definitions/condition" },
+              "minItems": 2
+            }
+          },
+          "required": ["or"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": { "$ref": "#/definitions/condition" }
+          },
+          "required": ["not"]
+        },
+        {
+          "type": "object",
+          "description": "Game state queries",
+          "properties": {
+            "query": {
+              "type": "string",
+              "enum": [
+                "player_credits",
+                "player_clicks", 
+                "player_tags",
+                "player_agenda_points",
+                "player_hand_size",
+                "player_max_hand_size",
+                "player_memory_used",
+                "player_max_memory",
+                "player_link_strength",
+                "cards_in_zone",
+                "cards_with_subtype",
+                "cards_with_property",
+                "counters_on_card",
+                "ice_strength",
+                "program_strength", 
+                "damage_amount",
+                "trace_strength",
+                "run_server",
+                "current_phase",
+                "threat_level",
+                "turn_number",
+                "run_position",
+                "cards_accessed_this_turn",
+                "successful_runs_this_turn"
+              ]
+            },
+            "target": { "$ref": "#/definitions/target" },
+            "operator": {
+              "type": "string",
+              "enum": ["==", "!=", ">", "<", ">=", "<=", "contains", "in", "exists"]
+            },
+            "value": {
+              "oneOf": [
+                { "type": "integer" },
+                { "type": "string" },
+                { "type": "boolean" },
+                { "$ref": "#/definitions/dynamic_value" }
+              ]
+            },
+            "zone": {
+              "type": "string",
+              "enum": ["hand", "grip", "deck", "stack", "discard", "heap", "archives", "hq", "rd", "scored", "installed", "hosted", "removed"]
+            },
+            "subtype": { "type": "string" },
+            "property": { "type": "string" },
+            "counter_type": { "type": "string" }
+          },
+          "required": ["query", "operator", "value"]
+        }
+      ]
+    },
+    "target": {
+      "description": "Specifies what game objects this ability targets",
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "self",
+            "host", 
+            "corp",
+            "runner",
+            "active_player",
+            "inactive_player",
+            "current_ice",
+            "accessed_card",
+            "installed_card"
+          ]
+        },
+        {
+          "type": "object",
+          "description": "Complex targeting with filters",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "player_choice",
+                "random_selection",
+                "all_matching",
+                "first_matching",
+                "cards_in_zone",
+                "cards_with_subtype",
+                "cards_with_property",
+                "ice_protecting_server",
+                "servers"
+              ]
+            },
+            "player": {
+              "type": "string", 
+              "enum": ["corp", "runner", "active", "inactive", "controller"]
+            },
+            "zone": {
+              "type": "string",
+              "enum": ["hand", "grip", "deck", "stack", "discard", "heap", "archives", "hq", "rd", "scored", "installed", "hosted", "removed"]
+            },
+            "subtype": { 
+              "oneOf": [
+                { "type": "string" },
+                { "type": "array", "items": { "type": "string" } }
+              ]
+            },
+            "property": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "operator": { "type": "string", "enum": ["==", "!=", ">", "<", ">=", "<="] },
+                "value": { "oneOf": [{ "type": "integer" }, { "type": "string" }] }
+              },
+              "required": ["name", "operator", "value"]
+            },
+            "count": {
+              "oneOf": [
+                { "type": "integer", "minimum": 1 },
+                { "$ref": "#/definitions/dynamic_value" }
+              ]
+            },
+            "max_count": { "type": "integer", "minimum": 1 },
+            "min_count": { "type": "integer", "minimum": 0 },
+            "prompt": { "type": "string" },
+            "condition": { "$ref": "#/definitions/condition" },
+            "reveal": { "type": "boolean", "default": false },
+            "server": {
+              "type": "string",
+              "enum": ["hq", "rd", "archives", "remote", "any", "central"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "cost": {
+      "description": "Costs that must be paid to activate abilities",
+      "type": "object",
+      "properties": {
+        "clicks": {
+          "oneOf": [
+            { "type": "integer", "minimum": 1 },
+            { "$ref": "#/definitions/dynamic_value" }
+          ]
+        },
+        "credits": {
+          "oneOf": [
+            { "type": "integer", "minimum": 0 },
+            { "$ref": "#/definitions/dynamic_value" }
+          ]
+        },
+        "counters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "amount": {
+                "oneOf": [
+                  { "type": "integer", "minimum": 1 },
+                  { "$ref": "#/definitions/dynamic_value" }
+                ]
+              },
+              "from": { "$ref": "#/definitions/target" }
+            },
+            "required": ["type", "amount"]
+          }
+        },
+        "trash": {
+          "oneOf": [
+            { "$ref": "#/definitions/target" },
+            {
+              "type": "array",
+              "items": { "$ref": "#/definitions/target" }
+            }
+          ]
+        },
+        "remove_from_game": {
+          "oneOf": [
+            { "$ref": "#/definitions/target" },
+            {
+              "type": "array", 
+              "items": { "$ref": "#/definitions/target" }
+            }
+          ]
+        },
+        "take_damage": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["net", "meat", "core"] },
+            "amount": {
+              "oneOf": [
+                { "type": "integer", "minimum": 1 },
+                { "$ref": "#/definitions/dynamic_value" }
+              ]
+            }
+          },
+          "required": ["type", "amount"]
+        },
+        "forfeit_agenda": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "oneOf": [
+                { "type": "integer", "minimum": 1 },
+                { "$ref": "#/definitions/dynamic_value" }
+              ]
+            },
+            "target": { "$ref": "#/definitions/target" }
+          }
+        },
+        "jack_out": { "type": "boolean", "const": true },
+        "end_run": { "type": "boolean", "const": true },
+        "custom": {
+          "type": "object",
+          "description": "Custom cost with arbitrary effects",
+          "properties": {
+            "description": { "type": "string" },
+            "effects": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/effect" }
+            }
+          },
+          "required": ["description", "effects"]
+        }
+      }
+    },
+    "effect": {
+      "description": "Effects that abilities can produce",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "modify_credits",
+            "modify_clicks", 
+            "modify_tags",
+            "modify_link",
+            "modify_memory",
+            "modify_hand_size",
+            "modify_strength",
+            "modify_counters",
+            "draw_cards",
+            "discard_cards",
+            "move_card",
+            "install_card",
+            "trash_card",
+            "remove_from_game",
+            "reveal_card",
+            "look_at_cards",
+            "search_deck",
+            "shuffle_deck",
+            "deal_damage",
+            "prevent_damage",
+            "initiate_run",
+            "end_run",
+            "jack_out",
+            "break_subroutine",
+            "bypass_ice",
+            "encounter_ice_again",
+            "approach_ice_again",
+            "access_additional_cards",
+            "prevent_access",
+            "steal_agenda",
+            "score_agenda",
+            "advance_card",
+            "rez_card",
+            "derez_card",
+            "expose_card",
+            "swap_cards",
+            "trace",
+            "avoid_tag",
+            "remove_tag",
+            "give_tag",
+            "gain_bad_publicity",
+            "lose_bad_publicity",
+            "purge_virus_counters",
+            "create_server",
+            "protect_server",
+            "create_token",
+            "set_variable",
+            "trigger_ability",
+            "copy_ability",
+            "prevent_ability",
+            "modify_cost",
+            "add_subtype",
+            "remove_subtype",
+            "gain_ability",
+            "lose_ability",
+            "choose_and_execute",
+            "prompt_choice",
+            "conditional_effect",
+            "replacement_effect",
+            "delayed_effect"
+          ]
+        },
+        "target": { "$ref": "#/definitions/target" },
+        "amount": {
+          "oneOf": [
+            { "type": "integer" },
+            { "$ref": "#/definitions/dynamic_value" }
+          ]
+        },
+        "condition": { "$ref": "#/definitions/condition" },
+        "optional": { "type": "boolean", "default": false },
+        "duration": {
+          "type": "string",
+          "enum": ["instant", "end_of_turn", "end_of_run", "end_of_encounter", "until_condition", "permanent"]
+        },
+        "zone_from": {
+          "type": "string",
+          "enum": ["hand", "grip", "deck", "stack", "discard", "heap", "archives", "hq", "rd", "scored", "installed", "hosted", "removed"]
+        },
+        "zone_to": {
+          "type": "string", 
+          "enum": ["hand", "grip", "deck", "stack", "discard", "heap", "archives", "hq", "rd", "scored", "installed", "hosted", "removed", "top_of_deck", "bottom_of_deck"]
+        },
+        "damage_type": {
+          "type": "string",
+          "enum": ["net", "meat", "core"]
+        },
+        "counter_type": { "type": "string" },
+        "subtype": { "type": "string" },
+        "server": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["hq", "rd", "archives", "remote", "any", "choose"]
+            },
+            { "$ref": "#/definitions/target" }
+          ]
+        },
+        "pay_cost": { "type": "boolean", "default": true },
+        "face_up": { "type": "boolean", "default": false },
+        "choices": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/effect" },
+          "minItems": 2
+        },
+        "prompt": { "type": "string" },
+        "replacement_condition": { "$ref": "#/definitions/condition" },
+        "delay_until": {
+          "oneOf": [
+            { "type": "string", "enum": ["start_of_next_turn", "end_of_turn", "end_of_run"] },
+            { "$ref": "#/definitions/condition" }
+          ]
+        },
+        "additional_properties": {
+          "type": "object",
+          "description": "Type-specific properties for effects"
+        }
+      },
+      "required": ["type"]
+    },
+    "dynamic_value": {
+      "description": "Values that are calculated dynamically based on game state",
+      "type": "object", 
+      "properties": {
+        "base": { "type": "integer", "default": 0 },
+        "multiply_by": { "$ref": "#/definitions/query" },
+        "add": { "$ref": "#/definitions/query" },
+        "subtract": { "$ref": "#/definitions/query" },
+        "divide_by": { "$ref": "#/definitions/query" },
+        "minimum": { "type": "integer" },
+        "maximum": { "type": "integer" },
+        "round": { "type": "string", "enum": ["up", "down", "nearest"] }
+      }
+    },
+    "query": {
+      "description": "Queries for dynamic value calculation",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "constant",
+            "player_credits",
+            "player_clicks",
+            "player_tags", 
+            "player_agenda_points",
+            "player_hand_size",
+            "player_bad_publicity",
+            "cards_in_zone",
+            "cards_with_subtype",
+            "counters_on_card",
+            "ice_strength",
+            "program_strength",
+            "install_cost",
+            "rez_cost",
+            "trash_cost",
+            "advancement_requirement",
+            "agenda_points",
+            "threat_level",
+            "successful_runs_this_turn",
+            "cards_accessed_this_turn",
+            "damage_dealt_this_turn",
+            "x_value"
+          ]
+        },
+        "value": { "type": "integer" },
+        "target": { "$ref": "#/definitions/target" },
+        "zone": { "type": "string" },
+        "subtype": { "type": "string" },
+        "counter_type": { "type": "string" },
+        "condition": { "$ref": "#/definitions/condition" }
+      },
+      "required": ["type"],
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "constant" } } },
+          "then": { "required": ["value"] }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,506 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "comprehensive_effect.schema.json",
+  "title": "Comprehensive Netrunner Effect Schema",
+  "description": "Detailed schema for all possible effects in the Netrunner ability language",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "modify_credits",
+        "modify_clicks", 
+        "modify_tags",
+        "modify_link",
+        "modify_memory",
+        "modify_hand_size",
+        "modify_strength",
+        "modify_counters",
+        "draw_cards",
+        "discard_cards",
+        "move_card",
+        "install_card",
+        "trash_card",
+        "remove_from_game",
+        "reveal_card",
+        "look_at_cards",
+        "search_deck",
+        "shuffle_deck",
+        "deal_damage",
+        "prevent_damage",
+        "initiate_run",
+        "end_run",
+        "jack_out",
+        "break_subroutine",
+        "bypass_ice",
+        "encounter_ice_again",
+        "approach_ice_again",
+        "access_additional_cards",
+        "prevent_access",
+        "steal_agenda",
+        "score_agenda",
+        "advance_card",
+        "rez_card",
+        "derez_card",
+        "expose_card",
+        "swap_cards",
+        "trace",
+        "avoid_tag",
+        "remove_tag",
+        "give_tag",
+        "gain_bad_publicity",
+        "lose_bad_publicity",
+        "purge_virus_counters",
+        "create_server",
+        "protect_server",
+        "create_token",
+        "set_variable",
+        "trigger_ability",
+        "copy_ability",
+        "prevent_ability",
+        "modify_cost",
+        "add_subtype",
+        "remove_subtype",
+        "gain_ability",
+        "lose_ability",
+        "choose_and_execute",
+        "prompt_choice",
+        "conditional_effect",
+        "replacement_effect",
+        "delayed_effect",
+        "compound"
+      ]
+    },
+    "target": { "$ref": "comprehensive_ability.schema.json#/definitions/target" },
+    "amount": {
+      "oneOf": [
+        { "type": "integer" },
+        { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+      ]
+    },
+    "condition": { "$ref": "comprehensive_ability.schema.json#/definitions/condition" },
+    "optional": { "type": "boolean", "default": false },
+    "duration": {
+      "type": "string",
+      "enum": ["instant", "end_of_turn", "end_of_run", "end_of_encounter", "until_condition", "permanent"]
+    }
+  },
+  "required": ["type"],
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "modify_credits" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "modify_clicks" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "modify_tags" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "modify_strength" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "duration": {
+            "type": "string",
+            "enum": ["instant", "end_of_turn", "end_of_run", "end_of_encounter", "permanent"]
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "modify_counters" } } },
+      "then": {
+        "properties": {
+          "counter_type": { "type": "string" },
+          "amount": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["counter_type", "amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "draw_cards" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1 },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "zone_from": {
+            "type": "string",
+            "enum": ["deck", "stack", "rd"],
+            "default": "deck"
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "discard_cards" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1 },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "zone_from": {
+            "type": "string", 
+            "enum": ["hand", "grip", "deck", "stack"],
+            "default": "hand"
+          },
+          "random": { "type": "boolean", "default": false },
+          "reveal": { "type": "boolean", "default": false }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "move_card" } } },
+      "then": {
+        "properties": {
+          "zone_from": {
+            "type": "string",
+            "enum": ["hand", "grip", "deck", "stack", "discard", "heap", "archives", "hq", "rd", "scored", "installed", "hosted", "removed"]
+          },
+          "zone_to": {
+            "type": "string",
+            "enum": ["hand", "grip", "deck", "stack", "discard", "heap", "archives", "hq", "rd", "scored", "installed", "hosted", "removed", "top_of_deck", "bottom_of_deck"]
+          },
+          "reveal": { "type": "boolean", "default": false },
+          "face_up": { "type": "boolean", "default": false }
+        },
+        "required": ["zone_to"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "install_card" } } },
+      "then": {
+        "properties": {
+          "zone_from": {
+            "type": "string",
+            "enum": ["hand", "grip", "heap", "archives", "rd", "hq", "stack", "deck"]
+          },
+          "pay_cost": { "type": "boolean", "default": true },
+          "face_up": { "type": "boolean", "default": false },
+          "host": { "$ref": "comprehensive_ability.schema.json#/definitions/target" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "deal_damage" } } },
+      "then": {
+        "properties": {
+          "damage_type": {
+            "type": "string",
+            "enum": ["net", "meat", "core"]
+          },
+          "amount": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1 },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "unpreventable": { "type": "boolean", "default": false }
+        },
+        "required": ["damage_type", "amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "prevent_damage" } } },
+      "then": {
+        "properties": {
+          "damage_type": {
+            "type": "string",
+            "enum": ["net", "meat", "core", "any"]
+          },
+          "amount": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1 },
+              { "type": "string", "enum": ["all"] },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "initiate_run" } } },
+      "then": {
+        "properties": {
+          "server": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": ["hq", "rd", "archives", "remote", "any", "choose"]
+              },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/target" }
+            ]
+          },
+          "replacement_access": { "$ref": "#" },
+          "effects_during_run": {
+            "type": "array",
+            "items": { "$ref": "#" }
+          },
+          "effects_on_success": {
+            "type": "array", 
+            "items": { "$ref": "#" }
+          }
+        },
+        "required": ["server"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "break_subroutine" } } },
+      "then": {
+        "properties": {
+          "amount": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1 },
+              { "type": "string", "enum": ["all"] },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "trace" } } },
+      "then": {
+        "properties": {
+          "base_strength": {
+            "oneOf": [
+              { "type": "integer", "minimum": 0 },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "on_success": { "$ref": "#" },
+          "on_failure": { "$ref": "#" }
+        },
+        "required": ["base_strength", "on_success"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "search_deck" } } },
+      "then": {
+        "properties": {
+          "zone": {
+            "type": "string",
+            "enum": ["deck", "stack", "rd"],
+            "default": "deck"
+          },
+          "count": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1 },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "condition": { "$ref": "comprehensive_ability.schema.json#/definitions/condition" },
+          "reveal": { "type": "boolean", "default": false },
+          "destination": {
+            "type": "string",
+            "enum": ["hand", "grip", "installed", "scored", "discard", "heap"],
+            "default": "hand"
+          },
+          "shuffle_after": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "choose_and_execute" } } },
+      "then": {
+        "properties": {
+          "prompt": { "type": "string" },
+          "choices": {
+            "type": "array",
+            "items": { "$ref": "#" },
+            "minItems": 2
+          },
+          "min_choices": { "type": "integer", "minimum": 1, "default": 1 },
+          "max_choices": { "type": "integer", "minimum": 1 }
+        },
+        "required": ["choices"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "conditional_effect" } } },
+      "then": {
+        "properties": {
+          "condition": { "$ref": "comprehensive_ability.schema.json#/definitions/condition" },
+          "then": { "$ref": "#" },
+          "else": { "$ref": "#" }
+        },
+        "required": ["condition", "then"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "delayed_effect" } } },
+      "then": {
+        "properties": {
+          "delay_until": {
+            "oneOf": [
+              { 
+                "type": "string", 
+                "enum": ["start_of_next_turn", "end_of_turn", "end_of_run", "start_of_action_phase"] 
+              },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/condition" }
+            ]
+          },
+          "effects": {
+            "type": "array",
+            "items": { "$ref": "#" }
+          }
+        },
+        "required": ["delay_until", "effects"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "compound" } } },
+      "then": {
+        "properties": {
+          "effects": {
+            "type": "array",
+            "items": { "$ref": "#" },
+            "minItems": 1
+          }
+        },
+        "required": ["effects"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "prompt_choice" } } },
+      "then": {
+        "properties": {
+          "prompt": { "type": "string" },
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "effect": { "$ref": "#" }
+              },
+              "required": ["label", "effect"]
+            },
+            "minItems": 1
+          }
+        },
+        "required": ["prompt", "choices"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "set_variable" } } },
+      "then": {
+        "properties": {
+          "key": { "type": "string" },
+          "value": {
+            "oneOf": [
+              { "type": "integer" },
+              { "type": "string" },
+              { "type": "boolean" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          }
+        },
+        "required": ["key", "value"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "modify_cost" } } },
+      "then": {
+        "properties": {
+          "cost_type": {
+            "type": "string",
+            "enum": ["install", "play", "rez", "trash", "advance"]
+          },
+          "amount": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "comprehensive_ability.schema.json#/definitions/dynamic_value" }
+            ]
+          },
+          "duration": {
+            "type": "string",
+            "enum": ["instant", "end_of_turn", "end_of_run", "permanent"]
+          }
+        },
+        "required": ["cost_type", "amount"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "add_subtype" } } },
+      "then": {
+        "properties": {
+          "subtype": { "type": "string" },
+          "duration": {
+            "type": "string",
+            "enum": ["instant", "end_of_turn", "end_of_run", "permanent"]
+          }
+        },
+        "required": ["subtype"]
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "remove_subtype" } } },
+      "then": {
+        "properties": {
+          "subtype": { "type": "string" },
+          "duration": {
+            "type": "string", 
+            "enum": ["instant", "end_of_turn", "end_of_run", "permanent"]
+          }
+        },
+        "required": ["subtype"]
+      }
+    }
+  ]
+}
