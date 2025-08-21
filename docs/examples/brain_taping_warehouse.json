@@ -28,103 +28,97 @@
       "description": "Terminal operation effect",
       "effects": [
         {
-          "type": "prompt_choice",
+          "type": "choose_and_execute",
           "prompt": "Choose a number X:",
           "choices": [
             {
-              "label": "X = 1",
-              "effect": {
-                "type": "conditional_effect",
-                "condition": {
-                  "query": "player_clicks",
-                  "target": "runner",
-                  "operator": ">=",
-                  "value": 1
-                },
-                "then": {
-                  "type": "compound",
-                  "effects": [
-                    {
-                      "type": "modify_clicks",
-                      "target": "runner",
-                      "amount": -1
-                    },
-                    {
-                      "type": "modify_credits",
-                      "target": "corp",
-                      "amount": 1
-                    }
-                  ]
-                },
-                "else": {
-                  "type": "deal_damage",
-                  "target": "runner",
-                  "damage_type": "core",
-                  "amount": 1
-                }
+              "type": "conditional_effect",
+              "condition": {
+                "query": "player_clicks",
+                "target": "runner",
+                "operator": ">=",
+                "value": 1
+              },
+              "then": {
+                "type": "compound",
+                "effects": [
+                  {
+                    "type": "modify_clicks",
+                    "target": "runner",
+                    "amount": -1
+                  },
+                  {
+                    "type": "modify_credits",
+                    "target": "corp",
+                    "amount": 1
+                  }
+                ]
+              },
+              "else": {
+                "type": "deal_damage",
+                "target": "runner",
+                "damage_type": "core",
+                "amount": 1
               }
             },
             {
-              "label": "X = 2", 
-              "effect": {
-                "type": "conditional_effect",
-                "condition": {
-                  "query": "player_clicks",
-                  "target": "runner",
-                  "operator": ">=",
-                  "value": 2
-                },
-                "then": {
-                  "type": "compound",
-                  "effects": [
-                    {
-                      "type": "modify_clicks",
-                      "target": "runner",
-                      "amount": -2
-                    },
-                    {
-                      "type": "modify_credits",
-                      "target": "corp",
-                      "amount": 2
-                    }
-                  ]
-                },
-                "else": {
-                  "type": "compound",
-                  "effects": [
-                    {
-                      "type": "modify_clicks",
-                      "target": "runner",
-                      "amount": {
-                        "base": 0,
-                        "subtract": {
-                          "type": "player_clicks",
-                          "target": "runner"
-                        }
-                      }
-                    },
-                    {
-                      "type": "modify_credits",
-                      "target": "corp",
-                      "amount": {
+              "type": "conditional_effect",
+              "condition": {
+                "query": "player_clicks",
+                "target": "runner",
+                "operator": ">=",
+                "value": 2
+              },
+              "then": {
+                "type": "compound",
+                "effects": [
+                  {
+                    "type": "modify_clicks",
+                    "target": "runner",
+                    "amount": -2
+                  },
+                  {
+                    "type": "modify_credits",
+                    "target": "corp",
+                    "amount": 2
+                  }
+                ]
+              },
+              "else": {
+                "type": "compound",
+                "effects": [
+                  {
+                    "type": "modify_clicks",
+                    "target": "runner",
+                    "amount": {
+                      "base": 0,
+                      "subtract": {
                         "type": "player_clicks",
                         "target": "runner"
                       }
-                    },
-                    {
-                      "type": "deal_damage",
-                      "target": "runner",
-                      "damage_type": "core",
-                      "amount": {
-                        "base": 2,
-                        "subtract": {
-                          "type": "player_clicks",
-                          "target": "runner"
-                        }
+                    }
+                  },
+                  {
+                    "type": "modify_credits",
+                    "target": "corp",
+                    "amount": {
+                      "type": "player_clicks",
+                      "target": "runner"
+                    }
+                  },
+                  {
+                    "type": "deal_damage",
+                    "target": "runner",
+                    "damage_type": "core",
+                    "amount": {
+                      "base": 2,
+                      "subtract": {
+                        "type": "player_clicks",
+                        "target": "runner"
                       }
                     }
-                  ]
-                }
+                  }
+                ]
               }
             }
           ]

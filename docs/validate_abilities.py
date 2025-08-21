@@ -49,7 +49,7 @@ def main():
     
     # Get paths
     base_dir = Path(__file__).parent
-    schema_dir = base_dir / "schemas"
+    schema_dir = base_dir.parent / "schemas"
     examples_dir = base_dir / "examples"
     
     # Load schemas
@@ -107,7 +107,7 @@ def test_specific_features():
         return
     
     base_dir = Path(__file__).parent
-    schema_path = base_dir / "schemas" / "comprehensive_ability.schema.json"
+    schema_path = base_dir.parent / "schemas" / "comprehensive_ability.schema.json"
     ability_schema = load_schema(schema_path)
     
     print("\nTesting specific language features...")

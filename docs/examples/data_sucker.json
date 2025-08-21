@@ -15,13 +15,11 @@
   "abilities": [
     {
       "type": "triggered",
-      "timing": {
-        "when": "successful_run",
-        "filter": {
-          "query": "run_server",
-          "operator": "in",
-          "value": ["hq", "rd", "archives"]
-        }
+      "timing": "server_breached",
+      "condition": {
+        "query": "run_server",
+        "operator": "in",
+        "value": ["hq", "rd", "archives"]
       },
       "description": "Gain virus counter on successful central run",
       "effects": [
