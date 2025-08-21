@@ -1,0 +1,64 @@
+{
+  "deck": {
+    "set": "Examples",
+    "id": 4,
+    "side": "Runner",
+    "faction": "Criminal",
+    "influence": 2
+  },
+  "type": "Event",
+  "subtypes": ["Run"],
+  "title": "Account Siphon",
+  "play_cost": 4,
+  "text": "Run HQ. If successful, instead of accessing cards, force the Corp to lose all credits and gain that many credits. Take 2 tags.",
+  "abilities": [
+    {
+      "type": "triggered",
+      "timing": "when_played",
+      "description": "Initiate HQ run with replacement access",
+      "effects": [
+        {
+          "type": "initiate_run",
+          "server": "hq",
+          "replacement_access": {
+            "type": "compound",
+            "effects": [
+              {
+                "type": "set_variable",
+                "key": "stolen_credits",
+                "value": {
+                  "type": "player_credits",
+                  "target": "corp"
+                }
+              },
+              {
+                "type": "modify_credits",
+                "target": "corp",
+                "amount": {
+                  "base": 0,
+                  "subtract": {
+                    "type": "player_credits",
+                    "target": "corp"
+                  }
+                }
+              },
+              {
+                "type": "modify_credits",
+                "target": "runner",
+                "amount": {
+                  "type": "variable",
+                  "key": "stolen_credits"
+                }
+              },
+              {
+                "type": "give_tag",
+                "target": "runner",
+                "amount": 2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "deck": {
+    "set": "Examples", 
+    "id": 2,
+    "side": "Runner",
+    "faction": "Anarch",
+    "influence": 3
+  },
+  "type": "Program",
+  "subtypes": ["Virus"],
+  "title": "Data Sucker",
+  "install_cost": 1,
+  "memory_cost": 1,
+  "text": "Whenever you make a successful run on a central server, place 1 virus counter on this program. Hosted virus counter: The ice you are encountering gets -1 strength for the remainder of this encounter.",
+  "abilities": [
+    {
+      "type": "triggered",
+      "timing": "server_breached",
+      "condition": {
+        "query": "run_server",
+        "operator": "in",
+        "value": ["hq", "rd", "archives"]
+      },
+      "description": "Gain virus counter on successful central run",
+      "effects": [
+        {
+          "type": "modify_counters",
+          "target": "self",
+          "counter_type": "virus",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": {
+        "counters": [
+          {
+            "type": "virus",
+            "amount": 1,
+            "from": "self"
+          }
+        ]
+      },
+      "timing": "encounter_ice",
+      "description": "Spend virus counter to weaken ice",
+      "effects": [
+        {
+          "type": "modify_strength",
+          "target": "current_ice",
+          "amount": -1,
+          "duration": "end_of_encounter"
+        }
+      ]
+    }
+  ]
+}

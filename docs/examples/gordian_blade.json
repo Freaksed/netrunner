@@ -1,0 +1,68 @@
+{
+  "deck": {
+    "set": "Examples",
+    "id": 6,
+    "side": "Runner",
+    "faction": "Shaper",
+    "influence": 1
+  },
+  "type": "Program",
+  "subtypes": ["Icebreaker", "Decoder"],
+  "title": "Gordian Blade",
+  "install_cost": 3,
+  "memory_cost": 1,
+  "strength": 1,
+  "text": "1[c]: Break code gate subroutine. 1[c]: +1 strength for the remainder of this run.",
+  "abilities": [
+    {
+      "type": "paid",
+      "cost": {
+        "credits": 1
+      },
+      "timing": "encounter_ice",
+      "description": "Break code gate subroutine",
+      "condition": {
+        "and": [
+          {
+            "query": "ice_subtype",
+            "target": "current_ice",
+            "operator": "contains",
+            "value": "Code Gate"
+          },
+          {
+            "query": "program_strength",
+            "target": "self",
+            "operator": ">=",
+            "value": {
+              "type": "ice_strength",
+              "target": "current_ice"
+            }
+          }
+        ]
+      },
+      "effects": [
+        {
+          "type": "break_subroutine",
+          "target": "current_ice",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "type": "paid",
+      "cost": {
+        "credits": 1
+      },
+      "timing": "approach_ice",
+      "description": "Pump strength for the run",
+      "effects": [
+        {
+          "type": "modify_strength",
+          "target": "self",
+          "amount": 1,
+          "duration": "end_of_run"
+        }
+      ]
+    }
+  ]
+}

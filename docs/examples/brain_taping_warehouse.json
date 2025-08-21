@@ -1,0 +1,141 @@
+{
+  "deck": {
+    "set": "Examples",
+    "id": 3,
+    "side": "Corp", 
+    "faction": "HB",
+    "influence": 1
+  },
+  "type": "Operation",
+  "subtypes": ["Terminal"],
+  "title": "Brain-Taping Warehouse",
+  "play_cost": 2,
+  "text": "Play only as your first click. Choose a number X. The Runner loses X clicks and you gain X credits. If X is greater than the number of clicks the Runner has remaining, the Runner takes 1 brain damage for each click they cannot lose.",
+  "abilities": [
+    {
+      "type": "play_restriction",
+      "description": "Can only be played as first click",
+      "condition": {
+        "query": "player_clicks",
+        "target": "corp",
+        "operator": "==",
+        "value": 4
+      }
+    },
+    {
+      "type": "triggered",
+      "timing": "when_played",
+      "description": "Terminal operation effect",
+      "effects": [
+        {
+          "type": "choose_and_execute",
+          "prompt": "Choose a number X:",
+          "choices": [
+            {
+              "type": "conditional_effect",
+              "condition": {
+                "query": "player_clicks",
+                "target": "runner",
+                "operator": ">=",
+                "value": 1
+              },
+              "then": {
+                "type": "compound",
+                "effects": [
+                  {
+                    "type": "modify_clicks",
+                    "target": "runner",
+                    "amount": -1
+                  },
+                  {
+                    "type": "modify_credits",
+                    "target": "corp",
+                    "amount": 1
+                  }
+                ]
+              },
+              "else": {
+                "type": "deal_damage",
+                "target": "runner",
+                "damage_type": "core",
+                "amount": 1
+              }
+            },
+            {
+              "type": "conditional_effect",
+              "condition": {
+                "query": "player_clicks",
+                "target": "runner",
+                "operator": ">=",
+                "value": 2
+              },
+              "then": {
+                "type": "compound",
+                "effects": [
+                  {
+                    "type": "modify_clicks",
+                    "target": "runner",
+                    "amount": -2
+                  },
+                  {
+                    "type": "modify_credits",
+                    "target": "corp",
+                    "amount": 2
+                  }
+                ]
+              },
+              "else": {
+                "type": "compound",
+                "effects": [
+                  {
+                    "type": "modify_clicks",
+                    "target": "runner",
+                    "amount": {
+                      "base": 0,
+                      "subtract": {
+                        "type": "player_clicks",
+                        "target": "runner"
+                      }
+                    }
+                  },
+                  {
+                    "type": "modify_credits",
+                    "target": "corp",
+                    "amount": {
+                      "type": "player_clicks",
+                      "target": "runner"
+                    }
+                  },
+                  {
+                    "type": "deal_damage",
+                    "target": "runner",
+                    "damage_type": "core",
+                    "amount": {
+                      "base": 2,
+                      "subtract": {
+                        "type": "player_clicks",
+                        "target": "runner"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "modify_clicks",
+          "target": "corp",
+          "amount": {
+            "base": 0,
+            "subtract": {
+              "type": "player_clicks",
+              "target": "corp"
+            }
+          },
+          "description": "Terminal: lose remaining clicks"
+        }
+      ]
+    }
+  ]
+}
