@@ -99,3 +99,56 @@ Currently no automated tests. Manual testing through:
 - Card abilities defined in JSON, not code
 - Event-driven architecture via signals
 - No external dependencies beyond Godot
+
+## Project Structure
+
+```
+netrunner/
+├── cards/                    # Card data and artwork
+│   ├── art/                  # Card images organized by set
+│   │   └── System Gateway/   # JPG files for each card (1.jpg, 2.jpg, etc.)
+│   └── data/                 # Card JSON definitions
+│       └── System Gateway/   # JSON files for each card (1.json, 2.json, etc.)
+├── scenes/                   # Godot scene files (.tscn)
+│   ├── main.tscn            # Main game scene
+│   ├── mainmenu.tscn        # Main menu
+│   ├── deck_builder.tscn    # Deck building interface
+│   ├── playfield.tscn       # Game board/playfield
+│   └── ...                  # Other UI scenes
+├── src/                      # GDScript source code
+│   ├── autoload/            # Global singleton scripts
+│   │   ├── card_database.gd # Card data management
+│   │   ├── game_events.gd   # Event bus system
+│   │   └── scene_manager.gd # Scene navigation
+│   ├── core/                # Core game systems
+│   │   ├── card.gd          # Base card class
+│   │   ├── game_manager.gd  # Main game controller
+│   │   └── server3d.gd      # 3D server representation
+│   ├── game/                # Game flow logic
+│   │   └── turn_manager.gd  # Turn structure management
+│   ├── player/              # Player-specific logic
+│   │   ├── player.gd        # Base player class
+│   │   ├── player_corp.gd   # Corporation player
+│   │   └── player_runner.gd # Runner player
+│   ├── rules/               # Game rules and abilities
+│   │   ├── ability.gd       # Ability data structures
+│   │   ├── ability_engine.gd # Ability execution engine
+│   │   └── run.gd           # Run mechanics
+│   ├── state/               # Game state management
+│   │   ├── game_state.gd    # Global game state
+│   │   └── zones.gd         # Card zone definitions
+│   └── ui/                  # UI components
+│       ├── deck/            # Deck-related UI
+│       ├── menus/           # Menu screens
+│       ├── hand2d.gd        # Hand display
+│       └── playfield.gd     # Playfield UI controller
+├── schemas/                  # JSON validation schemas
+│   ├── ability.schema.json  # Ability definitions
+│   ├── deck.schema.json     # Deck format
+│   └── ...                  # Card type schemas
+├── materials/               # Godot material resources
+├── shaders/                 # Custom shader files
+├── Faction Glyphs/          # SVG faction icons
+├── Game Symbols/            # SVG game symbols (credits, clicks, etc.)
+├── Set Symbols/             # SVG set symbols
+└── project.godot            # Godot project configuration
